@@ -4,7 +4,7 @@
 
 1- Clonar o repositório na maquina
 ```
-git clone https://github.com/Michel-Rooney/projeto-ninnahub.git
+git clone https://github.com/Michel-Rooney/sigen
 ```
 
 2- Abrir a pasta projeto-ninnahub com o VSCode e criar a venv pelo terminal
