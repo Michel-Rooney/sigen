@@ -7,7 +7,7 @@ from administrador.models import Espacos
 def home(request):
     """PAGINA INICIAL"""
     espaco = Espacos.objects.order_by('nome').all()
-    return render(request, 'home.html', {'espacos' : espaco})
+    return render(request, 'index.html', {'espacos' : espaco})
 
 def descricao(request, espaco_id):
     """PAGINA DE DESCRIÇÂO DOS ESPAÇO"""
