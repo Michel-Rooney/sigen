@@ -9,10 +9,43 @@ import os
 from django.contrib.auth.decorators import login_required
 from core.settings import BASE_DIR
 
+#LOGIN ADM
+
+def login(request):
+    """PAGINA DE LOGIN DO ADMINISTRADOR"""
+    if request.method ==  'POST':
+        email = request.POST['email']
+        senha = request.POST['senha']
+        #SE O EMAIL FOR VALIDO E CONSTAR NO BANCO
+        if User.objects.filter(email = email).exists():
+            nome = User.objects.filter(email = email).values_list('username',flat=True).get()
+            user = auth.authenticate(request, username = nome, password = senha)
+            if user is not None:
+                auth.login(request, user)
+                return redirect('login')
+    # else:
+    #     if request.user.is_authenticated:
+    #         return redirect('login')
+    return render(request,'login.html')
+
+def logout(request):
+    """REALIZAÇÂO DE LOGOUT DO USUARIO"""
+    auth.logout(request)
+    return redirect('/login')
+    
 @login_required(login_url='/login')
 def administrador(request):
     """PAGINA DE ADMINISTRADOR"""
-    return render(request, 'login.html')
+    return render(request, 'admistracao.html')
+
+@login_required(login_url='/login')
+def registro_adm(request):
+    """PAGINA DE REGISTRO DE NOVO ADMINISTRADOR"""
+    if request.method == 'POST':
+        nome = request.POST['nome_usuario']
+        email = request.POST['email']
+        senha = request.POST['senha']
+
 @login_required(login_url='/login')
 def check(request):
     """PAGINA DE CHECK-IN/OUT"""
@@ -109,35 +142,3 @@ def adicionar_espaco(request):
     
     return render(request, 'espacos/adicionar_espaco.html')
 
-
-#LOGIN ADM
-
-def login(request):
-    """PAGINA DE LOGIN DO ADMINISTRADOR"""
-    if request.method ==  'POST':
-        email = request.POST['email']
-        senha = request.POST['senha']
-        #SE O EMAIL FOR VALIDO E CONSTAR NO BANCO
-        if User.objects.filter(email = email).exists():
-            nome = User.objects.filter(email = email).values_list('username',flat=True).get()
-            user = auth.authenticate(request, username = nome, password = senha)
-            if user is not None:
-                auth.login(request, user)
-                return redirect('check')
-    else:
-        if request.user.is_authenticated:
-            return redirect('/check/')
-        return render(request,'login.html')
-
-def logout(request):
-    """REALIZAÇÂO DE LOGOUT DO USUARIO"""
-    auth.logout(request)
-    return redirect('/login')
-
-@login_required(login_url='/login')
-def registro_adm(request):
-    """PAGINA DE REGISTRO DE NOVO ADMINISTRADOR"""
-    if request.method == 'POST':
-        nome = request.POST['nome_usuario']
-        email = request.POST['email']
-        senha = request.POST['senha']

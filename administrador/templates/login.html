@@ -11,12 +11,13 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card py-3 px-2">
                     <p class="text-center mb-3 mt-2 p-login">FAÇA SEU LOGIN</p>
-                    <form class="myform">
+                    <form action="{% url 'login' %}" method="POST" class="myform">
+                        {% csrf_token %}
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="E-mail">
+                            <input name="email" type="email" class="form-control" placeholder="E-mail">
                           </div>
                          <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Senha">
+                            <input name="senha" type="password" class="form-control" placeholder="Senha">
                           </div>
                           <div class="row">
                               <div class="col-md-6 col-12">
@@ -28,7 +29,7 @@
                               <div class="col-md-6 col-12 bn deixar-preto">Esqueci a senha!</div>
                           </div>
                           <div class="form-group mt-3">
-                            <button type="button" class="btn btn-block btn-primary btn-lg"><small><i class="far fa-user pr-2"></i></i>Login</small></button>
+                            <button type="submit" class="btn btn-block btn-primary btn-lg"><small><i class="far fa-user pr-2"></i></i>Login</small></button>
                           </div>
                     </form>
                 </div>
