@@ -12,12 +12,17 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
-    <!-- CSS Bootstrap & Custom -->
+    <!-- CSS Bootstrap & Custom Index -->
     <link href="{% static 'reserva/bootstrap/css/bootstrap.css' %}" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="{% static 'reserva/css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'reserva/css/misc.css' %}">
     <link rel="stylesheet" href="{% static 'reserva/css/animate.css' %}">
     <link rel="stylesheet" href="{% static 'reserva/css/main.css' %}">
+
+    <!-- CSS Bootstrap & Custom Login -->
+    <link rel="stylesheet" href="http://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="{% static 'reserva/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'reserva/css/login.css'%}">
+    <link rel="stylesheet" href="{% static 'reserva/css/font-awesome.min.css'%}">
         
     <!-- Favicons -->
     <link rel="shortcut icon" href="{% static 'reserva/images/ico/favicon.ico' %}">
@@ -28,9 +33,12 @@
 </head>
 <body>
     {% block 'body' %}{% endblock %}
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'reserva/js/plugins.js' %}"></script>
-    <script src="{% static 'reserva/js/jquery.lightbox.js' %}"></script>
-    <script src="{% static 'reserva/js/custom.js' %}"></script>
+
+    <script src="{% static 'reserva/bootstrap/js/bootstrap-button.js'%}"></script>
+    <script src="{% static 'reserva/bootstrap/js/jquery.min.js'%}"></script>
+    <script src="{% static 'reserva/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'reserva/js/plugins.js'%}"></script>
+    <script src="{% static 'reserva/js/jquery.lightbox.js'%}"></script>
+    <script src="{% static 'reserva/js/custom.js'%}"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@ from core.settings import BASE_DIR
 @login_required(login_url='/login')
 def administrador(request):
     """PAGINA DE ADMINISTRADOR"""
-    pass
+    return render(request, 'login.html')
 @login_required(login_url='/login')
 def check(request):
     """PAGINA DE CHECK-IN/OUT"""
