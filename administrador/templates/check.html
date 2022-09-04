@@ -17,6 +17,7 @@
           }
         }
     </script>
+{% if user.is_authenticated %}
     {% for caso in casos %}
     {% if caso.participantes_presentes == 0%}
       <div class="parte-branca">
@@ -47,6 +48,7 @@
       {%endif%}
       {% endfor %}
     </main>
+{%endif%}
     <!-- Começo do footer -->
     {% include 'partials/_footer.html' %}
     <!-- Final do footer -->

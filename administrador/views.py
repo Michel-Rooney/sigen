@@ -22,10 +22,10 @@ def login(request):
             user = auth.authenticate(request, username = nome, password = senha)
             if user is not None:
                 auth.login(request, user)
-                return redirect('login')
-    # else:
-    #     if request.user.is_authenticated:
-    #         return redirect('login')
+                return redirect('check')
+        # else:
+        #     if request.user.is_authenticated:
+        #         return redirect('check')
     return render(request,'login.html')
 
 def logout(request):

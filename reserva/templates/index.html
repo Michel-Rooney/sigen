@@ -15,61 +15,21 @@
                 <span></span>
             </div> <!-- /.title-section -->
             <div class="row">
+                {% if espacos %}
+                {% for espaco in espacos %}
                 <div class="col-md-3 col-sm-6">
                     <div class="servicos-item">
                         <div class="servicos-header">
                             <i class="fa-duotone fa-check"></i>
-                            <h3>Pregão</h3>
+                            <h3>{{espaco.nome}}</h3>
                         </div>
                         <div class="servicos-description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, sapiente, saepe, velit, repellendus doloribus blanditiis repudiandae nobis optio quasi nulla aliquam nisi voluptatibus.
+                            {{espaco.descricao}}
                         </div>
                     </div> <!-- /.servicos-item -->
                 </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="servicos-item">
-                        <div class="servicos-header">
-                            <i class="fa fa-desktop"></i>
-                            <h3>Sprint 01</h3>
-                        </div>
-                        <div class="servicos-description">
-                            <a rel="nofollow" href="#" target="_parent">Compass</a> is free responsive website template from templatemo. You can download and use this template for your websites. Please tell your friends sobre-espacos our website. Thank you for visiting us.
-                        </div>
-                    </div> <!-- /.servicos-item -->
-                </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="servicos-item">
-                        <div class="servicos-header">
-                            <i class="fa fa-cogs"></i>
-                            <h3>Sprint 02</h3>
-                        </div>
-                        <div class="servicos-description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, sapiente, saepe, velit, repellendus doloribus blanditiis repudiandae nobis optio quasi nulla aliquam nisi voluptatibus.
-                        </div>
-                    </div> <!-- /.servicos-item -->
-                </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="servicos-item">
-                        <div class="servicos-header">
-                            <i class="fa fa-heart"></i>
-                            <h3>Sala Oval</h3>
-                        </div>
-                        <div class="servicos-description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, sapiente, saepe, velit, repellendus doloribus blanditiis repudiandae nobis optio quasi nulla aliquam nisi voluptatibus.
-                        </div>
-                    </div> <!-- /.servicos-item -->
-                </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="servicos-item">
-                        <div class="servicos-header">
-                            <i class="fa fa-umbrella"></i>
-                            <h3>Auditório</h3>
-                        </div>
-                        <div class="servicos-description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, sapiente, saepe, velit, repellendus doloribus blanditiis repudiandae nobis optio quasi nulla aliquam nisi voluptatibus.
-                        </div>
-                    </div> <!-- /.servicos-item -->
-                </div> <!-- /.col-md-3 -->
+            {%endfor%}
+            {%endif%}
             </div> <!-- /.row -->
         </div> <!-- /.container -->
     </div> <!-- /#servicos -->
@@ -77,7 +37,7 @@
     <div id="portfolio" class="section-content">
         <div class="container">
             <div class="title-section text-center">
-                <h2>Algumas fotos</h2>
+                <h2>Nossos Espaços</h2>
                 <span></span>
             </div> <!-- /.title-section -->
             <div class="row">
