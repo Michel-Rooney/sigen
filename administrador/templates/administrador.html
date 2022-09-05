@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}NinnaHub - Check-in/Out{% endblock %}
+{% block 'body' %}
+
+{% include 'partials/_navbar.html' %}
+{% if user.is_authenticated %}
+    {% if nivel.status == 'TOP' %}
+            <div class="h1-meio-titulo">
+                <h1> Olá, {{nivel.usuario.username}}</h1>
+            </div>
+            <section class="mae">
+                <div class="quadrado-opcoes">
+                    <a href="">Gerenciar Espaços</a>
+                </div>
+                <div class="quadrado-opcoes">
+                    <a href="">Check-in/out</a>
+                </div>
+                <div class="quadrado-opcoes">
+                    <a href="">Relatorios</a>
+                </div>
+                <div class="quadrado-opcoes">
+                    <a href="">Criar Novo Usuario</a>
+                </div>
+                <div class="quadrado-opcoes">
+                    <a href="">Deslogar</a>
+                </div>
+            </section>
+    {% elif nivel.status == 'RCP' %}
+            <div class="h1-meio-titulo">
+                    <h1> Olá, {{nivel.user.username}}</h1>
+            </div>
+            <section class="mae">
+                <div class="quadrado-opcoes">
+                        <a href="">Check-In/Out</a>
+                </div>
+                <div class="quadrado-opcoes">
+                        <a href="">Deslogar</a>
+                </div>
+            </section>
+    {% endif %}
+{%else%}
+{%endif%}
+     <!-- Começo do footer -->
+{% include 'partials/_footer.html' %}
+<!-- Final do footer -->
+{% endblock %}

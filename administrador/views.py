@@ -22,7 +22,7 @@ def login(request):
             user = auth.authenticate(request, username = nome, password = senha)
             if user is not None:
                 auth.login(request, user)
-                return redirect('check')
+                return redirect('administrador')
         # else:
         #     if request.user.is_authenticated:
         #         return redirect('check')
@@ -36,7 +36,9 @@ def logout(request):
 @login_required(login_url='/login')
 def administrador(request):
     """PAGINA DE ADMINISTRADOR"""
-    return render(request, 'admistracao.html')
+    usuario = request.user.id
+    conteudo = {'nivel': get_object_or_404(NivelUsuario, usuario=usuario)}
+    return render(request, 'administrador.html', conteudo)
 
 @login_required(login_url='/login')
 def registro_adm(request):

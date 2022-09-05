@@ -1,0 +1,27 @@
+.h1-meio-titulo {
+    padding-top: 200px;
+    text-align: center;
+    font-weight: bold;
+}
+.mae {
+    margin-bottom: 80px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.quadrado-opcoes{
+    width: 40%;
+    background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
+    padding: 50px;
+    margin: 10px;
+    font-size: 17px;
+    border-radius: 10px;
+}
+
+.quadrado-opcoes a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
