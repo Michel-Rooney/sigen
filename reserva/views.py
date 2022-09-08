@@ -18,4 +18,4 @@ def descricao(request, espaco_id):
 
 def registro(request):
     """PAGINA DE RESERVA DE ESPAÇO"""
-    return render(request, 'registro.html')
+    return render(request, 'reserva.html')

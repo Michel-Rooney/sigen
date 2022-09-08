@@ -4,6 +4,7 @@
 <head>
     {% block 'head' %}{% endblock %}
     <title>{% block 'title' %}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'reserva/images/logo-nina.png'%}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Amontada Valley">
@@ -17,6 +18,9 @@
     <link rel="stylesheet" href="{% static 'reserva/css/misc.css' %}">
     <link rel="stylesheet" href="{% static 'reserva/css/animate.css' %}">
     <link rel="stylesheet" href="{% static 'reserva/css/main.css' %}">
+
+    <link rel="stylesheet" href="{% static 'reserva/css/base.css'%}">
+    <link rel="stylesheet" href="{% static 'reserva/css/style.css'%}">
 
     <!-- CSS Bootstrap & Custom Login -->
     <link rel="stylesheet" href="http://use.fontawesome.com/releases/v5.7.2/css/all.css">
@@ -33,6 +37,7 @@
     <link rel="shortcut icon" href="{% static 'reserva/images/ico/favicon.ico' %}">
     
     <!-- JavaScripts -->
+    <script src="https://kit.fontawesome.com/e303a65637.js" crossorigin="anonymous"></script>
     <script src="{% static 'reserva/js/jquery-1.10.2.min.js' %}"></script>
     <script src="{% static 'reserva/js/modernizr.js' %}"></script>
 </head>

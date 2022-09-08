@@ -51,9 +51,7 @@ def registro_adm(request):
 @login_required(login_url='/login')
 def check(request):
     """PAGINA DE CHECK-IN/OUT"""
-    usuario = request.user.id
     conteudo = {"casos": Registro.objects.order_by('check_in_horario').all(),
-    'nivel': get_object_or_404(NivelUsuario, usuario=usuario)
     }
     return render(request, 'check.html',conteudo)
 
