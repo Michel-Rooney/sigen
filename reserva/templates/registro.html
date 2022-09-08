@@ -7,7 +7,7 @@
     {% include 'partials/_navbar.html' %}
         <main class="principal"><!-- Principal Start -->
             <section class="container"><!-- Container Start -->
-                <form class="formulario" action=""><!-- Formulario Start -->
+                <form class="formulario" method="POST" enctype="multipart/form-data"> {% csrf_token %} <!-- Formulario Start -->
                     <div class="dados-agente"><!-- Dados do Agente - Start -->
                         <h1 id="titulo-agente" class="titulo">Dados do Agente</h1>
                         <div class="input-box">

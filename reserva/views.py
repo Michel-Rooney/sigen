@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from administrador.models import Espacos
 
@@ -18,4 +18,30 @@ def descricao(request, espaco_id):
 
 def registro(request):
     """PAGINA DE RESERVA DE ESPAÇO"""
-    return render(request, 'reserva.html')
+    if request.method == 'GET':
+        return render(request, 'registro.html')
+    elif request.method == 'POST':
+        nome_agente = request.POST['nome-agente']
+        tipo_empresa = request.POST['tipo-empresa']
+        numero_cpf = request.POST['numero-cpf']
+        email = request.POST['email']
+        telefone = request.POST['telefone']
+        nome_empresa = request.POST['nome-empresa']
+        numero_cnpj = request.POST['numero-cnpj']
+        nome_evento = request.POST['nome-evento']
+        lista_participante = request.FILES['lista-participante']
+        descricao_evento = request.POST['descricao-evento']
+
+
+        # Está feito supercialmente, ainda a campos faltando
+        # try:
+        #     registro = Registro.objects.create(agente=nome_agente, mantenedor=tipo_empresa, empresa=nome_empresa,email=email, telefone=telefone,
+        #                                     cpf=numero_cpf, cnpj=numero_cnpj, descricao=descricao_evento)
+        #     registro.save()
+        #     return redirect('/')
+        # except:
+        #     return redirect('/registro')
+
+
+
+
