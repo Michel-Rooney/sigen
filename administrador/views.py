@@ -31,23 +31,23 @@ def login(request):
 def logout(request):
     """REALIZAÇÂO DE LOGOUT DO USUARIO"""
     auth.logout(request)
-    return redirect('/login')
+    return redirect('/adm/login')
     
-@login_required(login_url='/login')
+@login_required(login_url='/adm/login')
 def administrador(request):
     """PAGINA DE ADMINISTRADOR"""
     usuario = request.user.id
     conteudo = {'nivel': get_object_or_404(NivelUsuario, usuario=usuario)}
     return render(request, 'administrador.html', conteudo)
 
-@login_required(login_url='/login')
+@login_required(login_url='/adm/login')
 def gerenciar_usuario(request):
     """Página de Listagem de Usuários Administradores do Sistema"""
     user = {'user': User.objects.all()}
     return render(request, 'gerenciar_usuario.html', user)
     
 
-@login_required(login_url='/login')
+@login_required(login_url='/adm/login')
 def registro_adm(request):
     """PAGINA DE REGISTRO DE NOVO ADMINISTRADOR"""
     if request.method == 'POST':
@@ -55,7 +55,7 @@ def registro_adm(request):
         email = request.POST['email']
         senha = request.POST['senha']
 
-@login_required(login_url='/login')
+@login_required(login_url='/adm/login')
 def check(request):
     """PAGINA DE CHECK-IN/OUT"""
     conteudo = {"casos": Registro.objects.order_by('check_in_horario').all(),
@@ -76,18 +76,18 @@ def check_in(request,id):
     checando.save()
     return redirect('check')
 
-@login_required(login_url='/login')
+@login_required(login_url='/adm/login')
 def gerenciar_espaco(request):
     """PAGINA DE GERENCIAMENTO DE ESPAÇOS"""
     return render(request, 'espacos/gerenciar_espaco.html')
 
-@login_required(login_url='/login')
+@login_required(login_url='/adm/login')
 def remover_espaco(request):
     """PAGINA DE REMOÇÂO DE ESPAÇO"""
     conteudo = {'espacos': Espacos.objects.order_by('nome').all()}
     return render(request, 'espacos/remover_espaco.html', conteudo)
 
-@login_required(login_url='/login')
+@login_required(login_url='/adm/login')
 def remover_espaco_id(request, espaco_id):
     """REMOVER ESPAÇO ESPECIFICO"""
     espaco = get_object_or_404(Espacos, pk=espaco_id)
@@ -95,13 +95,13 @@ def remover_espaco_id(request, espaco_id):
     espaco.delete()
     return redirect('/remover_espaco')
 
-@login_required(login_url='/login')
+@login_required(login_url='/adm/login')
 def editar_espaco(request):
     """PAGINA DE EDIÇÂO DOS ESPAÇOS"""
     espaco = Espacos.objects.all()
     return render(request, 'espacos/editar_espaco.html', {'espacos' : espaco})
 
-@login_required(login_url='/login')
+@login_required(login_url='/adm/login')
 def editar_espaco_id(request, espaco_id):
     """EDITAR ESPAÇO ESPECIFICO"""
     if request.method == 'POST':
@@ -128,7 +128,7 @@ def editar_espaco_id(request, espaco_id):
     espaco = get_object_or_404(Espacos, pk=espaco_id)
     return render(request, 'espacos/editar_espaco_id.html', {'espaco' : espaco})
 
-@login_required(login_url='/login')
+@login_required(login_url='/adm/login')
 def adicionar_espaco(request):
     """ADCICIONAR ESPAÇO ESPECIFICO"""
     if request.method == 'POST':
