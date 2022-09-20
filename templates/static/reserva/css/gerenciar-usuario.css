@@ -1,0 +1,54 @@
+main {
+    margin-top: 180px;
+    margin-bottom: 90px;
+}
+
+.primeira-parte {
+    width: 100%;
+    text-align: center;
+}
+
+.primeira-parte input {
+    width: 50%;
+    height: 40px;
+    border-radius: 15px;
+}
+
+.img-lupa {
+    width: 2%;
+}
+
+.div-tabela {
+    width: 100%;
+    margin-left: 140px;
+    margin-top: 40px;
+}
+
+.tabela {
+    width: 80%;
+    border-top: 6px solid rgb(176,106,252);
+    border-left:1px solid #57557A ;
+    border-right:1px solid #57557A  ;
+    border-bottom:1px solid #57557A  ;
+    border-radius: 10px;
+    border-collapse: separate;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.tabela th {
+    border: 1px solid #57557A;
+    border-radius: 5px;
+    padding-left: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tabela tr td{
+    border: 1px #57557A solid;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+
+

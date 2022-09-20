@@ -7,6 +7,8 @@ urlpatterns =[
     path('logout/', views.logout, name = 'logout'),
     #Pagina de Adm
     path('administrador/', views.administrador, name='administrador'),
+    #Listar Usuários
+    path('gerenciar_usuario/', views.gerenciar_usuario, name= 'gerenciar_usuario'),
     #check-in/out
     path('check/', views.check, name='check'),
     path('check_in/<int:id>', views.check_in, name='check_in'),

@@ -41,6 +41,13 @@ def administrador(request):
     return render(request, 'administrador.html', conteudo)
 
 @login_required(login_url='/login')
+def gerenciar_usuario(request):
+    """Página de Listagem de Usuários Administradores do Sistema"""
+    user = {'user': User.objects.all()}
+    return render(request, 'gerenciar_usuario.html', user)
+    
+
+@login_required(login_url='/login')
 def registro_adm(request):
     """PAGINA DE REGISTRO DE NOVO ADMINISTRADOR"""
     if request.method == 'POST':
