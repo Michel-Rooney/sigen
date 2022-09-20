@@ -224,80 +224,81 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 12rem;
 }
 .container {
-    width: 80vw;
-    margin: 0 auto;
+  width: 80vw;
+  margin: 0 auto;
 }
 .dados-agente, .dados-empresa, .dados-evento {
-    margin: 4rem 0;
+  margin: 4rem 0;
 }
 .titulo {
-    color: var(--verde-ninna);
-    text-align: center;
-    font-weight: 400;
-    font-size: 1.5rem;
-    margin: 1rem 0;
+  color: var(--verde-ninna);
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin: 1rem 0;
 }
 .input-box {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 .input-padrao {
-    border: 1px solid var(--azul-ninna);
-    border-radius: 5px;
-    font-size: 1rem;
-    padding: 0.3rem;
-    margin: 0 1rem;
-    outline: none;
-    width: calc(40vw - 1rem);
+  border: 1px solid var(--azul-ninna);
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.3rem;
+  margin: 0 1rem;
+  outline: none;
+  width: calc(40vw - 1rem);
 }
 #lista-participante {
-    position: absolute;
-    left: -9999px;
+  position: absolute;
+  left: -9999px;
 }
 #lista-participante-box {
-    background-color: var(--branco);
-    color: var(--cinza);
+  background-color: var(--branco);
+  color: var(--cinza);
 }
 #icone-arquivo {
-    padding-right: 0 0.5rem;
+  padding-right: 0 0.5rem;
 }
 #descricao-evento {
-    border-radius: 5px;
-    border: 1px solid var(--azul-ninna);
-    font-size: 1rem;
-    resize: none;
-    padding: 0.3rem 0.3rem;
-    width: calc(80vw - 4rem + 2px);
-    outline: none;
-    max-width: 1077px;
+  border-radius: 5px;
+  border: 1px solid var(--azul-ninna);
+  font-size: 1rem;
+  resize: none;
+  padding: 0.3rem 0.3rem;
+  width: 80vw;
+  outline: none;
+  max-width: 1077px;
 }
 #botao-confirmar {
-    border-radius: 5px;
-    background-color: var(--azul-ninna);
-    color: var(--branco-ninna);
-    margin: 1rem 0;
-    padding: 0.5rem 1rem;
-    transition: all 300ms ease-in-out;
-    width: 30%;
-    outline: none;
+  border-radius: 5px;
+  background-color: var(--azul-ninna);
+  color: var(--branco-ninna);
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  transition: all 700ms ease-in-out;
+  width: 30%;
+  outline: none;
 }
 #botao-confirmar:hover {
-    border: 1px solid var(--preto-ninna);
-    color: var(--branco-ninna);
+  border-color: #0e0062;
+  transform: scale(1.02);
+  background-color: #57B952;
 }
 
 @media screen and (max-width: 833px) {
   .input-box {
-      flex-wrap: wrap;
-      margin-bottom: 0;
+    flex-wrap: wrap;
+    margin-bottom: 0;
   }
   .input-padrao {
-      width: 80vw;
-      margin-bottom: 1rem;
+    width: 80vw;
+    margin-bottom: 1rem;
   }
   #botao-confirmar {
-      width: 60%;
+    width: 60%;
   }
 }
 
