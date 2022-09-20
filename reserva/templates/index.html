@@ -49,7 +49,7 @@
                         <div class="overlay">
                             <div class="inner">
                                 <h4><a data-rel="lightbox" href="{{ espaco.imagem1.url }}">{{espaco.nome}}</a></h4>
-                                <span><a href="#">Faça sua reserva</a></span>
+                                <span><a href="{% url 'descricao' espaco.id %}">Faça sua reserva</a></span>
                             </div>
                         </div> <!-- /.overlay -->
                     </div> <!-- /.portfolio-thumb -->
