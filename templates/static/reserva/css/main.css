@@ -314,7 +314,7 @@ h1, h2, h3, h4, h5, h6 {
 #portfolio .portfolio-thumb .overlay {
   opacity: 0;
   visibility: visible;
-  background: rgba(227, 114, 46, 0.9);
+  background: #57B952;
   position: absolute;
   top: 0;
   left: 0;
@@ -339,14 +339,20 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 10px;
 }
 #portfolio .portfolio-thumb .overlay .inner h4 a {
-  color: white;
+  color: #ECEDEE;
+  opacity: 100%;
+  font-weight: bold;
+}
+#reserv{
+  color: #00257A;
+  font-weight: bold;
 }
 #portfolio .portfolio-thumb .overlay .inner span {
   font-weight: 300;
   color: white;
 }
 #portfolio .portfolio-thumb:hover .overlay {
-  opacity: 1;
+  opacity: 70%;
   visibility: visible;
 }
 
