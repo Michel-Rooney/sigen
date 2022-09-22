@@ -59,3 +59,15 @@ p, h2, h3{
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.button{
+  background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 10px
+}
+.button :hover{
+  text-decoration: underline;
+}
+.text{
+  background-color: black;
+}
