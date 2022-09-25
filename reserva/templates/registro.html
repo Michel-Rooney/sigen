@@ -11,25 +11,26 @@
                     <div class="dados-agente"><!-- Dados do Agente - Start -->
                         <h1 id="titulo-agente" class="titulo">Dados do Agente</h1>
                         <div class="input-box">
-                            <input type="text" name="nome-agente" placeholder="Nome do agente" autocomplete="off" id="nome-agente" class="input-padrao" required>
+                            <input type="text" name="nome-agente" placeholder="Nome Completo" id="nome-agente" autocomplete="off" class="input-padrao" required>
                             <select id="tipo-empresa" name="tipo-empresa" class="input-padrao" required>
+                                <option>Tipo do Agente</option>
                                 <option name="mantenedor">Mantenedor</option>
                                 <option name="residente-startup">Residente Startup</option>
                                 <option name="time-operacional">Time Operacional</option>
                             </select>
-                            <input type="text" placeholder="CPF" class="input-padrao" pattern="^(\d{3}[\.-]?)(\d{3}[\.-]?)(\d{3}[\.-]?)(\d{2}[\.-]?)$" name="numero-cpf" id="numero-cpf" required>
+                            <input type="text" placeholder="CPF" class="input-padrao" pattern="^(\d{3}[\.-]?)(\d{3}[\.-]?)(\d{3}[\.-]?)(\d{2}[\.-]?)$" name="numero-cpf" id="numero-cpf" autocomplete="off" required>
                         </div>
                         <div class="input-box">
-                            <input type="email" name="email" id="email" class="input-padrao" placeholder="Email" required>
-                            <input type="tel" name="telefone" id="telefone" class="input-padrao" minlength="7" pattern="^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$" placeholder="Telefone" required>
+                            <input type="email" name="email" id="email" autocomplete="off" class="input-padrao" placeholder="Email" required>
+                            <input type="tel" name="telefone" id="telefone" autocomplete="off" class="input-padrao" pattern="\(?(\d{2,2})\)?(\d{4,5})-?(\d{4,4})$" placeholder="Telefone" required>
                         </div>
                     </div><!-- Dados do Agente - End -->
                     
                     <div class="dados-empresa"><!-- Dados da Empresa Start -->
                         <h1 id="titulo-agente" class="titulo">Dados da Empresa</h1>
                         <div class="input-box">
-                            <input type="text" id="nome-empresa" class="input-padrao" name="nome-empresa" placeholder="Nome da empresa" autocomplete="off" required>
-                            <input type="text" placeholder="CNPJ" class="input-padrao" pattern="^(\d{2}[\.]?)(\d{3}[\.]?)(\d{3}[\.]?)(/?\d{4}-?)(\d{2})$" name="numero-cnpj" id="numero-cnpj" required>
+                            <input type="text" id="nome-empresa" autocomplete="off" class="input-padrao" name="nome-empresa" placeholder="Nome da empresa" required>
+                            <input type="text" placeholder="CNPJ" class="input-padrao" pattern="^(\d{2}[\.]?)(\d{3}[\.]?)(\d{3}[\.]?)(/?\d{4}-?)(\d{2})$" name="numero-cnpj" id="numero-cnpj" autocomplete="off" required>
                         </div>
                     </div><!-- Dados da Empresa End -->
                     
