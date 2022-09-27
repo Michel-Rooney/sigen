@@ -3,7 +3,6 @@
 *.pot
 *.pyc
 __pycache__
-media
 
 # Backup files #
 *.bak
@@ -124,4 +123,3 @@ env
 local_settings.py
 _local_settings.py
 gunicorn-error-log
-static/
