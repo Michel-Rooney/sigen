@@ -11,7 +11,7 @@ class Espacos(models.Model):
     imagem4 = models.ImageField(upload_to='fotos/espacos/imagem4', blank=True)
     imagem5 = models.ImageField(upload_to='fotos/espacos/imagem5', blank=True)
 
-    def str(self):
+    def __str__(self):
         return self.nome
 
 
