@@ -4,7 +4,7 @@
 {% block 'title' %}NinnaHub - Check-in/Out{% endblock %}
 {% block 'body' %}
 
-{% include 'partials/_navbar.html' %}
+{% include 'partials/_navbar-adm.html' %}
 {% if user.is_authenticated %}
     {% if nivel.status == 'TOP' %}
             <div class="h1-meio-titulo">
@@ -23,9 +23,9 @@
                 <div class="quadrado-opcoes">
                     <a href="{% url 'gerenciar_usuario' %}">Gerenciamento de Usuários</a>
                 </div>
-                <div class="quadrado-opcoes">
+                <!-- <div class="quadrado-opcoes">
                     <a href="">Deslogar</a>
-                </div>
+                </div> -->
             </section>
     {% elif nivel.status == 'RCP' %}
             <div class="h1-meio-titulo">
