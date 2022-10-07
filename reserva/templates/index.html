@@ -105,29 +105,31 @@
                 <h2>Contato</h2>
                 <span></span>
             </div> <!-- /.title-section -->
-            <div class="row">
-                <div class="col-md-7 col-sm-6">
-                    <h4 class="widget-title">Nos mande uma mensagem</h4>
-                    <div class="contato-form">
-                        <p class="full-row">
-                            <label for="name-id">Seu Nome:</label>
-                            <input type="text" id="name-id" name="name-id">
-                        </p>
-                        <p class="full-row">
-                            <label for="email-id">Email:</label>
-                            <input type="text" id="email-id" name="email-id">
-                        </p>
-                        <p class="full-row">
-                            <label for="subject-id">Assunto:</label>
-                            <input type="text" id="subject-id" name="subject-id">
-                        </p>
-                        <p class="full-row">
-                            <label for="message">Mensagem:</label>
-                            <textarea name="message" id="message" rows="6"></textarea>
-                        </p>
-                        <input class="mainBtn" type="submit" name="" value="Enviar">
-                    </div>
-                </div> <!-- /.col-md-3 -->
+            <form action="{% url 'home' %}" method="POST">{% csrf_token %}
+                <div class="row">
+                    <div class="col-md-7 col-sm-6">
+                        <h4 class="widget-title">Nos mande uma mensagem</h4>
+                        <div class="contato-form">
+                            <p class="full-row">
+                                <label for="name-id">Seu Nome:</label>
+                                <input type="text" id="name-id" name="name-id">
+                            </p>
+                            <p class="full-row">
+                                <label for="email-id">Email:</label>
+                                <input type="text" id="email-id" name="email-id">
+                            </p>
+                            <p class="full-row">
+                                <label for="subject-id">Assunto:</label>
+                                <input type="text" id="subject-id" name="subject-id">
+                            </p>
+                            <p class="full-row">
+                                <label for="message">Mensagem:</label>
+                                <textarea name="message" id="message" rows="6"></textarea>
+                            </p>
+                            <input class="mainBtn" type="submit" name="" value="Enviar">
+                        </div>
+                    </div> <!-- /.col-md-3 -->
+                </form>
                 <div class="col-md-5 col-sm-6">
                     <h4 class="widget-title">Nossa Localização</h4>
                     <div class="map-holder">
