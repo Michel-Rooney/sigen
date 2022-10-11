@@ -44,9 +44,11 @@ a {
 }
 
 .botao-form {
-    background: #ECEDEE;
+    background: rgb(53,62,135);
     margin-left: 5px;
     padding: 5px;
+    border-radius: 7px;
+    color: white;
 }
 
 .botao-form:hover {
@@ -60,6 +62,6 @@ a {
 }
 
 #quantidade {
-    width: 15%;
-    
+    width: 7%;
+    border-radius: 20px;
 }

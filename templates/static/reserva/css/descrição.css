@@ -31,7 +31,7 @@ p{
   line-height: 1.50;
 }
 
-p, h2, h3{
+h2, h3{
   color: #333539;
 }
 
@@ -62,7 +62,7 @@ p, h2, h3{
 .button{
   background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
   border: none;
-  border-radius: 50px;
+  border-radius: 6px;
   padding: 10px 10px
 }
 .button :hover{
