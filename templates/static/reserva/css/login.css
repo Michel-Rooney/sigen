@@ -1,9 +1,9 @@
 body{
-	background-color: #fff;
+	background-color: #f6f6f6;
 }
 .card{
 	
-	border-top: 5px solid  rgb(176,106,252);
+	border-top: 5px solid  rgb(53,62,135);
 	color: #fff;
 	margin-top: 150px;
 	margin-bottom: 40px;
@@ -14,6 +14,7 @@ p{
 }
 
 .p-login {
+	font-size: 25px;
 	color: black;
 }
 

@@ -20,6 +20,10 @@
     border-radius: 10px;
 }
 
+.a-italico {
+    font-style: italic;
+}
+
 .quadrado-opcoes a {
     text-decoration: none;
     color: white;

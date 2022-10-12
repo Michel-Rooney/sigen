@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Gerenciamento de Usuário{% endblock %}
+{% block 'body' %}
+
+{% include 'partials/_navbar-adm.html' %}
+        <main>
+            <div class="primeira-parte">
+                <input type="text" placeholder="Pesquisar">
+                <a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a>
+            </div>
+            <div class="div-tabela">
+                <table class="tabela">
+                    <tr>
+                        <th>Usuários</th>  
+                        <th></th>
+                        <th></th>                                     
+                    </tr>
+                {% for user in user %}
+                    <tr>
+                        <td>{{user}}</td>
+                        <td><a href="#">Editar Usuário</a></td>
+                        <td><a href="#">Deletar Usuário</a></td>
+                    </tr>
+                {%endfor%}                                     
+                </table>
+            </div>
+        </main>
+        <!-- Começo do footer -->
+{% include 'partials/_footer.html' %}
+<!-- Final do footer -->
+{% endblock %}

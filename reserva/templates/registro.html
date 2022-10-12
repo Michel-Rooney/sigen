@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}NinnaHub - Registrar Reserva{% endblock %}
+{% block 'body' %}
+
+    {% include 'partials/_navbar.html' %}
+
+
+        <main class="principal"><!-- Principal Start -->
+            <section class="container"><!-- Container Start -->
+<<<<<<< HEAD:reserva/templates/reserva.html
+                {% include 'partials/_alertas.html' %}
+                <form class="formulario" action="{% url 'registro' %}" method="POST">
+                    {% csrf_token %}
+                    <!-- Formulario Start -->
+=======
+                <form class="formulario" method="POST" enctype="multipart/form-data"> {% csrf_token %} <!-- Formulario Start -->
+>>>>>>> 5186cdf23dcab629f7c5be75f82fb76006ffeed4:reserva/templates/registro.html
+                    <div class="dados-agente"><!-- Dados do Agente - Start -->
+                        <h1 id="titulo-agente" class="titulo">Dados do Agente</h1>
+                        <div class="input-box">
+                            <input type="text" name="nome-agente" placeholder="Nome Completo" id="nome-agente" autocomplete="off" class="input-padrao" required>
+                            <select id="tipo-empresa" name="tipo-empresa" class="input-padrao" required>
+<<<<<<< HEAD:reserva/templates/reserva.html
+                                <option value="mantenedor">Mantenedor</option>
+                                <option value="residente-startup">Residente Startup</option>
+                                <option value="time-operacional">Time Operacional</option>
+=======
+                                <option>Tipo do Agente</option>
+                                <option name="mantenedor">Mantenedor</option>
+                                <option name="residente-startup">Residente Startup</option>
+                                <option name="time-operacional">Time Operacional</option>
+>>>>>>> 5186cdf23dcab629f7c5be75f82fb76006ffeed4:reserva/templates/registro.html
+                            </select>
+                            <input type="text" placeholder="CPF" class="input-padrao" pattern="^(\d{3}[\.-]?)(\d{3}[\.-]?)(\d{3}[\.-]?)(\d{2}[\.-]?)$" name="numero-cpf" id="numero-cpf" autocomplete="off" required>
+                        </div>
+                        <div class="input-box">
+<<<<<<< HEAD:reserva/templates/reserva.html
+
+                            <input type="email" name="email" id="email" class="input-padrao" placeholder="Email" required>
+                            <input type="tel" name="telefone" id="telefone" class="input-padrao" minlength="7" pattern="^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$" placeholder="Telefone" required>
+=======
+                            <input type="email" name="email" id="email" autocomplete="off" class="input-padrao" placeholder="Email" required>
+                            <input type="tel" name="telefone" id="telefone" autocomplete="off" class="input-padrao" pattern="\(?(\d{2,2})\)?(\d{4,5})-?(\d{4,4})$" placeholder="Telefone" required>
+>>>>>>> 5186cdf23dcab629f7c5be75f82fb76006ffeed4:reserva/templates/registro.html
+                        </div>
+                    </div><!-- Dados do Agente - End -->
+                    <div class="dados-empresa">
+                        <!-- Dados da Empresa Start -->
+                        <h1 id="titulo-agente" class="titulo">Dados da Empresa</h1>
+                        <div class="input-box">
+                            <input type="text" id="nome-empresa" autocomplete="off" class="input-padrao" name="nome-empresa" placeholder="Nome da empresa" required>
+                            <input type="text" placeholder="CNPJ" class="input-padrao" pattern="^(\d{2}[\.]?)(\d{3}[\.]?)(\d{3}[\.]?)(/?\d{4}-?)(\d{2})$" name="numero-cnpj" id="numero-cnpj" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <!-- Dados da Empresa End -->
+                    
+                    <div class="dados-evento"><!-- Dados do Evento Start -->
+                        <h1 id="titulo-agente" class="titulo">Dados do Evento</h1>
+                        <div class="input-box">
+                            <input type="text" id="nome-evento" class="input-padrao" name="nome-evento" placeholder="Nome do evento" autocomplete="off" required>
+                            <label for="lista-participante" id="lista-participante-box" class="input-padrao">
+                                <i id="icone-arquivo" class="fa-solid fa-file-lines"></i>
+                                Lista de Participantes
+                            </label>
+                            <input type="file" id="lista-participante" name="lista-participante" required>
+                        </div>
+                        <div class="input-box">
+                            <textarea name="descricao-evento" class="input-padrao" placeholder="Descrição do evento" id="descricao-evento" cols="80" rows="5" required></textarea>
+                        </div>
+                        <div class="input-box">
+                            <input type="submit" name="botao-confirmar" id="botao-confirmar" value="Confirmar">
+                        </div>
+                    </div><!-- Dados do Evento End -->
+                </form><!-- Formulario End -->     
+            </section><!-- Container End -->     
+        </main><!-- Principal End -->
+    {% include 'partials/_footer.html' %}
+
+{% endblock %}

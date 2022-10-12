@@ -1,0 +1,42 @@
+{%load static%}
+<div id="home">
+    <div class="site-header">
+        
+        <div class="main-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-6">
+                        <div class="logo">
+                            <h1><a href="{% url 'home' %}" title="NINNA-HUB"><img src="{% static 'reserva/images/logo-nina.png' %}" alt="Logo NinnaHub" width="30%"></a></h1>
+                        </div> <!-- /.logo -->
+                    </div> <!-- /.col-md-4 -->
+                    <div class="col-md-8 col-sm-8 col-xs-6">
+                        <div class="menu text-right d-none d-md-block">
+                            <ul>
+                                <li><a href="{% url 'home' %}" class="external">Home</a></li>
+                                <!-- <li><a href="#servicos">Serviços</a></li>
+                                <li><a href="#portfolio" >Espaços</a></li> -->
+                                <!-- <li><a href="#sobre-espacos">Sobre Espaços</a></li> -->
+                                <!-- <li><a href="{% url 'login' %}" class="external">Login Adm</a></li> -->
+                                <li><a href="https://www.linkedin.com/company/ninna-ventures/" class="external">LinkedIn</a></li>
+                            </ul>
+                        </div> <!-- /.menu -->
+                    </div> <!-- /.col-md-8 -->
+                </div> <!-- /.row -->
+                <div class="responsive-menu text-right d-none d-sm-block d-md-none">
+                    <a href="#" class="toggle-menu fa fa-bars"></a>
+                    <div class="menu">
+                        <ul>
+                            <li><a href="{% url 'home' %}" class="external">Home</a></li>
+                                <!-- <li><a href="#servicos">Serviços</a></li>
+                                <li><a href="#portfolio">Portfolio</a></li>
+                                <!-- <li><a href="#sobre-espacos">Sobre Espaços</a></li> -->
+                                <li><a href="{% url 'login' %}" class="external" >Login Adm</a></li> -->
+                                <li><a href="https://www.linkedin.com/company/ninna-ventures/" class="external">LinkedIn</a></li>
+                        </ul>
+                    </div> <!-- /.menu -->
+                </div> <!-- /.responsive-menu -->
+            </div> <!-- /.container -->
+        </div> <!-- /.header -->
+    </div> <!-- /.site-header -->
+</div> <!-- /#home -->

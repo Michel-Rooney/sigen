@@ -3,14 +3,40 @@ from .models import *
 from administrador.models import Espacos
 from django.contrib import messages
 
+<<<<<<< HEAD
 #from reserva.models import Registro
 from .models import Registro
+=======
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.conf import settings
+
+>>>>>>> 5186cdf23dcab629f7c5be75f82fb76006ffeed4
 #======================Home======================
 
 def home(request):
     """PAGINA INICIAL"""
-    espaco = Espacos.objects.order_by('nome').all()
-    return render(request, 'index.html', {'espacos' : espaco})
+    if request.method == 'GET':
+        espaco = Espacos.objects.order_by('nome').all()
+        num_espacos = Espacos.objects.count()
+        perc = str(float(num_espacos * 100 / num_espacos))
+        return render(request, 'index.html', {'espacos' : espaco, 'perc': perc})
+    elif request.method == 'POST':
+        nome = request.POST['name-id']
+        email = request.POST['email-id']
+        subject = request.POST['subject-id']
+        mensagem = request.POST['message']
+        
+        html_content = render_to_string('emails/contate_me.html', {
+            'nome' : nome, 'email' : email, 'subject' : subject, 'mensagem' : mensagem
+        })
+        text_content = strip_tags(html_content)
+        email = EmailMultiAlternatives('Contate-me', text_content, settings.EMAIL_HOST_USER, ['contatestedeteste30@gmail.com'])
+        email.attach_alternative(html_content, 'text/html')
+        email.send()
+        return redirect('/')
+
 
 def descricao(request, espaco_id):
     """PAGINA DE DESCRIÇÂO DOS ESPAÇO"""
@@ -21,10 +47,7 @@ def descricao(request, espaco_id):
 
 def registro(request):
     """PAGINA DE RESERVA DE ESPAÇO"""
-
-
     if request.method == 'POST':
-
     # Dados do Agente
         agente = request.POST['nome-agente']
         mantenedor = request.POST['tipo-empresa'] #  tenho que solucionar o probelma da seleção
