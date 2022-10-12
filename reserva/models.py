@@ -1,5 +1,7 @@
 from django.db import models
 import datetime
+from cpf_field.models import CPFField
+from cnpj_field.models import CNPJField
 
 class Registro(models.Model):
     #DADOS DA RESERVA
@@ -20,26 +22,30 @@ class Registro(models.Model):
     empresa = models.CharField(max_length=30) 
     email = models.EmailField(max_length=254) 
     telefone = models.CharField(max_length=30)
-    cpf = models.CharField(max_length=30)
-    cnpj =models.CharField(max_length=30)
+    cpf = CPFField('cpf')
+    cnpj = CNPJField('CNPJ')
+    nome_evento = models.CharField(max_length=300)
     descricao = models.TextField(max_length=1000)
 
     #DADOS DO EVENTO
     #ESPAÇO
+
     espacos = models.CharField(max_length=30, choices=EVENTO_CHOICES)
     #DATAS E HORA DO EVENTO
-    data_reserva = models.DateField('Data da Reserva')
-    hora_inicio = models.TimeField('Hora Início', default=datetime.time(0, 00), blank=True)
-    hora_fim = models.TimeField('Hora Fim', default=datetime.time(0, 00))
-
+    
+    #data_reserva = models.DateField()
+    #hora_inicio = models.TimeField('Hora Início', default=datetime.time(0, 00), blank=True)
+    #hora_fim = models.TimeField('Hora Fim', default=datetime.time(0, 00))
+    
     #DATAS E HORA DE CHECK IN/OUT
-    check_in = models.BooleanField(default=False)
-    check_in_horario = models.TimeField()
-    check_out = models.BooleanField(default=False)
-    check_out_horario = models.TimeField()
+    #check_in = models.BooleanField(default=False)
+    #check_in_horario = models.TimeField()
+    #check_out = models.BooleanField(default=False)
+    #check_out_horario = models.TimeField()
 
     #NUMERO DE PARTICIPANTES PRESENTES NO EVENTO
-    participantes_presentes = models.IntegerField(default=0)
+    #participantes_presentes = models.IntegerField(default=0)
+
 
     def __str__(self):
         return self.agente
