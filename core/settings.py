@@ -132,7 +132,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-<<<<<<< HEAD
 # Messages
 
 from django.contrib.messages import constants as messages
@@ -140,7 +139,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     messages.SUCCESS: 'success',
 }
-=======
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'contatestedeteste30@gmail.com'
@@ -149,4 +147,3 @@ EMAIL_HOST_USER = 'contatestedeteste30@gmail.com'
 EMAIL_HOST_PASSWORD = 'enfrioawwhlxysqg' #past the key or password app here
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = 'True'
->>>>>>> 5186cdf23dcab629f7c5be75f82fb76006ffeed4

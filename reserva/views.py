@@ -2,17 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from administrador.models import Espacos
 from django.contrib import messages
-
-<<<<<<< HEAD
 #from reserva.models import Registro
 from .models import Registro
-=======
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
 
->>>>>>> 5186cdf23dcab629f7c5be75f82fb76006ffeed4
 #======================Home======================
 
 def home(request):
@@ -98,4 +94,4 @@ def registro(request):
         return redirect('registro')
 
     else:
-        return render(request, 'reserva.html')
+        return render(request, 'registro.html')
