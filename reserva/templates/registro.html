@@ -31,8 +31,6 @@
 
                             <input type="email" name="email" id="email" class="input-padrao" placeholder="Email" required>
                             <input type="tel" name="telefone" id="telefone" class="input-padrao" minlength="7" pattern="^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$" placeholder="Telefone" required>
-                            <input type="email" name="email" id="email" autocomplete="off" class="input-padrao" placeholder="Email" required>
-                            <input type="tel" name="telefone" id="telefone" autocomplete="off" class="input-padrao" pattern="\(?(\d{2,2})\)?(\d{4,5})-?(\d{4,4})$" placeholder="Telefone" required>
                         </div>
                     </div><!-- Dados do Agente - End -->
                     <div class="dados-empresa">
@@ -54,6 +52,14 @@
                                 Lista de Participantes
                             </label>
                             <input type="file" name="lista_participantes" id="lista-participante" required>
+                        </div>
+                        <div class="input-box">
+                            Data da Reserva:
+                            <input name="data_reserva" type="date" class="input-padrao" placeholder="Data da Reserva" required></input>
+                            Hora Inicio: 
+                            <input name="hora_inicio" type="time" class="input-padrao" placeholder="Hora de Inicio" required></input>
+                            Hora Fim: 
+                            <input name="hora_fim" type="time" class="input-padrao" placeholder="Hora de Fim" required></input>
                         </div>
                         <div class="input-box">
                             <textarea name="descricao-evento" class="input-padrao" placeholder="Descrição do evento" id="descricao-evento" cols="80" rows="5" required></textarea>
