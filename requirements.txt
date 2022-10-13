@@ -1,7 +1,14 @@
 asgiref==3.5.2
+certifi==2022.6.15
+charset-normalizer==2.0.12
 Django==4.1
 django-CNPJField==1
 django-cpf==0.1.0
+idna==3.3
 Pillow==9.2.0
+python-decouple==3.6
+requests==2.28.0
 sqlparse==0.4.2
 tzdata==2022.2
+urllib3==1.26.9
+validate-docbr==1.10.0
