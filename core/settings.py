@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'cnpj_field',
+    'cpf_field',
     'reserva',
     'administrador',
     'django.contrib.admin',
@@ -130,6 +132,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Messages
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    messages.SUCCESS: 'success',
+}
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'contatestedeteste30@gmail.com'
