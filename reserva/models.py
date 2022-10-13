@@ -1,5 +1,4 @@
 from django.db import models
-import datetime
 from cpf_field.models import CPFField
 from cnpj_field.models import CNPJField
 
@@ -26,6 +25,7 @@ class Registro(models.Model):
     cnpj = CNPJField('CNPJ')
     nome_evento = models.CharField(max_length=300)
     descricao = models.TextField(max_length=1000)
+    lista_participantes = models.FileField(upload_to='templates/media/pdf')
 
     #DADOS DO EVENTO
     #ESPAÇO
