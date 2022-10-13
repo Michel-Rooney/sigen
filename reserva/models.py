@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from cpf_field.models import CPFField
 from cnpj_field.models import CNPJField
@@ -25,7 +26,7 @@ class Registro(models.Model):
     cnpj = CNPJField('CNPJ')
     nome_evento = models.CharField(max_length=300)
     descricao = models.TextField(max_length=1000)
-    lista_participantes = models.FileField(upload_to='lista_participante/%Y/%m/%d/')
+    lista_participantes = models.FileField(upload_to='lista_participantes/%Y/%m/%d/', blank=True)
 
     #DADOS DO EVENTO
     #ESPAÇO

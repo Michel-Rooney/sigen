@@ -56,7 +56,8 @@ def registro(request):
     #Dados do Evento
         nome_evento = request.POST['nome-evento'] # não existe esse atributo no banco de dados
         descricao = request.POST['descricao-evento']
-        lista_participantes = request.FILES['lista-participantes'] # Como armazenar isso no banco de dados
+        lista_participantes = request.FILES['lista_participantes'] # Como armazenar isso no banco de dados
+        
         if not agente.strip():
             messages.error(request, 'Erro de preenchimento no campo agente')
             print("Erro no campo agente")
@@ -78,16 +79,17 @@ def registro(request):
             print("O campo deve ser preenchido corretamente!")
             return redirect('registro')
 
-        registro = Registro.objects.create(agente=agente,
-                                           mantenedor=mantenedor,
-                                           cpf=cpf,
-                                           email=email,
-                                           telefone=telefone,
-                                           empresa=empresa,
-                                           cnpj=cnpj,
-                                           nome_evento=nome_evento,
-                                           descricao=descricao,
-                                           lista_participantes=lista_participantes)
+        registro = Registro.objects.create(
+            agente=agente,
+            mantenedor=mantenedor,
+            cpf=cpf,
+            email=email,
+            telefone=telefone,
+            empresa=empresa,
+            cnpj=cnpj,
+            nome_evento=nome_evento,
+            descricao=descricao,
+            lista_participantes=lista_participantes)
         registro.save()
 
         messages.success(request, 'Registro de evento realizado com sucesso')

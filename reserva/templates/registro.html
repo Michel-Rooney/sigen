@@ -10,8 +10,6 @@
         <main class="principal"><!-- Principal Start -->
             <section class="container"><!-- Container Start -->
                 {% include 'partials/_alertas.html' %}
-                <form class="formulario" action="{% url 'registro' %}" method="POST">
-                    {% csrf_token %}
                     <!-- Formulario Start -->
                 <form class="formulario" method="POST" enctype="multipart/form-data"> {% csrf_token %} <!-- Formulario Start -->
                     <div class="dados-agente"><!-- Dados do Agente - Start -->
@@ -55,7 +53,7 @@
                                 <i id="icone-arquivo" class="fa-solid fa-file-lines"></i>
                                 Lista de Participantes
                             </label>
-                            <input type="file" id="lista-participante" name="lista-participantes" required>
+                            <input type="file" name="lista_participantes" id="lista-participante" required>
                         </div>
                         <div class="input-box">
                             <textarea name="descricao-evento" class="input-padrao" placeholder="Descrição do evento" id="descricao-evento" cols="80" rows="5" required></textarea>
