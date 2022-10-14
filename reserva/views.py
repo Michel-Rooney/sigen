@@ -62,9 +62,6 @@ def registro(request):
         hora_inicio = request.POST['hora_inicio']
         hora_fim = request.POST['hora_fim'] 
 
-        print(data_reserva)
-        print(hora_inicio)
-        print(hora_fim)
         
         if not agente.strip():
             messages.error(request, 'Erro de preenchimento no campo agente')
@@ -85,6 +82,9 @@ def registro(request):
         if not descricao.strip():
             messages.error(request, 'Erro de preenchimento no campo descrição')
             print("O campo deve ser preenchido corretamente!")
+            return redirect('registro')
+        if Registro.objects.filter(hora_inicio=hora_inicio):
+            messages.error(request, 'O horario está ocupado')
             return redirect('registro')
 
         registro = Registro.objects.create(
