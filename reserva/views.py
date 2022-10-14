@@ -7,8 +7,15 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
-
 from .utils import *
+
+
+def enviar_email(caminho, conteudo, assunto, email_user=''):
+        html_content = render_to_string(caminho, conteudo)
+        text_content = strip_tags(html_content)
+        email = EmailMultiAlternatives(assunto, text_content, settings.EMAIL_HOST_USER, ['contatestedeteste30@gmail.com', email_user])
+        email.attach_alternative(html_content, 'text/html')
+        email.send()
 
 #======================Home======================
 
@@ -25,13 +32,11 @@ def home(request):
         subject = request.POST['subject-id']
         mensagem = request.POST['message']
         
-        html_content = render_to_string('emails/contate_me.html', {
+        caminho = 'emails/contate_me.html'
+        conteudo = {
             'nome' : nome, 'email' : email, 'subject' : subject, 'mensagem' : mensagem
-        })
-        text_content = strip_tags(html_content)
-        email = EmailMultiAlternatives('Contate-me', text_content, settings.EMAIL_HOST_USER, ['contatestedeteste30@gmail.com'])
-        email.attach_alternative(html_content, 'text/html')
-        email.send()
+        }
+        enviar_email(caminho, conteudo, subject)
         return redirect('/')
 
 
@@ -101,9 +106,11 @@ def registro(request):
             hora_inicio=hora_inicio,
             hora_fim=hora_fim)
         registro.save()
-
         messages.success(request, 'Registro de evento realizado com sucesso')
-        return redirect('registro')
 
+        caminho = 'emails/confirmacao_registro.html'
+        conteudo = {'agente':agente, 'empresa':empresa, 'nome_evento':nome_evento, 'data_reserva':data_reserva, 'hora_inicio':hora_inicio, 'hora_fim':hora_fim}
+        enviar_email(caminho, conteudo, 'Confirmação de Registro')
+        return redirect('registro')
     else:
         return render(request, 'registro.html')
