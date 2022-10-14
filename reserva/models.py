@@ -27,11 +27,15 @@ class Registro(models.Model):
     nome_evento = models.CharField(max_length=300)
     descricao = models.TextField(max_length=1000)
     lista_participantes = models.FileField(upload_to='lista_participantes/%Y/%m/%d/', blank=True)
+    espacos = models.CharField(max_length=30, choices=EVENTO_CHOICES)
+    data_reserva = models.DateField(default='2022-02-02')
+    hora_inicio = models.TimeField(default='22:22')
+    hora_fim = models.TimeField(default='23:23')
+
 
     #DADOS DO EVENTO
     #ESPAÇO
 
-    espacos = models.CharField(max_length=30, choices=EVENTO_CHOICES)
     #DATAS E HORA DO EVENTO
     
     #data_reserva = models.DateField()
