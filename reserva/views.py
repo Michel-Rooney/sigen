@@ -2,12 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from administrador.models import Espacos
 from django.contrib import messages
-#from reserva.models import Registro
 from .models import Registro
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
+
+from .utils import *
 
 #======================Home======================
 
@@ -44,47 +45,45 @@ def descricao(request, espaco_id):
 def registro(request):
     """PAGINA DE RESERVA DE ESPAÇO"""
     if request.method == 'POST':
-    # Dados do Agente
+        # Dados do Agente
         agente = request.POST['nome-agente']
-        mantenedor = request.POST['tipo-empresa'] #  tenho que solucionar o probelma da seleção
+        mantenedor = request.POST['tipo-empresa']
         cpf = request.POST['numero-cpf']
         email = request.POST['email']
         telefone = request.POST['telefone']
-    # Dados da Empresa
+    
+        # Dados da Empresa
         empresa = request.POST['nome-empresa']
         cnpj = request.POST['numero-cnpj']
-    #Dados do Evento
-        nome_evento = request.POST['nome-evento'] # não existe esse atributo no banco de dados
+    
+        # Dados do Evento
+        nome_evento = request.POST['nome-evento']
         descricao = request.POST['descricao-evento']
-        lista_participantes = request.FILES['lista_participantes'] # Como armazenar isso no banco de dados
+        lista_participantes = request.FILES['lista_participantes']
 
+        # Dados dos horários
         data_reserva = request.POST['data_reserva']
         hora_inicio = request.POST['hora_inicio']
         hora_fim = request.POST['hora_fim'] 
 
         
-        if not agente.strip():
-            messages.error(request, 'Erro de preenchimento no campo agente')
-            print("Erro no campo agente")
+        if not agente_is_valid(request, agente):
+            print('01')
             return redirect('registro')
-        if not email.strip():
-            messages.error(request, 'Erro de preenchimento no campo Email')
-            print("Erro no campo email")
+        if not email_is_valid(request, email):
+            print('02')
             return redirect('registro')
-        if not empresa.strip():
-            messages.error(request, 'Erro de preenchimento no campo nome da empresa')
-            print("O campo deve ser preenchido corretamente!")
+        if not empresa_is_valid(request, empresa):
+            print('03')
             return redirect('registro')
-        if not nome_evento.strip():
-            messages.error(request, 'Erro de preenchimento no cammpo nome do evento')
-            print("O campo deve ser preenchido corretamente!")
+        if not nome_evento_is_valid(request, nome_evento):
+            print('04')
             return redirect('registro')
-        if not descricao.strip():
-            messages.error(request, 'Erro de preenchimento no campo descrição')
-            print("O campo deve ser preenchido corretamente!")
+        if not descricao_is_valid(request, descricao):
+            print('05')
             return redirect('registro')
-        if Registro.objects.filter(hora_inicio=hora_inicio):
-            messages.error(request, 'O horario está ocupado')
+        if not hora_registro_is_valid(request, data_reserva, hora_inicio):
+            print('06')
             return redirect('registro')
 
         registro = Registro.objects.create(
