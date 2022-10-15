@@ -1,40 +1,54 @@
 from django.contrib import messages
 from .models import Registro
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.conf import settings
+from .models import Confirmacao
+from hashlib import sha256
 
 
-def agente_is_valid(request, agente):
+
+# ==================== RESERVA ====================
+def registro_is_valid(request, agente: str, email: str, empresa: str, nome_evento: str, descricao: str, data_reserva: str, hora_inicio: str) -> bool:
+    registro = Registro.objects.filter(data_reserva=data_reserva, hora_inicio=hora_inicio).first()
     if not agente.strip():
         messages.error(request, 'Erro de preenchimento no campo agente')
         return False
-    return True
-
-def email_is_valid(request, email):
     if not email.strip():
         messages.error(request, 'Erro de preenchimento no campo Email')
         return False
-    return True
-
-def empresa_is_valid(request, empresa):
     if not empresa.strip():
         messages.error(request, 'Erro de preenchimento no campo nome da empresa')
         return False
-    return True
-
-def nome_evento_is_valid(request, nome_evento):
     if not nome_evento.strip():
         messages.error(request, 'Erro de preenchimento no cammpo nome do evento')
         return False
-    return True
-
-def descricao_is_valid(request, descricao):
     if not descricao.strip():
         messages.error(request, 'Erro de preenchimento no campo descrição')
         return False
-    return True
-
-def hora_registro_is_valid(request, data_reserva, hora_inicio):
-    registro = Registro.objects.filter(data_reserva=data_reserva, hora_inicio=hora_inicio).first()
     if registro:
         messages.error(request, 'O horario na data escolhida já está ocupado')
         return False
     return True
+
+
+
+# ==================== EMAIL ====================
+def email_html(path_template: str, assunto: str, para: list, conteudo) -> dict:
+    
+    html_content = render_to_string(path_template, conteudo)
+    text_content = strip_tags(html_content)
+
+    email = EmailMultiAlternatives(assunto, text_content, settings.EMAIL_HOST_USER, para)
+
+    email.attach_alternative(html_content, "text/html")
+    email.send()
+    return {'status': 1}
+
+
+def make_token(agente: str, email: str, registro: str) -> str:
+    token = sha256(f'{agente}{email}'.encode()).hexdigest()
+    ativacao = Confirmacao(token=token, registro=registro)
+    ativacao.save()
+    return f'127.0.0.1:8000/ativar_conta/{token}'

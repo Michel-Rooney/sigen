@@ -2,23 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from administrador.models import Espacos
 from django.contrib import messages
-from .models import Registro
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
-from django.conf import settings
+from .models import Registro, Confirmacao
 from .utils import *
 
 
-def enviar_email(caminho, conteudo, assunto, email_user=''):
-        html_content = render_to_string(caminho, conteudo)
-        text_content = strip_tags(html_content)
-        email = EmailMultiAlternatives(assunto, text_content, settings.EMAIL_HOST_USER, ['contatestedeteste30@gmail.com', email_user])
-        email.attach_alternative(html_content, 'text/html')
-        email.send()
 
-#======================Home======================
-
+# ==================== Home ====================
 def home(request):
     """PAGINA INICIAL"""
     if request.method == 'GET':
@@ -32,11 +21,10 @@ def home(request):
         subject = request.POST['subject-id']
         mensagem = request.POST['message']
         
-        caminho = 'emails/contate_me.html'
         conteudo = {
             'nome' : nome, 'email' : email, 'subject' : subject, 'mensagem' : mensagem
         }
-        enviar_email(caminho, conteudo, subject)
+        email_html('emails/contate_me.html', subject, ['contatestedeteste30@gmail.com'], conteudo)
         return redirect('/')
 
 
@@ -45,8 +33,8 @@ def descricao(request, espaco_id):
     espaco = get_object_or_404(Espacos, pk=espaco_id)
     return render(request, 'descricao.html', {'espaco' : espaco})
 
-#======================Reserva====================
 
+# ==================== Reserva ====================
 def registro(request):
     """PAGINA DE RESERVA DE ESPAÇO"""
     if request.method == 'POST':
@@ -71,24 +59,8 @@ def registro(request):
         hora_inicio = request.POST['hora_inicio']
         hora_fim = request.POST['hora_fim'] 
 
-        
-        if not agente_is_valid(request, agente):
-            print('01')
-            return redirect('registro')
-        if not email_is_valid(request, email):
-            print('02')
-            return redirect('registro')
-        if not empresa_is_valid(request, empresa):
-            print('03')
-            return redirect('registro')
-        if not nome_evento_is_valid(request, nome_evento):
-            print('04')
-            return redirect('registro')
-        if not descricao_is_valid(request, descricao):
-            print('05')
-            return redirect('registro')
-        if not hora_registro_is_valid(request, data_reserva, hora_inicio):
-            print('06')
+
+        if not registro_is_valid(request, agente, email, empresa, nome_evento, descricao, data_reserva, hora_inicio):
             return redirect('registro')
 
         registro = Registro.objects.create(
@@ -108,9 +80,24 @@ def registro(request):
         registro.save()
         messages.success(request, 'Registro de evento realizado com sucesso')
 
-        caminho = 'emails/confirmacao_registro.html'
-        conteudo = {'agente':agente, 'empresa':empresa, 'nome_evento':nome_evento, 'data_reserva':data_reserva, 'hora_inicio':hora_inicio, 'hora_fim':hora_fim}
-        enviar_email(caminho, conteudo, 'Confirmação de Registro')
+        link_ativacao = make_token(agente, email, registro)
+        conteudo = {'agente':agente, 'empresa':empresa, 'nome_evento':nome_evento, 'data_reserva':data_reserva, 'hora_inicio':hora_inicio, 'hora_fim':hora_fim, 'link_ativacao':link_ativacao}
+
+        email_html('emails/confirmacao_registro.html', 'Confirmação de Registro', ['contatestedeteste30@gmail.com'], conteudo)
         return redirect('registro')
     else:
         return render(request, 'registro.html')
+
+
+def ativar_conta(request, token):
+    token = get_object_or_404(Confirmacao, token=token)
+    if token.ativo:
+        messages.warning(request, 'Essa token já foi usado')
+        return redirect('registro')
+    registro = Registro.objects.get(email=token.registro.email)
+    registro.confirmacao_email = True
+    registro.save()
+    token.ativo = True
+    token.save()
+    messages.success(request, 'Conta ativa com sucesso')
+    return redirect('registro')

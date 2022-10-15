@@ -10,4 +10,5 @@ urlpatterns =[
     path('<int:espaco_id>', views.descricao, name='descricao'),
     #Reservas
     path('registro/', views.registro, name='registro'),
+    path('ativar_conta/<str:token>/', views.ativar_conta, name="ativar_conta"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

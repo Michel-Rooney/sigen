@@ -1,4 +1,3 @@
-from email.policy import default
 from django.db import models
 from cpf_field.models import CPFField
 from cnpj_field.models import CNPJField
@@ -31,6 +30,8 @@ class Registro(models.Model):
     data_reserva = models.DateField()
     hora_inicio = models.TimeField()
     hora_fim = models.TimeField()
+
+    confirmacao_email = models.BooleanField(default=False)
 
 
     #DADOS DO EVENTO
@@ -125,3 +126,13 @@ class DiasDisponiveis(models.Model):
 
     def str(self):
         return self.dia
+
+
+class Confirmacao(models.Model):
+    token = models.CharField(max_length=64)
+    registro = models.ForeignKey(Registro, on_delete=models.DO_NOTHING)
+    ativo = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.registro.agente
+
