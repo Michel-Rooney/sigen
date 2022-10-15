@@ -9,6 +9,8 @@ urlpatterns =[
     path('administrador/', views.administrador, name='administrador'),
     #Listar Usuários
     path('gerenciar_usuario/', views.gerenciar_usuario, name= 'gerenciar_usuario'),
+    #Listar Reservas
+    path('gerenciar_reserva/', views.gerenciar_reserva, name='gerenciar_reserva'),
     #check-in/out
     path('check/', views.check, name='check'),
     path('check_in/<int:id>', views.check_in, name='check_in'),

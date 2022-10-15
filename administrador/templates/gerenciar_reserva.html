@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}NinnaHub - Gerenciar Reservas{% endblock %}
+{% block 'body' %}
+
+{% include 'partials/_navbar-adm.html' %}
+<main>
+    <h1 class="h1-gerenciar">Gerenciar Reservas</h1>
+    <table>
+        <tr>
+            <th>Empresa</th>
+            <th>Espaço Reservado</th>
+            <th>Responsavel pela a reserva</th>
+            <th>Data de Reserva</th>
+            <th>Hora de Inicio</th>
+            <th>Hora de Término</th>
+            <th></th>
+        </tr>
+        {%for registro in registro %}
+        <tr>
+            <td>{{registro.empresa}}</td>
+            <td>{{registro.espacos}}</td>
+            <td>{{registro.agente}}</td>
+            <td>{{registro.data_reserva}}</td>
+            <td>{{registro.hora_inicio}}</td>
+            <td>{{registro.hora_fim}}</td>
+            <td><a href="">Cancelar Reserva</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+</main>
+   <!-- Começo do footer -->
+   {% include 'partials/_footer.html' %}
+   <!-- Final do footer -->
+{% endblock %}

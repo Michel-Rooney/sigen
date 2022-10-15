@@ -45,7 +45,12 @@ def gerenciar_usuario(request):
     """Página de Listagem de Usuários Administradores do Sistema"""
     user = {'user': User.objects.all()}
     return render(request, 'gerenciar_usuario.html', user)
-    
+
+@login_required(login_url='/adm/login')
+def gerenciar_reserva(request):
+    """Página de Listagem de Reservas Confirmadas"""
+    registro = {'registro': Registro.objects.all()}
+    return render(request, 'gerenciar_reserva.html', registro)
 
 @login_required(login_url='/adm/login')
 def registro_adm(request):
