@@ -1,14 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'reserva/css/email.css %}">
+  <title>Confirmação de Reserva</title>
 </head>
 <body>
-    <h1>Confirmação do Registro</h1>
+  
+   <header class="header">
+    <div class="fth">
+     <img class="imge" src="{% static 'reserva/images/header-email.jpeg" alt="">
+    </div>
+   </header>
+  
+   
+   <div>
+   <main class="main">
+    <div class="texto-container">
+  <div class="elemento">    
+<h2>Olá, {{ agente }}.</h2>
 
-    <p>Agente: {{ agente }}</p>
-    <p>Empresa: {{ empresa }}</p>
-    <p>Nome do evento: {{ nome_evento }}</p>
-    <p>Data Reserva: {{ data_reserva }}</p>
-    <p>Hora inicio: {{ hora_inicio }}</p>
-    <p>Hora fim: {{ hora_fim }}</p>
-    <p>Link de Ativação: {{ link_ativacao }}</p>
+<h3> Você está a um passo de concluir seu cadastro, verifique se suas informações estão corretas.</h3> 
+
+<p>Agente: {{ agente }}</p>
+<p>Empresa: {{ empresa }}</p>
+<p>Nome do evento: {{ nome_evento }}</p>
+<p>Data Reserva: {{ data_reserva }}</p>
+<p>Hora inicio: {{ hora_inicio }}</p>
+<p>Hora fim: {{ hora_fim }}</p>
+<p>Link de Ativação: {{ link_ativacao }}</p>
+  
+<p> Deseja realmente confirmar sua reserva? se sim basta clicar o botão abaixo </p>
+<button><h3 class="nomeb">Confirmar Reserva!</h3></button>
+  
+<h3> Se você não se cadastrou no Nina hub recentemente, por favor ignore este email e nós não entraremos em contato novamente.
+  Nós não fazemos spam e respeitamos o direito de todo mundo à privacidade online
+ Por isso, você precisa confirmar a sua reserva antes que nós possamos te enviar outros emails.</p> 
+ 
+</h3>
+  
+<p>Desde ja agradeçemos</p> 
+  
+ <h3>Nina Hub</h3>
+</div>
+    </div>
+    
+   </main>
+  </div>
+  <!--
+  <section>
+    <footer>
+     enviado por: www.Ninahub.com.br
+    </footer>
+   </section>
+   -->
 </body>
+
 </html>

@@ -1,0 +1,28 @@
+body{
+  background-color: aliceblue;
+  }
+  .imge{
+    width: 100%;
+  }
+  p{
+    font-size: large;
+  }
+  
+  .texto-container{
+    position:relative;
+  }
+  .elemento{
+    position: absolute;
+    left: 60px;
+    margin-top: 55px;
+  }
+  button{
+    border-radius: 8px;
+    background: rgb(67, 67, 239); 
+    height: -3px;
+  }
+  
+  .nomeb{
+    color: rgb(255, 251, 251);
+  }
+  
