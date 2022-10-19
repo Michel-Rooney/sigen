@@ -1,6 +1,7 @@
+from re import A
 from django.shortcuts import render
 from .models import NivelUsuario, Espacos
-from reserva.models import Registro
+from reserva.models import Confirmacao, Registro
 from django.contrib.auth.models import User
 from django.contrib import auth
 from datetime import datetime
@@ -9,7 +10,7 @@ import os
 from django.contrib.auth.decorators import login_required
 from core.settings import BASE_DIR
 
-#LOGIN ADM
+#========================LOGIN ADM=======================
 
 def login(request):
     """PAGINA DE LOGIN DO ADMINISTRADOR"""
@@ -23,15 +24,16 @@ def login(request):
             if user is not None:
                 auth.login(request, user)
                 return redirect('administrador')
-        # else:
-        #     if request.user.is_authenticated:
-        #         return redirect('check')
     return render(request,'login.html')
 
 def logout(request):
     """REALIZAÇÂO DE LOGOUT DO USUARIO"""
     auth.logout(request)
     return redirect('/adm/login')
+
+#========================END LOGIN ADM=======================
+
+#========================ADMINISTRADOR=======================
     
 @login_required(login_url='/adm/login')
 def administrador(request):
@@ -39,6 +41,7 @@ def administrador(request):
     usuario = request.user.id
     conteudo = {'nivel': get_object_or_404(NivelUsuario, usuario=usuario)}
     return render(request, 'administrador.html', conteudo)
+
 
 @login_required(login_url='/adm/login')
 def gerenciar_usuario(request):
@@ -60,26 +63,7 @@ def registro_adm(request):
         email = request.POST['email']
         senha = request.POST['senha']
 
-@login_required(login_url='/adm/login')
-def check(request):
-    """PAGINA DE CHECK-IN/OUT"""
-    conteudo = {"casos": Registro.objects.order_by('check_in_horario').all(),
-    }
-    return render(request, 'check.html',conteudo)
-
-def check_in(request,id):
-    """REALIZAR CHECK IN/OUT DAS RESERVAS"""
-    checando = get_object_or_404(Registro,pk=id)
-    if checando.check_in == False:
-        checando.check_in = True
-        checando.check_in_horario = datetime.now().strftime('%H:%M:%S')
-    else:
-        checando.check_in =False
-        quantidade = request.POST['quantidade']
-        checando.participantes_presentes = quantidade
-        checando.check_out_horario = datetime.now().strftime('%H:%M:%S')
-    checando.save()
-    return redirect('check')
+#AREA RESPONSAVEL POR GERENCIAMENTO DE ESPAÇOS
 
 @login_required(login_url='/adm/login')
 def gerenciar_espaco(request):
@@ -153,4 +137,29 @@ def adicionar_espaco(request):
         espaco = Espacos.objects.create(nome=nome, descricao=descricao, imagem1=imagem1)
     
     return render(request, 'espacos/adicionar_espaco.html')
+
+# AREA RESPONSAVEL POR CHECK-IN/OUT
+@login_required(login_url='/adm/login')
+def check(request):
+    """PAGINA DE CHECK-IN/OUT"""
+    conteudo = {"casos": Confirmacao.objects.order_by('check_in_horario').all(),
+    }
+    return render(request, 'check.html',conteudo)
+
+def check_in(request,id):
+    """REALIZAR CHECK IN/OUT DAS RESERVAS"""
+    checando = get_object_or_404(Registro,pk=id)
+    if checando.check_in == False:
+        checando.check_in = True
+        checando.check_in_horario = datetime.now().strftime('%H:%M:%S')
+    else:
+        checando.check_in =False
+        quantidade = request.POST['quantidade']
+        checando.participantes_presentes = quantidade
+        checando.check_out_horario = datetime.now().strftime('%H:%M:%S')
+    checando.save()
+    return redirect('check')
+
+
+#========================END ADMINISTRADOR=======================
 
