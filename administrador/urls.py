@@ -25,5 +25,7 @@ urlpatterns =[
     path('remover_espaco/', views.remover_espaco, name='remover_espaco'),
     path('remover_espaco/<int:espaco_id>', views.remover_espaco_id, name='remover_espaco_id'),
     path('editar_espaco/', views.editar_espaco, name='editar_espaco'),
-    path('editar_espaco/<int:espaco_id>', views.editar_espaco_id, name='editar_espaco_id')
+    path('editar_espaco/<int:espaco_id>', views.editar_espaco_id, name='editar_espaco_id'),
+    #Abertura de Chamado
+    path('abrir_chamado/',views.abrir_chamado,name='abrir_chamado'),
 ]

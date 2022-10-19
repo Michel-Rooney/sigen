@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}NinnaHub - Check-in/Out{% endblock %}
+{% block 'body' %}
+
+{% include 'partials/_navbar-adm.html' %}
+    <body>
+        <div class="site-header">
+            <div class="main-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            <div class="logo">
+                                <h1><a href="#" title="Dreri"><img src="./images/logo-nina.png" alt="Logo NinnaHub" width="30%"></a></h1>
+                            </div> <!-- /.logo -->
+                        </div> <!-- /.col-md-4 -->
+                        <div class="col-md-8 col-sm-8 col-xs-6">
+                            <div class="menu text-right d-none d-md-block">
+                                <ul>
+                                    <li class="li-branco"><a class="link-azul" href="#home">Home</a></li>
+                                    <li class="li-branco"><a class="link-azul" href="#servicos">Serviços</a></li>
+                                    <li class="li-branco"><a class="link-azul" href="#portfolio">Portfolio</a></li>
+                                    <li class="li-branco"><a class="link-azul" href="#sobre-espacos">Sobre Espaços</a></li>
+                                    <li class="li-branco"><a class="link-azul" href="#contato">Contato</a></li>
+                                    <li class="li-branco"><a class="link-azul" href="https://www.linkedin.com/company/ninna-ventures/" class="external">LinkedIn</a></li>
+                                </ul>
+                            </div> <!-- /.menu -->
+                        </div> <!-- /.col-md-8 -->
+                    </div> <!-- /.row -->
+                    <div class="responsive-menu text-right d-none d-sm-block d-md-none">
+                        <a href="#" class="toggle-menu fa fa-bars"></a>
+                        <div class="menu">
+                            <ul>
+                                <li><a href="#home">Home</a></li>
+                                    <li><a href="#servicos">Serviços</a></li>
+                                    <li><a href="#portfolio">Portfolio</a></li>
+                                    <li><a href="#sobre-espacos">Sobre Espaços</a></li>
+                                    <li><a href="#contato">Contato</a></li>
+                                    <li><a href="https://www.linkedin.com/company/ninna-ventures/" class="external">LinkedIn</a></li>
+                            </ul>
+                        </div> <!-- /.menu -->
+                    </div> <!-- /.responsive-menu -->
+                </div> <!-- /.container -->
+            </div> <!-- /.header -->
+        </div> <!-- /.site-header -->
+    <body>
+        <main>
+            <h1>Abertura de Chamado</h1>                
+            <section class="formulario">
+                    <form method="post" action="{%url 'abrir_chamado' %}">
+                        {%csrf_token%}
+                        <div class="div-nome">
+                            <label for="nome"> Nome do Solicitante: </label>
+                            <input type="text" name="solicitante" id="nome">
+                        </div>
+
+                        <div class="div-ambiente">
+                            <label for="ambiente"> Ambiente: </label>
+                            <select name="ambiente">
+                                {%for espaco in espacos%}
+                                <option value="{{espaco.id}}">{{espaco.nome}}</option>
+                                {%endfor%}
+                            </select>
+                        </div>
+                        
+                        <div class="div-objeto">
+                            <label for="objeto">Objeto:</label>
+                            <input type="text" name="objeto" id="objeto">
+                        </div>
+
+                        <div class="div-descricao">
+                            <label for="descricao"> Descrição: </label> 
+                            <textarea name="descricao" id="descricao" maxlength="200" cols="40px" rows="5"></textarea>
+                        </div>
+
+                        <div class="botao">
+                            <input type="submit" value="Enviar">
+                        </div>
+                    </form>
+                </section>
+        </main>
+        <!-- Começo do footer -->
+{% include 'partials/_footer.html' %}
+<!-- Final do footer -->
+{% endblock %}

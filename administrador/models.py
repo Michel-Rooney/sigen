@@ -32,7 +32,7 @@ class Chamado(models.Model):
         ('ccl', 'CONCLUIDO'),
         )
     solicitante = models.CharField(max_length=255)
-    data = models.DateField()
+    data = models.DateField(auto_now_add=True)
     ambiente = models.ForeignKey(Espacos, on_delete=models.CASCADE)
     objeto = models.CharField(max_length=255)
     descricao = models.TextField()

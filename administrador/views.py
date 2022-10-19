@@ -187,16 +187,15 @@ def realizar_check_out(request, id):
 
 @login_required(login_url='/adm/login')
 def abrir_chamado(request):
-    chamado = Espacos.objects.all()
-    dados = {"chamado":chamado,}
+    espacos = Espacos.objects.all()
+    espacos = {"espacos":espacos,}
     if request.method == "POST": 
         solicitante = request.POST["solicitante"]
-        data = request.POST["data"]
         ambiente = request.POST["ambiente"]
         ambiente2 = get_object_or_404(Espacos, pk=ambiente)
         objeto = request.POST["objeto"]
         descricao = request.POST["descricao"]
-        conteudo = Chamado.objects.create(solicitante=solicitante, data=data, ambiente=ambiente2, objeto=objeto, descricao=descricao)
+        conteudo = Chamado.objects.create(solicitante=solicitante, ambiente=ambiente2, objeto=objeto, descricao=descricao)
         conteudo.save()
         return redirect("administrador")
-    return render(request,'chamados.html', dados)
+    return render(request,'chamados.html', espacos)

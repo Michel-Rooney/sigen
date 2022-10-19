@@ -1,0 +1,103 @@
+main {
+    margin-top: 170px;
+    margin-left: 400px;
+    margin-bottom: 50px;
+}
+
+main h1 {
+    padding-left: 60px;
+    padding-bottom: 30px;
+}
+
+.formulario {
+    width: 65%;
+    padding: 10px;
+    border: 1px solid #00000032;
+    border-radius: 10px;
+}
+
+/* div nome */
+.div-nome {
+    padding: 10px;
+}
+
+.div-nome input {
+    width: 314px;
+}
+
+.div-nome label {
+    font-size: 20px;
+}
+
+/* div data */
+.div-data {
+    padding: 10px;
+}
+
+.div-data input {
+    width: 314px;
+    margin-left: 139px;
+}
+
+.div-data label {
+    font-size: 20px;
+}
+
+/* div ambiente */
+.div-ambiente {
+    padding: 10px;
+}
+
+.div-ambiente input {
+    width: 314px;
+    margin-left: 95px;
+}
+
+.div-ambiente label {
+    font-size: 20px;
+}
+
+/* div objeto */
+.div-objeto {
+    padding: 10px;
+}
+
+.div-objeto input {
+    width: 314px;
+    margin-left: 120px;
+}
+
+.div-objeto label {
+    font-size: 20px;
+}
+
+/* div descrição */
+.div-descricao {
+    padding: 10px;
+}
+.div-descricao textarea {
+    margin-left: 95px;
+}
+
+.div-descricao label {
+    font-size: 20px;
+}
+
+#descricao {
+    resize: none;
+}
+
+/* div botao */
+.botao {
+    width: 90%;
+    text-align: right;
+}
+
+.botao input {
+    padding: 10px;
+    width: 20%;
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
+    color: white;
+}
+
