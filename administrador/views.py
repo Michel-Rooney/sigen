@@ -57,12 +57,21 @@ def gerenciar_reserva(request):
     return render(request, 'gerenciar_reserva.html', registro)
 
 @login_required(login_url='/adm/login')
-def registro_adm(request):
+def adicionar_adm(request):
     """PAGINA DE REGISTRO DE NOVO ADMINISTRADOR"""
     if request.method == 'POST':
         nome = request.POST['nome_usuario']
         email = request.POST['email']
         senha = request.POST['senha']
+        tipo = request.POST['nivel']
+        user =User.objects.create_user(username = nome, email = email,  password = senha)
+        user.save()
+        user_id = User.objects.get(email = email)
+        user_n = get_object_or_404(User, pk= user_id.id)
+        nivel = NivelUsuario.objects.create(usuario = user_n, status= tipo)
+        nivel.save()
+        return redirect('gerenciar_usuario')
+    return render(request, 'adicionar_adm.html')
 
 #AREA RESPONSAVEL POR GERENCIAMENTO DE ESPAÇOS
 
