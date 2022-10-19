@@ -133,8 +133,12 @@ class Confirmacao(models.Model):
     token = models.CharField(max_length=64)
     registro = models.ForeignKey(Registro, on_delete=models.DO_NOTHING)
     ativo = models.BooleanField(default=False)
+    #Check-in / Check-out
     check_in = models.BooleanField(default=False)
     check_out = models.BooleanField(default=False)
+    horario_checkin = models.TimeField()
+    horario_checkout = models.TimeField()
+    qtd_participantes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.registro.agente

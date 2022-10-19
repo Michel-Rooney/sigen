@@ -22,24 +22,12 @@
           <div class="parte-branca">
             <h1>{{caso}}</h1>
               {% if caso.check_in == False%}
-                <form action="{%url 'check_in' caso.id %}" method="POST" name="form" >
+                <form action="{%url 'realizar_check_in' caso.id %}" method="POST" name="form" >
                   {% csrf_token %}
                   {{ form.as_p }}
-                  <button type="submit">Check-in</button>
+                  <button type="submit" class="botao-form">Check-in</button>
                 </form>
               {%else%}
-                <a href="#" onclick="Check('aparecer')">
-                  <div class="botao">
-                      <p> Check-out</p>
-                  </div>
-                </a>
-              <form action="{%url 'check_in' caso.id %}" method="POST" name="form" id="sumir" >
-                <label for="quantidade" class="label-texto"> *Quantas pessoas utilizaram o ambiente?</label>
-                {% csrf_token %}
-                {{ form.as_p }}
-                  <input type="text" name="quantidade" id="quantidade"/>
-                  <input type="submit" value="Enviar" class="botao-form">
-              </form>
               {%endif%}
           </div>
       {% endfor %}

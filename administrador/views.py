@@ -4,7 +4,8 @@ from .models import NivelUsuario, Espacos
 from reserva.models import Confirmacao, Registro
 from django.contrib.auth.models import User
 from django.contrib import auth
-from datetime import datetime
+from datetime import datetime,date,time
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 import os
 from django.contrib.auth.decorators import login_required
@@ -139,26 +140,45 @@ def adicionar_espaco(request):
     return render(request, 'espacos/adicionar_espaco.html')
 
 # AREA RESPONSAVEL POR CHECK-IN/OUT
-@login_required(login_url='/adm/login')
-def check(request):
-    """PAGINA DE CHECK-IN/OUT"""
-    conteudo = {"casos": Confirmacao.objects.all(),
-    }
-    return render(request, 'check.html',conteudo)
 
-def check_in(request,id):
-    """REALIZAR CHECK IN/OUT DAS RESERVAS"""
-    checando = get_object_or_404(Registro,pk=id)
-    if checando.check_in == False:
-        checando.check_in = True
-        checando.check_in_horario = datetime.now().strftime('%H:%M:%S')
+@login_required(login_url='/adm/login')
+def check_in(request):
+    """PAGINA DE CHECK-IN/OUT"""
+    conteudo = {"casos": Confirmacao.objects.filter(check_in=False).all(),
+    }
+    return render(request, 'check_in.html',conteudo)
+
+@login_required(login_url='/adm/login')
+def realizar_check_in(request,id):
+    """REALIZAR CHECK IN DAS RESERVAS"""
+    checando = get_object_or_404(Confirmacao,pk=id)
+    if checando.registro.data_reserva == date.today():
+        if checando.check_in == False:
+            checando.check_in = True
+            checando.horario_checkin = datetime.now().strftime('%H:%M:%S')
+        checando.save()
+        messages.success(request, 'Check-in realizado com sucesso')
     else:
-        checando.check_in =False
-        quantidade = request.POST['quantidade']
-        checando.participantes_presentes = quantidade
-        checando.check_out_horario = datetime.now().strftime('%H:%M:%S')
-    checando.save()
-    return redirect('check')
+        messages.error(request, 'Check-in não realizado, verifique a data')
+    return redirect('check_in')
+
+
+def check_out(request):
+    """PAGINA DE CHECK-IN/OUT"""
+    conteudo = {"casos": Confirmacao.objects.filter(check_in= True,check_out= False).all(),
+    }
+    return render(request, 'check_out.html',conteudo)
+
+def realizar_check_out(request, id):
+    """REALIZAR CHECK IN DAS RESERVAS"""
+    checando = get_object_or_404(Confirmacao, pk=id)
+    if checando.registro.data_reserva == date.today():
+        if checando.check_in == True and checando.check_out == False:
+            quantidade = request.POST['quantidade']
+            checando.qtd_participantes = quantidade
+            checando.horario_checkot = datetime.now().strftime('%H:%M:%S')
+        checando.save()
+    return redirect('check_out')
 
 
 #========================END ADMINISTRADOR=======================
