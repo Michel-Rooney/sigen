@@ -1,6 +1,6 @@
 from re import A
 from django.shortcuts import render
-from .models import NivelUsuario, Espacos
+from .models import Chamado, NivelUsuario, Espacos
 from reserva.models import Confirmacao, Registro
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -183,3 +183,20 @@ def realizar_check_out(request, id):
 
 #========================END ADMINISTRADOR=======================
 
+#========================ABERTURA DE CHAMADO=======================
+
+@login_required(login_url='/adm/login')
+def abrir_chamado(request):
+    chamado = Espacos.objects.all()
+    dados = {"chamado":chamado,}
+    if request.method == "POST": 
+        solicitante = request.POST["solicitante"]
+        data = request.POST["data"]
+        ambiente = request.POST["ambiente"]
+        ambiente2 = get_object_or_404(Espacos, pk=ambiente)
+        objeto = request.POST["objeto"]
+        descricao = request.POST["descricao"]
+        conteudo = Chamado.objects.create(solicitante=solicitante, data=data, ambiente=ambiente2, objeto=objeto, descricao=descricao)
+        conteudo.save()
+        return redirect("administrador")
+    return render(request,'chamados.html', dados)
