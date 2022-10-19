@@ -142,7 +142,7 @@ def adicionar_espaco(request):
 @login_required(login_url='/adm/login')
 def check(request):
     """PAGINA DE CHECK-IN/OUT"""
-    conteudo = {"casos": Confirmacao.objects.order_by('check_in_horario').all(),
+    conteudo = {"casos": Confirmacao.objects.all(),
     }
     return render(request, 'check.html',conteudo)
 
