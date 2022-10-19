@@ -1,7 +1,7 @@
 table {
     margin-top: 90px;
     margin-bottom: 200px;
-    margin-left: 70px;
+    margin-left: -150px;
     width: 90%;
     border-top: 6px solid rgb(53,62,135);
     border-left:1px solid #57557A ;
@@ -31,6 +31,6 @@ td {
 }
 
 .h1-gerenciar {
-    padding-top: 170px;
-    text-align: center;
+    padding-top: 80px;
+    margin-left: 10px;
 }

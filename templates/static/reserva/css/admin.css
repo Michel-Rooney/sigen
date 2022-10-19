@@ -12,12 +12,13 @@
 }
 
 .quadrado-opcoes{
-    width: 40%;
+    width: 30%;
     background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
     padding: 50px;
     margin: 10px;
     font-size: 17px;
     border-radius: 10px;
+    text-align: center;
 }
 
 .a-italico {

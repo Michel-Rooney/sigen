@@ -12,8 +12,8 @@
     background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
     align-items: center;
     margin: 0 auto;
-    margin-top: 250px;
-    margin-bottom: 131px;
+    margin-top: 90px;
+    margin-bottom: 120px;
     border-radius: 20px;
     padding: 40px;
     display: flex;
@@ -64,4 +64,22 @@ a {
 #quantidade {
     width: 7%;
     border-radius: 20px;
+}
+
+.botoes-check {
+    margin-top: 150px;
+    margin-left: 30px;
+}
+
+.botoes-check input {
+    margin-left: 200px;
+    width: 40%;
+    height: 40px;
+}
+
+.ajeitar-botoes {
+    background: rgb(53,62,135); 
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
 }

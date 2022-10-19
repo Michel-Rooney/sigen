@@ -182,10 +182,6 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-.main-header .menu ul li a.current {
-  background: #0e0062;
-  color: white;
-}
 
 .main-header-shrink {
   padding: 25px 0;

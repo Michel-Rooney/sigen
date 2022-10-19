@@ -178,10 +178,6 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-.main-header .menu ul li a.current {
-  background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
-  color: white;
-}
 
 .main-header-shrink {
   padding: 25px 0;
@@ -308,6 +304,7 @@ h1, h2, h3, h4, h5, h6 {
 	Footer Styles 
 --------------------------------------------------------*/
 .site-footer {
+  position: relative;
   margin-top: 100px;
   background-color: #0e0062;
   color: white;
@@ -323,8 +320,17 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 .site-footer .go-top {
-  float: right;
+  position: absolute;
+  background: #0e0062;
+  top: -50px;
+  right: 15px;
   text-transform: uppercase;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .site-footer .go-top i {
   display: block;
