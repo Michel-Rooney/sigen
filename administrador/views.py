@@ -87,6 +87,13 @@ def editar_adm(request,usuario_id):
     usuarios = get_object_or_404(User, pk=usuario_id)
     return render(request, 'editar_adm.html', {'usuario' : usuarios})
 
+@login_required(login_url='adm/login')
+def deletar_adm(request,usuario_id):
+    """Função Que Deleta o Usuario Selecionado"""
+    usuario = get_object_or_404(User,pk=usuario_id)
+    usuario.delete()
+    return redirect('gerenciar_usuario')
+
 @login_required(login_url='/adm/login')
 def gerenciar_reserva(request):
     """Página de Listagem de Reservas Confirmadas"""
