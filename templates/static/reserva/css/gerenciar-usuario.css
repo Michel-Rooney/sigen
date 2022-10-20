@@ -1,11 +1,35 @@
-main {
-    margin-top: 180px;
-    margin-bottom: 90px;
+.main-gerenciar-usuario {
+    margin-top: 150px;
+    margin-bottom: 170px;
+}
+
+.main-gerenciar-reserva {
+    margin-top: 120px;
+    margin-bottom: 170px;
+}
+
+.div-botao-adicionar {
+    position: absolute;
+    background: rgb(14,0,98);
+    width: 100px;
+    border-radius: 10px;
+    margin-left: -130px;
+    margin-bottom: -50px;
+    top: 145px;
+}
+
+.div-botao-adicionar a {
+    color: white;
+}
+
+.div-botao-adicionar a:hover {
+    color: white;
 }
 
 .primeira-parte {
     width: 100%;
     text-align: center;
+
 }
 
 .primeira-parte input {
@@ -14,39 +38,23 @@ main {
     margin-left: -300px;
 }
 
+.table {
+    margin-top: 80px;
+    margin-left: -185px;
+    margin-bottom: 200px;
+}
+
+.table-dark th{
+    background: rgb(14,0,98);
+    border: 1px solid white;
+}
+
+.borda-table td{
+    border: 1px solid #bab8b5;
+}
+
 .img-lupa {
     width: 2%;
-}
-
-.div-tabela {
-    width: 100%;
-    margin-left: 60px;
-    margin-top: 40px;
-}
-
-.tabela {
-    width: 80%;
-    border-top: 6px solid rgb(53,62,135);
-    border-left:1px solid #57557A ;
-    border-right:1px solid #57557A  ;
-    border-bottom:1px solid #57557A  ;
-    border-radius: 10px;
-    border-collapse: separate;
-    padding: 5px;
-    font-size: 20px;
-}
-
-.tabela th {
-    border: 1px solid #57557A;
-    border-radius: 5px;
-    padding-left: 5px;
-    font-weight: bold;
-}
-
-.tabela tr td{
-    border: 1px #57557A solid;
-    border-radius: 5px;
-    padding-left: 5px;
 }
 
 .fa-pen {

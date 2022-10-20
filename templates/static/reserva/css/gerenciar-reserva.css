@@ -1,38 +1,4 @@
-table {
-    margin-top: 90px;
-    margin-bottom: 200px;
-    margin-left: -150px;
-    width: 90%;
-    border-top: 6px solid rgb(53,62,135);
-    border-left:1px solid #57557A ;
-    border-right:1px solid #57557A  ;
-    border-bottom:1px solid #57557A  ;
-    border-radius: 30px;
-    border-collapse: separate;
-    padding: 10px;
-    font-size: 20px;
-}
-
-tr , th {
-    border: 1px solid #57557A;
-    border-radius: 25px;
-    padding-left: 5px;
-    text-align: center;
-}
-
-th {
-    border: 1px solid black;
-    font-weight: bold;
-    border-radius: 10px;
-}
-
-td {
-    border: 1px #57557A solid;
-    border-radius: 10px;
-    padding-left: 5px;
-}
-
 .h1-gerenciar {
-    padding-top: 80px;
+    padding-top: 20px;
     margin-left: 10px;
 }

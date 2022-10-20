@@ -5,9 +5,37 @@
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
-<main>
+<main class="main-gerenciar-reserva">
     <h1 class="h1-gerenciar">Gerenciar Reservas</h1>
-    <table>
+    
+    <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>Empresa</th>
+            <th>Espaço Reservado</th>
+            <th>Responsavel pela a reserva</th>
+            <th>Data de Reserva</th>
+            <th>Hora de Inicio</th>
+            <th>Hora de Término</th>   
+          </tr>
+        </thead>
+        <tbody>
+            <tr class="borda-table">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+      </table>
+    
+    
+    
+    
+    
+    {% comment %} <table>
         <tr>
             <th>Empresa</th>
             <th>Espaço Reservado</th>
@@ -28,7 +56,7 @@
             <td><a href="">Cancelar Reserva</a></td>
         </tr>
         {%endfor%}
-    </table>
+    </table> {% endcomment %}
 </main>
    <!-- Começo do footer -->
    {% include 'partials/_footer.html' %}
