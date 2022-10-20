@@ -83,8 +83,8 @@ def editar_adm(request,usuario_id):
         # nivel = NivelUsuario.objects.create(usuario = user_n, status= tipo)
         # nivel.save()
         return redirect('gerenciar_usuario')
-    usuario = get_object_or_404(User, pk=usuario_id)
-    return render(request, 'editar_adm.html', {'usuario' : usuario})
+    usuarios = get_object_or_404(User, pk=usuario_id)
+    return render(request, 'editar_adm.html', {'usuario' : usuarios})
 
 @login_required(login_url='/adm/login')
 def gerenciar_reserva(request):

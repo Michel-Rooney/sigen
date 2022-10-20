@@ -34,17 +34,23 @@
                 </div> -->
             </section>
     {% elif nivel.status == 'RCP' %}
-            <div class="h1-meio-titulo">
-                    <h1> Olá, {{nivel.user.username}}</h1>
-            </div>
-            <section class="mae">
-                <div class="quadrado-opcoes">
-                        <a href="">Check-In/Out</a>
-                </div>
-                <div class="quadrado-opcoes">
-                        <a href="">Deslogar</a>
-                </div>
-            </section>
+    <div class="h1-meio-titulo">
+        <h1> Olá, {{nivel.usuario.username}}</h1>
+    </div>
+    <section class="mae">
+        <div class="quadrado-opcoes">
+            <a href="{% url 'check_in' %}">Check-in/Check-out</a>
+        </div>
+        <div class="quadrado-opcoes">
+            <a href="{% url 'gerenciar_reserva' %}">Gerenciamento de Reservas</a>
+        </div>
+        <div class="quadrado-opcoes">
+            <a href="">Relatorios</a>
+        </div>
+        <!-- <div class="quadrado-opcoes">
+            <a href="">Deslogar</a>
+        </div> -->
+    </section>
     {% endif %}
 {%else%}
 {%endif%}
