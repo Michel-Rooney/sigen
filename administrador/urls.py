@@ -19,6 +19,7 @@ urlpatterns =[
     path('realizar_check_out/<int:id>', views.realizar_check_out, name='realizar_check_out'),
     #Registrar novo Adm
     path('adicionar_adm/', views.adicionar_adm, name = 'adicionar_adm'),
+    path('editar_adm/<int:usuario_id>', views.editar_adm, name = 'editar_adm'),
     #Gerenciamento de Espaços
     path('gerenciar_espaco/', views.gerenciar_espaco, name='gerenciar_espaco'),
     path('adicionar_espaco/', views.adicionar_espaco, name='adicionar_espaco'),

@@ -51,12 +51,6 @@ def gerenciar_usuario(request):
     return render(request, 'gerenciar_usuario.html', user)
 
 @login_required(login_url='/adm/login')
-def gerenciar_reserva(request):
-    """Página de Listagem de Reservas Confirmadas"""
-    registro = {'registro': Registro.objects.all()}
-    return render(request, 'gerenciar_reserva.html', registro)
-
-@login_required(login_url='/adm/login')
 def adicionar_adm(request):
     """PAGINA DE REGISTRO DE NOVO ADMINISTRADOR"""
     if request.method == 'POST':
@@ -72,6 +66,28 @@ def adicionar_adm(request):
         nivel.save()
         return redirect('gerenciar_usuario')
     return render(request, 'adicionar_adm.html')
+
+@login_required(login_url='/adm/login')
+def editar_adm(request,usuario_id):
+    """Página de Edição de Usuário"""
+    usuario =get_object_or_404(User,pk=usuario_id)
+    if request.method == 'POST':
+        nome = request.POST['nome_usuario']
+        email = request.POST['email']
+        usuario.username = nome
+        usuario.email = email
+        usuario.save()
+        return redirect('gerenciar_usuario')
+    usuario = get_object_or_404(User, pk=usuario_id)
+    return render(request, 'editar_adm.html', {'usuario' : usuario})
+
+@login_required(login_url='/adm/login')
+def gerenciar_reserva(request):
+    """Página de Listagem de Reservas Confirmadas"""
+    registro = {'registro': Registro.objects.all()}
+    return render(request, 'gerenciar_reserva.html', registro)
+
+
 
 #AREA RESPONSAVEL POR GERENCIAMENTO DE ESPAÇOS
 
