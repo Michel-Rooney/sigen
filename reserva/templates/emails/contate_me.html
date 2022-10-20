@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-bre">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!--meu css-->
-    <link rel="stylesheet" href="{% static 'reserva/css/email.css %}">
+    <link rel="stylesheet" href="{% static 'reserva/css/email.css'%}">
+    
     <title>Contate-me</title>
 </head>
 <body>
     <header>
-        <img class="imge" src="{% static 'reserva/images/header-email.jpeg" alt="">
+        <img class="imge" src="{% static 'reserva/images/header-email.jpeg' %}" >
     </header>
     <main>
       <div class="texto">
@@ -21,10 +22,11 @@
         <p>{{ subject }}</p>
         <h4>Mensagem:</h4>
         <p>{{ mensagem }}</p>
- <footer>
-    acesse:https://ninnahub.com.br/
- </footer>
+ 
         </div>
         </main>
+        <footer>
+            acesse:https://ninnahub.com.br/
+         </footer>
 </body>
 </html>
