@@ -45,7 +45,7 @@
                     <tr>
                         <td>{{user}}</td>
                         <td><a href="{% url 'editar_adm' user.id %}"><i class="fa-solid fa-pen"></i>Editar Usuário</a></td>
-                        <td><a href="#"><i class="fa-solid fa-trash"></i>Deletar Usuário</a></td>
+                        <td><a href="{%url 'deletar_adm' user.id %}"><i class="fa-solid fa-trash"></i>Deletar Usuário</a></td>
                     </tr>
                 {%endfor%}                                     
                 </table>

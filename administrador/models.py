@@ -20,10 +20,12 @@ class Espacos(models.Model):
 
 
 class NivelUsuario(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    status = models.CharField(
-        max_length=3
+    STATUS = (
+        ('RCP', 'Recepção'),
+        ('TOP', 'Time Operacional')
     )
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=3,choices=STATUS,default='RCP')
 
 class Chamado(models.Model):
     STATUS= (
