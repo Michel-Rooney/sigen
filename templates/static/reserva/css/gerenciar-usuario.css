@@ -13,7 +13,7 @@
     background: rgb(14,0,98);
     width: 100px;
     border-radius: 10px;
-    margin-left: -140px;
+    margin-left: -144px;
     margin-bottom: -50px;
     top: 145px;
 }
@@ -29,6 +29,22 @@
 .primeira-parte {
     width: 100%;
     text-align: center;
+}
+
+.butao-lupa {
+    width: 5%;
+    height: 40px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #d8d8d8;
+}
+
+.butao-lupa:hover {
+    background: #d8d8d8;
+}
+
+.butao-lupa img {
+    width: 40%;
 
 }
 
@@ -36,6 +52,7 @@
     width: 70%;
     height: 40px;
     margin-left: -300px;
+    border-radius: 5px;
 }
 
 .table {
