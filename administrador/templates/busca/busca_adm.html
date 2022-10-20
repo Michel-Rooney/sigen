@@ -8,7 +8,7 @@
         <main class="main-gerenciar-usuario">
             <div class="primeira-parte">
                 <form action="{% url 'buscar_adm' %}" method="POST">
-                  {% csrf_token %}
+                    {% csrf_token %}
                     <input type="text" name="buscar" placeholder="Pesquisar">
                     <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
                 </form>
@@ -23,13 +23,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {%for user in user%}
+                    {%if user %}
+                    {%for user in user %}
                     <tr class="borda-table">
                         <td>{{user}}</td>
                         <td><a href="{% url 'editar_adm' user.id %}"><i class="fa-solid fa-pen"></i>Editar Usuário</a></td>
                         <td><a href="{%url 'deletar_adm' user.id %}"><i class="fa-solid fa-trash"></i>Deletar Usuário</a></td>
                     </tr>
-                    {%endfor%} 
+                    {%endfor%}
+                    {%else%}
+                        <tr class="borda-table">
+                            <td>Nenhum Usuario Encontrado, Informe o Nome de Usuario Corretamente</td>
+                        </tr>
+                    {%endif%}
                 </tbody>
               </table>
 </main>

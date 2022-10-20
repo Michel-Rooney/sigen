@@ -82,7 +82,6 @@ def editar_adm(request,usuario_id):
         user_nivel.status = tipo
         user_nivel.save()
 
-
         return redirect('gerenciar_usuario')
     usuarios = get_object_or_404(User, pk=usuario_id)
     return render(request, 'editar_adm.html', {'usuario' : usuarios})
@@ -92,6 +91,19 @@ def deletar_adm(request,usuario_id):
     """Função Que Deleta o Usuario Selecionado"""
     usuario = get_object_or_404(User,pk=usuario_id)
     usuario.delete()
+    return redirect('gerenciar_usuario')
+
+@login_required(login_url='adm/login')
+def buscar_adm(request):
+    if 'buscar' in request.POST:
+        nome_buscado = request.POST['buscar']
+        print(nome_buscado)
+        if nome_buscado.strip() != "":
+            usuario = User.objects.filter(username=nome_buscado)
+            user = {
+                'user' : usuario,
+            } 
+            return render(request,'busca/busca_adm.html',user)
     return redirect('gerenciar_usuario')
 
 @login_required(login_url='/adm/login')
