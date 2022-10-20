@@ -74,14 +74,15 @@ def editar_adm(request,usuario_id):
     if request.method == 'POST':
         nome = request.POST['nome_usuario']
         email = request.POST['email']
-        # tipo = request.POST['nivel']
+        tipo = request.POST['nivel']
         usuario.username = nome
         usuario.email = email
         usuario.save()
-        # user_id = User.objects.get(email = email)
-        # user_n = get_object_or_404(User, pk= user_id.id)
-        # nivel = NivelUsuario.objects.create(usuario = user_n, status= tipo)
-        # nivel.save()
+        user_nivel = get_object_or_404(NivelUsuario,usuario = usuario)
+        user_nivel.status = tipo
+        user_nivel.save()
+
+
         return redirect('gerenciar_usuario')
     usuarios = get_object_or_404(User, pk=usuario_id)
     return render(request, 'editar_adm.html', {'usuario' : usuarios})
