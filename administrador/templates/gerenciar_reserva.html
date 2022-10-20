@@ -20,43 +20,18 @@
           </tr>
         </thead>
         <tbody>
+        {%for registro in registro %}
             <tr class="borda-table">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{registro.espacos}}</td>
+                <td>{{registro.agente}}</td>
+                <td>{{registro.data_reserva}}</td>
+                <td>{{registro.hora_inicio}}</td>
+                <td>{{registro.hora_fim}}</td>
+                <td><a href="">Cancelar Reserva</a></td>
             </tr>
+            {%endfor%}
         </tbody>
       </table>
-    
-    
-    
-    
-    
-    {% comment %} <table>
-        <tr>
-            <th>Empresa</th>
-            <th>Espaço Reservado</th>
-            <th>Responsavel pela a reserva</th>
-            <th>Data de Reserva</th>
-            <th>Hora de Inicio</th>
-            <th>Hora de Término</th>
-            <th></th>
-        </tr>
-        {%for registro in registro %}
-        <tr>
-            <td>{{registro.empresa}}</td>
-            <td>{{registro.espacos}}</td>
-            <td>{{registro.agente}}</td>
-            <td>{{registro.data_reserva}}</td>
-            <td>{{registro.hora_inicio}}</td>
-            <td>{{registro.hora_fim}}</td>
-            <td><a href="">Cancelar Reserva</a></td>
-        </tr>
-        {%endfor%}
-    </table> {% endcomment %}
 </main>
    <!-- Começo do footer -->
    {% include 'partials/_footer.html' %}

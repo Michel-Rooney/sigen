@@ -10,8 +10,8 @@
                 <form>
                     <input type="text" placeholder="Pesquisar">
                     <a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a>
-                    <div class="div-botao-adicionar"><a href="{% url 'adicionar_adm'%}">Adicionar Usuario</a></div>
                 </form>
+                    <div class="div-botao-adicionar"><a href="{% url 'adicionar_adm'%}">Adicionar Usuario</a></div>
             </div>
             
             <table class="table">
@@ -22,36 +22,17 @@
                   </tr>
                 </thead>
                 <tbody>
+                    {%for user in user%}
                     <tr class="borda-table">
-                        <td></td>
-                        <td><a href=""><i class="fa-solid fa-pen"></i>Editar Usuário</a></td>
-                        <td><a href=""><i class="fa-solid fa-trash"></i>Deletar Usuário</a></td>
-                    </tr>
-                </tbody>
-              </table>
-            
-            
-            
-            
-            
-            {% comment %} <div class="div-tabela">
-                <table class="tabela">
-                    <tr>
-                        <th>Usuários</th>  
-                        <th></th>
-                        <th></th>                                     
-                    </tr>
-                {% for user in user %}
-                    <tr>
                         <td>{{user}}</td>
                         <td><a href="{% url 'editar_adm' user.id %}"><i class="fa-solid fa-pen"></i>Editar Usuário</a></td>
                         <td><a href="{%url 'deletar_adm' user.id %}"><i class="fa-solid fa-trash"></i>Deletar Usuário</a></td>
                     </tr>
-                {%endfor%}                                     
-                </table>
-            </div> {% endcomment %}
-        </main>
-        <!-- Começo do footer -->
+                    {%endfor%} 
+                </tbody>
+              </table>
+</main>
+<!-- Começo do footer -->
 {% include 'partials/_footer.html' %}
 <!-- Final do footer -->
 {% endblock %}
