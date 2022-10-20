@@ -11,15 +11,12 @@
             <section class="container"><!-- Container Start -->
                 {% include 'partials/_alertas.html' %}
                     <!-- Formulario Start -->
-                <form class="formulario" method="POST" enctype="multipart/form-data"> {% csrf_token %} <!-- Formulario Start -->
+                <form class="" method="POST" enctype="multipart/form-data"> {% csrf_token %} <!-- Formulario Start -->
                     <div class="dados-agente"><!-- Dados do Agente - Start -->
                         <h1 id="titulo-agente" class="titulo">Dados do Agente</h1>
                         <div class="input-box">
                             <input type="text" name="nome-agente" placeholder="Nome Completo" id="nome-agente" autocomplete="off" class="input-padrao" required>
                             <select id="tipo-empresa" name="tipo-empresa" class="input-padrao" required>
-                                <option value="mantenedor">Mantenedor</option>
-                                <option value="residente-startup">Residente Startup</option>
-                                <option value="time-operacional">Time Operacional</option>
                                 <option>Tipo do Agente</option>
                                 <option name="mantenedor">Mantenedor</option>
                                 <option name="residente-startup">Residente Startup</option>
