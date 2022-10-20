@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Gerenciamento de Usuário{% endblock %}
+{% block 'body' %}
+
+{% include 'partials/_navbar-adm.html' %}
+<main>
+    <form action="{% url 'adicionar_adm' %}" method="POST">
+        {% csrf_token %}
+        <label for="">Nome de Usuario</label>
+        <input type="text" name="nome_usuario">
+        <label for="">Email</label>
+        <input type="email" name="email">
+        <label for="">Senha</label>
+        <input type="password" name="senha">
+        <label for="">Setor</label>
+        <select name = "nivel">
+            <option value="TOP">Time Operacional</option>
+            <option value="RCP">Recepção</option>
+        </select>
+        <button type="submit">Criar Usuario</button>
+    </form>
+</main>
+<!-- Começo do footer -->
+{% include 'partials/_footer.html' %}
+<!-- Final do footer -->
+{% endblock %}

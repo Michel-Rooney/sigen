@@ -18,8 +18,8 @@
         }
     </script>
     <div class="botoes-check">
-      <button class="ajeitar-botoes">Check-in</button>
-      <button class="ajeitar-botoes">Check-out</button>
+      <a href="{%url 'check_in'%}"><button class="ajeitar-botoes">Check-in</button></a>
+      <a href="{%url 'check_out'%}"><button class="ajeitar-botoes">Check-out</button></a>
       <input type="text" placeholder="Pesquisar"></input><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a>
     </div>
   {% if user.is_authenticated %}
