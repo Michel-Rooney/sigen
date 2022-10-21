@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 import os
 from django.contrib.auth.decorators import login_required
 from core.settings import BASE_DIR
+from reserva.utils import *
 
 #========================LOGIN ADM=======================
 
@@ -245,7 +246,9 @@ def abrir_chamado(request):
         ambiente2 = get_object_or_404(Espacos, pk=ambiente)
         objeto = request.POST["objeto"]
         descricao = request.POST["descricao"]
-        conteudo = Chamado.objects.create(solicitante=solicitante, ambiente=ambiente2, objeto=objeto, descricao=descricao)
-        conteudo.save()
+        chamado = Chamado.objects.create(solicitante=solicitante, ambiente=ambiente2, objeto=objeto, descricao=descricao)
+        chamado.save()
+        conteudo = {'nome_solicitante':solicitante,'ambiente':ambiente2, 'data':chamado.data, 'objeto':objeto, 'descricao':descricao}
+        email_html('emails/email_chamado.html', 'envio de chamado', ['contatestedeteste30@gmail.com'], conteudo)
         return redirect("administrador")
     return render(request,'chamados.html', espacos)

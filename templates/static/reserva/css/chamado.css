@@ -1,14 +1,14 @@
-main {
+.principal-chamado {
     margin-top: 170px;
     margin-bottom: 50px;
 }
 
-main h1 {
+.titulo-chamado {
     padding-left: 60px;
     padding-bottom: 30px;
 }
 
-.formulario {
+.formulario-chamado {
     width: 65%;
     padding: 10px;
     border: 1px solid #00000032;
