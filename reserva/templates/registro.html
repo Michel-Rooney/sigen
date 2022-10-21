@@ -30,15 +30,15 @@
                             <input type="tel" name="telefone" id="telefone" class="input-padrao" minlength="7" pattern="^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$" placeholder="Telefone" required>
                         </div>
                     </div><!-- Dados do Agente - End -->
-                    <div class="dados-empresa">
-                        <!-- Dados da Empresa Start -->
+                    
+                    <div class="dados-empresa"><!-- Dados da Empresa Start -->
                         <h1 id="titulo-agente" class="titulo">Dados da Empresa</h1>
                         <div class="input-box">
                             <input type="text" id="nome-empresa" autocomplete="off" class="input-padrao" name="nome-empresa" placeholder="Nome da empresa" required>
                             <input type="text" placeholder="CNPJ" class="input-padrao" pattern="^(\d{2}[\.]?)(\d{3}[\.]?)(\d{3}[\.]?)(/?\d{4}-?)(\d{2})$" name="numero-cnpj" id="numero-cnpj" autocomplete="off" required>
                         </div>
-                    </div>
-                    <!-- Dados da Empresa End -->
+                    </div><!-- Dados da Empresa End -->
+                    
                     
                     <div class="dados-evento"><!-- Dados do Evento Start -->
                         <h1 id="titulo-agente" class="titulo">Dados do Evento</h1>
@@ -51,12 +51,12 @@
                             <input type="file" name="lista_participantes" id="lista-participante" required>
                         </div>
                         <div class="input-box">
-                            Data da Reserva:
-                            <input name="data_reserva" type="date" class="input-padrao" placeholder="Data da Reserva" required></input>
-                            Hora Inicio: 
-                            <input name="hora_inicio" type="time" class="input-padrao" placeholder="Hora de Inicio" required></input>
-                            Hora Fim: 
-                            <input name="hora_fim" type="time" class="input-padrao" placeholder="Hora de Fim" required></input>
+                            <label for="data-reserva">Data da Reserva:</label>
+                            <input name="data_reserva" type="date" id="data-reserva" class="input-padrao" placeholder="Data da Reserva" required>
+                            <label for="hora-inicio">Hora Inicio:</label>
+                            <input name="hora_inicio" type="time" id="hora-inicio" class="input-padrao" placeholder="Hora de Inicio" required>
+                            <label for="hora-fim">Hora Fim:</label>
+                            <input name="hora_fim" type="time" id="hora-fim" class="input-padrao" placeholder="Hora de Fim" required>
                         </div>
                         <div class="input-box">
                             <textarea name="descricao-evento" class="input-padrao" placeholder="Descrição do evento" id="descricao-evento" cols="80" rows="5" required></textarea>
