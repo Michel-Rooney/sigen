@@ -1,10 +1,11 @@
 from re import A
+import time
 from django.shortcuts import render
 from .models import Chamado, NivelUsuario, Espacos
 from reserva.models import Confirmacao, Registro
 from django.contrib.auth.models import User
 from django.contrib import auth
-from datetime import datetime,date,time
+from datetime import datetime,date,timedelta
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 import os
@@ -129,7 +130,11 @@ def check_in(request):
 def realizar_check_in(request,id):
     """REALIZAR CHECK IN DAS RESERVAS"""
     checando = get_object_or_404(Confirmacao,pk=id)
-    if checando.registro.data_reserva == date.today():
+
+    tmp_atraso = datetime.now() + timedelta(minutes=30)
+    hr_reserva = datetime.strptime(str(checando.registro.hora_inicio),"%H:%M:%S")
+
+    if checando.registro.data_reserva == date.today() and hr_reserva >= tmp_atraso:
         if checando.check_in == False:
             checando.check_in = True
             checando.horario_checkin = datetime.now().strftime('%H:%M:%S')
