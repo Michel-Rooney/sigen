@@ -107,6 +107,10 @@ def buscar_adm(request):
             return render(request,'busca/busca_adm.html',user)
     return redirect('gerenciar_usuario')
 
+#========================END ADMINISTRADOR===================
+
+#===================GERENCIAMENTO DE RESERVA=================
+
 @login_required(login_url='/adm/login')
 def gerenciar_reserva(request):
     """Página de Listagem de Reservas Confirmadas"""
@@ -114,8 +118,48 @@ def gerenciar_reserva(request):
     return render(request, 'gerenciar_reserva.html', registro)
 
 
+@login_required(login_url='/adm/login')
+def check_in(request):
+    """PAGINA DE CHECK-IN/OUT"""
+    conteudo = {"casos": Confirmacao.objects.filter(check_in=False).all(),
+    }
+    return render(request, 'check_in.html',conteudo)
 
-#AREA RESPONSAVEL POR GERENCIAMENTO DE ESPAÇOS
+@login_required(login_url='/adm/login')
+def realizar_check_in(request,id):
+    """REALIZAR CHECK IN DAS RESERVAS"""
+    checando = get_object_or_404(Confirmacao,pk=id)
+    if checando.registro.data_reserva == date.today():
+        if checando.check_in == False:
+            checando.check_in = True
+            checando.horario_checkin = datetime.now().strftime('%H:%M:%S')
+        checando.save()
+        messages.success(request, 'Check-in realizado com sucesso')
+    else:
+        messages.error(request, 'Check-in não realizado, verifique a data')
+    return redirect('check_in')
+
+
+def check_out(request):
+    """PAGINA DE CHECK-IN/OUT"""
+    conteudo = {"casos": Confirmacao.objects.filter(check_in= True,check_out= False).all(),
+    }
+    return render(request, 'check_out.html',conteudo)
+
+def realizar_check_out(request, id):
+    """REALIZAR CHECK IN DAS RESERVAS"""
+    checando = get_object_or_404(Confirmacao, pk=id)
+    if checando.registro.data_reserva == date.today():
+        if checando.check_in == True and checando.check_out == False:
+            quantidade = request.POST['quantidade']
+            checando.qtd_participantes = quantidade
+            checando.horario_checkot = datetime.now().strftime('%H:%M:%S')
+        checando.save()
+    return redirect('check_out')
+
+#=================END GERENCIAMENTO DE RESERVA=================
+
+#===================GERENCIAMENTO DE ESPAÇOS===================
 
 @login_required(login_url='/adm/login')
 def gerenciar_espaco(request):
@@ -190,51 +234,9 @@ def adicionar_espaco(request):
     
     return render(request, 'espacos/adicionar_espaco.html')
 
-# AREA RESPONSAVEL POR CHECK-IN/OUT
+#==================END GERENCIAMENTO DE ESPAÇOS=================
 
-@login_required(login_url='/adm/login')
-def check_in(request):
-    """PAGINA DE CHECK-IN/OUT"""
-    conteudo = {"casos": Confirmacao.objects.filter(check_in=False).all(),
-    }
-    return render(request, 'check_in.html',conteudo)
-
-@login_required(login_url='/adm/login')
-def realizar_check_in(request,id):
-    """REALIZAR CHECK IN DAS RESERVAS"""
-    checando = get_object_or_404(Confirmacao,pk=id)
-    if checando.registro.data_reserva == date.today():
-        if checando.check_in == False:
-            checando.check_in = True
-            checando.horario_checkin = datetime.now().strftime('%H:%M:%S')
-        checando.save()
-        messages.success(request, 'Check-in realizado com sucesso')
-    else:
-        messages.error(request, 'Check-in não realizado, verifique a data')
-    return redirect('check_in')
-
-
-def check_out(request):
-    """PAGINA DE CHECK-IN/OUT"""
-    conteudo = {"casos": Confirmacao.objects.filter(check_in= True,check_out= False).all(),
-    }
-    return render(request, 'check_out.html',conteudo)
-
-def realizar_check_out(request, id):
-    """REALIZAR CHECK IN DAS RESERVAS"""
-    checando = get_object_or_404(Confirmacao, pk=id)
-    if checando.registro.data_reserva == date.today():
-        if checando.check_in == True and checando.check_out == False:
-            quantidade = request.POST['quantidade']
-            checando.qtd_participantes = quantidade
-            checando.horario_checkot = datetime.now().strftime('%H:%M:%S')
-        checando.save()
-    return redirect('check_out')
-
-
-#========================END ADMINISTRADOR=======================
-
-#========================ABERTURA DE CHAMADO=======================
+#=======================ABERTURA DE CHAMADO=====================
 
 @login_required(login_url='/adm/login')
 def abrir_chamado(request):
@@ -252,3 +254,5 @@ def abrir_chamado(request):
         email_html('emails/email_chamado.html', 'envio de chamado', ['contatestedeteste30@gmail.com'], conteudo)
         return redirect("administrador")
     return render(request,'chamados.html', espacos)
+
+#=====================END ABERTURA DE CHAMADO====================
