@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from email.policy import default
 from django.db import models
 from cpf_field.models import CPFField
@@ -136,8 +137,8 @@ class Confirmacao(models.Model):
     #Check-in / Check-out
     check_in = models.BooleanField(default=False)
     check_out = models.BooleanField(default=False)
-    horario_checkin = models.TimeField()
-    horario_checkout = models.TimeField()
+    horario_checkin = models.TimeField(null=True, blank=True)
+    horario_checkout = models.TimeField(null=True, blank=True)
     qtd_participantes = models.IntegerField(default=0)
 
     def __str__(self):

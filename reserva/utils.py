@@ -6,6 +6,7 @@ from django.utils.html import strip_tags
 from django.conf import settings
 from .models import Confirmacao
 from hashlib import sha256
+import random
 
 
 
@@ -48,7 +49,8 @@ def email_html(path_template: str, assunto: str, para: list, conteudo) -> dict:
 
 
 def make_token(agente: str, email: str, registro: str) -> str:
-    token = sha256(f'{agente}{email}'.encode()).hexdigest()
+    key = random.randint(100,2000)
+    token = sha256(f'{agente}{key}{email}'.encode()).hexdigest()
     ativacao = Confirmacao(token=token, registro=registro)
     ativacao.save()
     return f'127.0.0.1:8000/ativar_conta/{token}'

@@ -257,7 +257,7 @@ def abrir_chamado(request):
         chamado = Chamado.objects.create(solicitante=solicitante, ambiente=ambiente2, objeto=objeto, descricao=descricao)
         chamado.save()
         conteudo = {'nome_solicitante':solicitante,'ambiente':ambiente2, 'data':chamado.data, 'objeto':objeto, 'descricao':descricao}
-        email_html('emails/email_chamado.html', 'envio de chamado', ['contatestedeteste30@gmail.com'], conteudo)
+        email_html('emails/email_chamado.html', 'envio de chamado', ['suportesigen@gmail.com'], conteudo)
         return redirect("administrador")
     return render(request,'chamados.html', espacos)
 

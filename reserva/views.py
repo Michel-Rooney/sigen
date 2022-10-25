@@ -24,7 +24,7 @@ def home(request):
         conteudo = {
             'nome' : nome, 'email' : email, 'subject' : subject, 'mensagem' : mensagem
         }
-        email_html('emails/contate_me.html', subject, ['contatestedeteste30@gmail.com'], conteudo)
+        email_html('emails/contate_me.html', subject, ['suportesigen@gmail.com'], conteudo)
         return redirect('/')
 
 
@@ -83,7 +83,7 @@ def registro(request):
         link_ativacao = make_token(agente, email, registro)
         conteudo = {'agente':agente, 'empresa':empresa, 'nome_evento':nome_evento, 'data_reserva':data_reserva, 'hora_inicio':hora_inicio, 'hora_fim':hora_fim, 'link_ativacao':link_ativacao}
 
-        email_html('emails/confirmacao_registro.html', 'Confirmação de Registro', ['contatestedeteste30@gmail.com'], conteudo)
+        email_html('emails/confirmacao_registro.html', 'Confirmação de Registro', ['suportesigen@gmail.com'], conteudo)
         return redirect('registro')
     else:
         return render(request, 'registro.html')
