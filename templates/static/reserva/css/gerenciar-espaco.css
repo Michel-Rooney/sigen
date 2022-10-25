@@ -25,6 +25,9 @@ body, input, textarea, button {
     position: relative;
 }
 .btn-box {
+    position: absolute;
+    top: 105px;
+    left: 65px;
     padding: 2rem 0;
     text-align: center;
 }
@@ -78,7 +81,7 @@ body, input, textarea, button {
 .modal-container.mostrar {
     display: flex;
 }
-.modal{
+.modal-espaco {
     display: grid;
     place-content: center;
     background: white;
@@ -93,10 +96,10 @@ body, input, textarea, button {
     color: var(--branco-ninna);
     background: var(--azul-ninna);
     border: 1px solid var(--verde-ninna);
-    border-radius: 100%;
+    border-radius: 50%;
     margin: 10px;
-    height: 35px;
-    width: 35px;
+    height: 40px;
+    width: 40px;
     position: absolute;
     right: 10px;
 
