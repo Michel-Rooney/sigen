@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block 'title' %}NinnaHub - Check-in/Out{% endblock %}
+{% block 'title' %}NinnaHub - Página do Administrador {% endblock %}
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
@@ -12,7 +12,7 @@
             </div>
             <section class="mae">
                 <div class="quadrado-opcoes">
-                    <a href="">Gerenciar Espaços</a>
+                    <a href="{% url 'gerenciar_espacos' %}">Gerenciar Espaços</a>
                 </div>
                 <div class="quadrado-opcoes">
                     <a href="{% url 'check_in' %}">Check-in/Check-out</a>

@@ -167,9 +167,10 @@ def realizar_check_out(request, id):
 #===================GERENCIAMENTO DE ESPAÇOS===================
 
 @login_required(login_url='/adm/login')
-def gerenciar_espaco(request):
+def gerenciar_espacos(request):
     """PAGINA DE GERENCIAMENTO DE ESPAÇOS"""
-    return render(request, 'espacos/gerenciar_espaco.html')
+    espacos = {'espacos': Espacos.objects.all()}
+    return render(request, 'gerenciar_espacos.html',espacos)
 
 @login_required(login_url='/adm/login')
 def remover_espaco(request):

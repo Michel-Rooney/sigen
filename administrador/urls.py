@@ -23,7 +23,7 @@ urlpatterns =[
     path('deletar_adm/<int:usuario_id>', views.deletar_adm, name='deletar_adm'),
     path('buscar_adm/', views.buscar_adm, name= 'buscar_adm'),
     #Gerenciamento de Espaços
-    path('gerenciar_espaco/', views.gerenciar_espaco, name='gerenciar_espaco'),
+    path('gerenciar_espacos/', views.gerenciar_espacos, name='gerenciar_espacos'),
     path('adicionar_espaco/', views.adicionar_espaco, name='adicionar_espaco'),
     path('remover_espaco/', views.remover_espaco, name='remover_espaco'),
     path('remover_espaco/<int:espaco_id>', views.remover_espaco_id, name='remover_espaco_id'),
