@@ -5,6 +5,12 @@
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
+
+    <article class="btn-box">
+        <button id="adicionar-espaco">Adicionar Espaço</button>
+        <button id="editar-espaco">Editar Espaço</button>
+    </article>
+
     <main class="principal">
         {%for espaco in espacos%}
         <section class="espaco">
@@ -16,7 +22,7 @@
     </main>
     
     <div id="modal-cadastro" class="modal-container">
-        <div class="modal">
+        <div class="modal-espaco">
             <button id="modal-fechar">x</button>
             <h3 class="modal-subtitulo">Adicionar Espaço</h3>
             <form id="form" enctype="multipart/form-data">
