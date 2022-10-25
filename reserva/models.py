@@ -1,5 +1,3 @@
-from asyncio.windows_events import NULL
-from email.policy import default
 from django.db import models
 from cpf_field.models import CPFField
 from cnpj_field.models import CNPJField

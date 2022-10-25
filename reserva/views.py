@@ -94,7 +94,7 @@ def ativar_conta(request, token):
     if token.ativo:
         messages.warning(request, 'Essa token já foi usado')
         return redirect('registro')
-    registro = Registro.objects.get(email=token.registro.email)
+    registro = Registro.objects.get(id=token.registro.id)
     registro.confirmacao_email = True
     registro.save()
     token.ativo = True
