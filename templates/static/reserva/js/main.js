@@ -13,6 +13,7 @@ const btnFechaModal = document.getElementById('modal-fechar')
 // Inputs
 const inputNome = document.getElementById('input-nome')
 const inputImagem = document.getElementById('input-imagem')
+const allInputs = document.querySelectorAll('input')
 
 var imagemCarregada = ''
 
@@ -38,16 +39,25 @@ function adicionarEspaco() {
   h3.classList.add("espaco-titulo")
   h3.textContent = inputNome.value
 
-  const a = document.createElement("a")
-  a.classList.add("espaco-link")
-  a.href = "#"
-  a.textContent = "Faça sua reserva"
+  const aEditar = document.createElement("a")
+  const aDeletar = document.createElement("a")
 
-  section.append(h3, a)
+
+  aEditar.classList.add("espaco-link")
+  aDeletar.classList.add("espaco-link")
+
+  aEditar.href = "#"
+  aDeletar.href = "#"
+
+  aEditar.textContent = "Editar Espaço"
+  aDeletar.textContent = "Remover Espaço"
+
+  section.append(h3, aEditar, aDeletar)
 
   tela.appendChild(section);
   modal.classList.remove('mostrar')
   contador++
+
 }
 
 form.addEventListener('submit', (event) => {
