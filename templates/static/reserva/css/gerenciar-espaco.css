@@ -16,32 +16,6 @@ body, input, textarea, button {
     font-family: 'Poppins', sans-serif;
 }
 
-.cabecalho {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.cabecalho button {
-    color: var(--verde-ninna);
-    border: none;
-    background: none;
-    margin-left: 1.5rem;
-    font-size: 1.3rem;
-    justify-self: flex-start;
-    cursor: pointer;
-}
-
-.cabecalho button:hover {
-    color: var(--cinza-ninna);
-}
-
-.cabecalho img {
-    width: 5rem;
-    margin: 0 auto;
-}
-
 /* Espaços */
 .principal {
     display: flex;
@@ -81,8 +55,11 @@ body, input, textarea, button {
 }
 .espaco-link {
     color: var(--verde-ninna);
-    text-decoration: none;
     text-align: center;
+}
+.espaco-link:hover {
+    color: var(--branco-ninna);
+    text-decoration: none;
 }
 
 /* Modal */

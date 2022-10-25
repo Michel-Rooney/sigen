@@ -5,25 +5,7 @@
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
-<!-- <body>
-    <header class="cabecalho">
-        <button onclick="history.back()"> <i class="fa fa-arrow-left"></i> Voltar</button>
-        <img src="logo-ninna.png" alt="Logotipo NinnaHub">
-    </header> -->
-
-    <!-- <article class="btn-box">
-        <button id="adicionar-espaco">Adicionar Espaço</button>
-        <button id="remover-espaco">Remover Espaço</button>
-        <button id="editar-espaco">Editar Espaço</button>
-    </article> -->
     <main class="principal">
-
-        <!-- Mudei esse bloco para aparecer abaixo do navbar -->
-        <article class="btn-box">
-            <button id="adicionar-espaco">Adicionar Espaço</button>
-            <!-- <button id="remover-espaco">Remover Espaço</button> -->
-            <!-- <button id="editar-espaco">Editar Espaço</button> -->
-        </article>
         {%for espaco in espacos%}
         <section class="espaco">
             <h3 class="espaco-titulo">{{espaco.nome}}</h3>
