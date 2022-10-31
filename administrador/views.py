@@ -131,8 +131,12 @@ def realizar_check_in(request,id):
     """REALIZAR CHECK IN DAS RESERVAS"""
     checando = get_object_or_404(Confirmacao,pk=id)
 
-    tmp_atraso = datetime.now() + timedelta(minutes=30)
-    hr_reserva = datetime.strptime(str(checando.registro.hora_inicio),"%H:%M:%S")
+    data_atual = datetime.now() + timedelta(minutes=30)
+    tmp_atraso = data_atual.time()
+    data_cadastrada = datetime.strptime(str(checando.registro.hora_inicio),"%H:%M:%S")
+    hr_reserva = data_cadastrada.time()
+    print(tmp_atraso)
+    print((hr_reserva))
 
     if checando.registro.data_reserva == date.today() and hr_reserva >= tmp_atraso:
         if checando.check_in == False:
