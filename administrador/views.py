@@ -115,8 +115,17 @@ def buscar_adm(request):
 @login_required(login_url='/adm/login')
 def gerenciar_reserva(request):
     """Página de Listagem de Reservas Confirmadas"""
-    registro = {'registro': Registro.objects.all()}
-    return render(request, 'gerenciar_reserva.html', registro)
+    registros = {'registros': Registro.objects.all()}
+    return render(request, 'gerenciar_reserva.html', registros)
+
+@login_required(login_url='/adm/login')
+def cancelar_reserva(request, id):
+    """Cancelar Reserva"""
+    reserva = Registro.objects.get(id=id)
+    conteudo = {'espacos':reserva.espacos, 'agente':reserva.agente, 'data_reserva':reserva.data_reserva, 'hora_inicio':reserva.hora_inicio, 'hora_fim':reserva.hora_fim}
+    email_html('emails/reserva_cancelada.html', 'Cancelamento da Reserva', ['suportesigen@gmail.com'], conteudo)
+    reserva.delete()
+    return redirect('/adm/gerenciar_reserva/')
 
 
 @login_required(login_url='/adm/login')
@@ -131,8 +140,12 @@ def realizar_check_in(request,id):
     """REALIZAR CHECK IN DAS RESERVAS"""
     checando = get_object_or_404(Confirmacao,pk=id)
 
-    tmp_atraso = datetime.now() + timedelta(minutes=30)
-    hr_reserva = datetime.strptime(str(checando.registro.hora_inicio),"%H:%M:%S")
+    data_atual = datetime.now() + timedelta(minutes=30)
+    tmp_atraso = data_atual.time()
+    data_cadastrada = datetime.strptime(str(checando.registro.hora_inicio),"%H:%M:%S")
+    hr_reserva = data_cadastrada.time()
+    print(tmp_atraso)
+    print((hr_reserva))
 
     if checando.registro.data_reserva == date.today() and hr_reserva >= tmp_atraso:
         if checando.check_in == False:
