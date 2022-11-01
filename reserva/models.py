@@ -132,7 +132,7 @@ class DiasDisponiveis(models.Model):
 
 class Confirmacao(models.Model):
     token = models.CharField(max_length=64)
-    registro = models.ForeignKey(Registro, on_delete=models.DO_NOTHING)
+    registro = models.ForeignKey(Registro, on_delete=models.CASCADE)
     ativo = models.BooleanField(default=False)
     #Check-in / Check-out
     check_in = models.BooleanField(default=False)

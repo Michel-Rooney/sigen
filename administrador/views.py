@@ -115,8 +115,17 @@ def buscar_adm(request):
 @login_required(login_url='/adm/login')
 def gerenciar_reserva(request):
     """Página de Listagem de Reservas Confirmadas"""
-    registro = {'registro': Registro.objects.all()}
-    return render(request, 'gerenciar_reserva.html', registro)
+    registros = {'registros': Registro.objects.all()}
+    return render(request, 'gerenciar_reserva.html', registros)
+
+@login_required(login_url='/adm/login')
+def cancelar_reserva(request, id):
+    """Cancelar Reserva"""
+    reserva = Registro.objects.get(id=id)
+    conteudo = {'espacos':reserva.espacos, 'agente':reserva.agente, 'data_reserva':reserva.data_reserva, 'hora_inicio':reserva.hora_inicio, 'hora_fim':reserva.hora_fim}
+    email_html('emails/reserva_cancelada.html', 'Cancelamento da Reserva', ['suportesigen@gmail.com'], conteudo)
+    reserva.delete()
+    return redirect('/adm/gerenciar_reserva/')
 
 
 @login_required(login_url='/adm/login')

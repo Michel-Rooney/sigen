@@ -31,4 +31,5 @@ urlpatterns =[
     path('editar_espaco/<int:espaco_id>', views.editar_espaco_id, name='editar_espaco_id'),
     #Abertura de Chamado
     path('abrir_chamado/',views.abrir_chamado,name='abrir_chamado'),
+    path('cancelar_reserva/<int:id>', views.cancelar_reserva, name='cancelar_reserva'),
 ]

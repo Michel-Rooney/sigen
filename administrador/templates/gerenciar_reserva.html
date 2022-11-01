@@ -20,14 +20,14 @@
           </tr>
         </thead>
         <tbody>
-        {%for registro in registro %}
+        {%for registro in registros %}
             <tr class="borda-table">
                 <td>{{registro.espacos}}</td>
                 <td>{{registro.agente}}</td>
                 <td>{{registro.data_reserva}}</td>
                 <td>{{registro.hora_inicio}}</td>
                 <td>{{registro.hora_fim}}</td>
-                <td><a href="">Cancelar Reserva</a></td>
+                <td><a href="{% url 'cancelar_reserva' registro.id %}">Cancelar Reserva</a></td>
             </tr>
             {%endfor%}
         </tbody>
