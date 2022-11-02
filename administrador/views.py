@@ -176,6 +176,14 @@ def realizar_check_out(request, id):
     return redirect('check_out')
 
 #=================END GERENCIAMENTO DE RESERVA=================
+#================RELATORIOS DE USO DOS ESPAÇOS=================
+@login_required(login_url='/adm/login')
+def relatorios(request):
+    """RELATORIOS DE USO DOS ESPAÇOS"""
+    espacos = {'espacos': Espacos.objects.all()}
+    return render(request, 'relatorios.html', espacos)
+#==============END RELATORIOS DE USO DOS ESPAÇOS===============
+
 
 #===================GERENCIAMENTO DE ESPAÇOS===================
 

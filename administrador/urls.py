@@ -12,11 +12,12 @@ urlpatterns =[
     #Listar Reservas
     path('gerenciar_reserva/', views.gerenciar_reserva, name='gerenciar_reserva'),
     #check-in/out
-
     path('check_in/', views.check_in, name='check_in'),
     path('realizar_check_in/<int:id>', views.realizar_check_in, name='realizar_check_in'),
     path('check_out/', views.check_out, name='check_out'),
     path('realizar_check_out/<int:id>', views.realizar_check_out, name='realizar_check_out'),
+    #Relátorios
+    path('relatorios', views.relatorios, name='relatorios'),
     #Registrar novo Adm
     path('adicionar_adm/', views.adicionar_adm, name = 'adicionar_adm'),
     path('editar_adm/<int:usuario_id>', views.editar_adm, name = 'editar_adm'),
