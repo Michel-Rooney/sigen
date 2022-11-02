@@ -146,8 +146,9 @@ def realizar_check_in(request,id):
     hr_reserva = data_cadastrada.time()
     print(tmp_atraso)
     print((hr_reserva))
-
-    if checando.registro.data_reserva == date.today() and hr_reserva >= tmp_atraso:
+    print(checando.registro.data_reserva)
+    print(date.today())
+    if checando.registro.data_reserva == date.today() and hr_reserva <= tmp_atraso:
         if checando.check_in == False:
             checando.check_in = True
             checando.horario_checkin = datetime.now().strftime('%H:%M:%S')
