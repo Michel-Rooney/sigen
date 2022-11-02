@@ -17,7 +17,8 @@ urlpatterns =[
     path('check_out/', views.check_out, name='check_out'),
     path('realizar_check_out/<int:id>', views.realizar_check_out, name='realizar_check_out'),
     #Relátorios
-    path('relatorios', views.relatorios, name='relatorios'),
+    path('gerenciar_relatorios', views.gerenciar_relatorios, name='gerenciar_relatorios'),
+    path('relatorio', views.relatorio, name='relatorio'),
     #Registrar novo Adm
     path('adicionar_adm/', views.adicionar_adm, name = 'adicionar_adm'),
     path('editar_adm/<int:usuario_id>', views.editar_adm, name = 'editar_adm'),

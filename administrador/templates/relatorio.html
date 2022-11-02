@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}NinnaHub - Login Administrador{% endblock %}
+{% block 'body' %}
+
+{% include 'partials/_navbar-adm.html' %}
+<main>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary btn-lg">Diário</button>
+        <button type="button" class="btn btn-primary btn-lg">Semanal</button>
+        <button type="button" class="btn btn-primary btn-lg">Mensal</button>
+    </div>
+    <div class="jumbotron">
+        <h1 class="display-4">Nome do Espaço</h1>
+        <h3>Horas de Uso</h3>
+            <div class="col-sm-6">
+              <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                      <th>Empresa</th>
+                      <th>Agente de Reserva<th>
+                      <th>Data<th>
+                      <th>Total de Horas<th>
+                      <th>Quantidade de Pessoas<th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr class="borda-table">
+                          <td>Nome da Empresa</td>
+                          <td>Nome do Agente</td>
+                          <td>Data da reserva</td>
+                          <td>Quant. hrs que utilizou</td>
+                          <td>N° de pessoas que participaram</td>
+                          <td><a href=""><i class="fa fa-file-text"></i>Gerar PDF</a></td>
+                      </tr> 
+                  </tbody>
+              </table>
+          </div>
+      </div>
+</main>
+
+<!-- Começo do footer -->
+{% include 'partials/_footer.html' %}
+<!-- Final do footer -->
+{% endblock %}

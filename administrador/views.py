@@ -179,10 +179,18 @@ def realizar_check_out(request, id):
 #=================END GERENCIAMENTO DE RESERVA=================
 #================RELATORIOS DE USO DOS ESPAÇOS=================
 @login_required(login_url='/adm/login')
-def relatorios(request):
+def gerenciar_relatorios(request):
     """RELATORIOS DE USO DOS ESPAÇOS"""
     espacos = {'espacos': Espacos.objects.all()}
-    return render(request, 'relatorios.html', espacos)
+    return render(request, 'gerenciar_relatorios.html', espacos)
+
+@login_required(login_url='/adm/login')
+def relatorio(request):
+    """GERAR RELATÓRIO DE UM ESPAÇO ESPECIFICO"""
+
+    return render(request, 'relatorio.html')
+
+
 #==============END RELATORIOS DE USO DOS ESPAÇOS===============
 
 
