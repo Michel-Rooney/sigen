@@ -556,6 +556,7 @@ h1, h2, h3, h4, h5, h6 {
 	Footer Styles 
 --------------------------------------------------------*/
 .site-footer {
+  position: relative;
   margin-top: 100px;
   background-color: #0e0062;
   color: white;
@@ -573,11 +574,18 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 .site-footer .go-top {
-  float: right;
+  background: #0e0062;
+  border-radius: 50px;
+  width: 3%;
+  height: 25%;
+  top: -40px;
+  right: 15px;
+  position: absolute;
   text-transform: uppercase;
 }
 .site-footer .go-top i {
   display: block;
+  margin-top: 10px;
 }
 
 /********************************

@@ -6,13 +6,13 @@
 
 {% include 'partials/_navbar-adm.html' %}
 <div class="container">
-<div class="row">
+<div class="row row-ajustar">
     {%for espaco in espacos %}
-    <div class="col-md-3 d-flex justify-content-around">
+    <div class="col-md-3 d-flex justify-content-around ajustar-margim">
         <div class="card" style="max-width: 28rem;">
             <div class="card-body">
                 <div class="col-md-35">
-                    <img src="{{ espaco.imagem1.url }}" class="card-img" alt="{{espaco.nome}}">
+                    <img src="{{ espaco.imagem1.url }}" class="card-img img-ajus" alt="{{espaco.nome}}">
                 </div><br>
                 <h5 class="card-title">{{espaco.nome}}</h5><br>
                 <a href="{%url 'relatorio'%}" class="btn btn-primary">Exibir Relatórios</a>
