@@ -5,42 +5,44 @@
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
-        <main class="principal-chamado">
-            <h1 class="titulo-chamado">Abertura de Chamado</h1>                
-            <section class="formulario-chamado">
-                    <form method="post" action="{%url 'abrir_chamado' %}">
-                        {%csrf_token%}
-                        <div class="div-nome">
-                            <label for="nome"> Nome do Solicitante: </label>
-                            <input type="text" name="solicitante" id="nome">
-                        </div>
+<main>
+    <h1>Abertura de Chamado</h1>                
+    <section class="formulario">
+            <form method="post" action="{%url 'abrir_chamado' %}">
+                {%csrf_token%}
+                <div class="div-nome">
+                    <label for="nome"> Nome do Solicitante: </label>
+                    <input type="text" name="solicitante" id="nome">
+                </div>
 
-                        <div class="div-ambiente">
-                            <label for="ambiente"> Ambiente: </label>
-                            <select name="ambiente">
-                                {%for espaco in espacos%}
-                                <option value="{{espaco.id}}">{{espaco.nome}}</option>
-                                {%endfor%}
-                            </select>
-                        </div>
-                        
-                        <div class="div-objeto">
-                            <label for="objeto">Objeto:</label>
-                            <input type="text" name="objeto" id="objeto">
-                        </div>
-
-                        <div class="div-descricao">
-                            <label for="descricao"> Descrição: </label> 
-                            <textarea name="descricao" id="descricao" maxlength="200" cols="40px" rows="5"></textarea>
-                        </div>
-
-                        <div class="botao">
-                            <input type="submit" value="Enviar">
-                        </div>
-                    </form>
-                </section>
-        </main>
+                <div class="div-ambiente">
+                    <label for="ambiente"> Ambiente: </label>
+                    <select name="ambiente" id="ambiente" maxlength="50">
+                        {%for espaco in espacos%}
+                        <option value="{{espaco.id}}">{{espaco.nome}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                
+                <div class="div-objeto">
+                    <label for="objeto">Objeto:</label>
+                    <input type="text" name="objeto" id="objeto">
+                </div>
+               
+                
+                <div class="div-descricao">
+                    <div><label for="descricao"> Descrição: </label></div>
+                    <textarea name="descricao" id="descricao" maxlength="200" cols="40px" rows="5"></textarea>
+                    
+                </div>
+                    <div class="botao">
+                    <input type="submit" value="Enviar">
+                </div>
+            </form>
+        </section>
+</main>
         <!-- Começo do footer -->
 {% include 'partials/_footer.html' %}
 <!-- Final do footer -->
 {% endblock %}
+

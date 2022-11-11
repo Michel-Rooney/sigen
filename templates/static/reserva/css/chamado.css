@@ -1,23 +1,32 @@
-.principal-chamado {
+title{
+    margin-left: 300px;
+}
+
+main {
     margin-top: 170px;
+    margin-left: 300px;
     margin-bottom: 50px;
 }
 
-.titulo-chamado {
+main h1 {
     padding-left: 60px;
     padding-bottom: 30px;
 }
 
-.formulario-chamado {
-    width: 65%;
-    padding: 10px;
+.formulario {
+    width: 60%;
+    padding: 15px;
     border: 1px solid #00000032;
     border-radius: 10px;
 }
 
 /* div nome */
+.div-nome input{
+    margin-left: 10px;
+}
 .div-nome {
     padding: 10px;
+    
 }
 
 .div-nome input {
@@ -75,20 +84,24 @@
     padding: 10px;
 }
 .div-descricao textarea {
-    margin-left: 95px;
+    margin-left: 185px;
+   
 }
 
 .div-descricao label {
+    margin-top: 10%;
     font-size: 20px;
+
 }
 
 #descricao {
     resize: none;
+    
 }
 
 /* div botao */
 .botao {
-    width: 100%;
+    width: 90%;
     text-align: right;
 }
 
