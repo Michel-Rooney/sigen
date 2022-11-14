@@ -5,7 +5,7 @@
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
-        <main class="main-gerenciar-usuario">
+        <main class="main-gerenciar-usuario"> 
             <div class="primeira-parte">
                 <form action="{% url 'buscar_adm' %}" method="POST">
                   {% csrf_token %}
