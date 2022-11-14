@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'head' %}<link rel="stylesheet" href="{% static 'reserva/css/relatorio.css'%}">{% endblock %}
+{% block 'title' %}NinnaHub - Login Administrador{% endblock %}
+{% block 'body' %}
+
+{% include 'partials/_navbar-adm.html' %}
+<main>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary btn-lg">Diário</button>
+        <button type="button" class="btn btn-primary btn-lg">Semanal</button>
+        <button type="button" class="btn btn-primary btn-lg">Mensal</button>
+    </div>
+    <div class="jumbotron">
+        <h1 class="display-4 h1-relatorio">Nome do Espaço</h1>
+        <h3 class="h3-relatorio">Horas de Uso</h3>
+            <div class="col-sm-6">
+              <table class="table ajustar-table">
+                <thead class="table-dark">
+                    <tr class="tr-ajustar">
+                      <th style="padding-right:50px">Empresa</th>
+                      <th style="padding-right:50px">Agente de Reserva</th>
+                      <th style="padding-right:50px">Data</th>  
+                      <th style="padding-right:50px">Total de Horas</th>
+                      <th style="padding-right:50px">Quantidade de Pessoas</th>
+                      <th style="padding-right:50px">PDF</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr class="borda-table">
+                          <td style="padding-right:50px">Nome da Empresa</td>
+                          <td style="padding-right:50px">Nome do Agente</td>
+                          <td style="padding-right:50px">Data da reserva</td>
+                          <td style="padding-right:50px">Quant. hrs que utilizou</td>
+                          <td style="padding-right:50px">N° de pessoas que participaram</td>
+                          <td><a href=""><i class="fa fa-file-text"></i>Gerar PDF</a></td>
+                      </tr> 
+                  </tbody>
+              </table>
+          </div>
+      </div>
+</main>
+
+<!-- Começo do footer -->
+{% include 'partials/_footer.html' %}
+<!-- Final do footer -->
+{% endblock %}

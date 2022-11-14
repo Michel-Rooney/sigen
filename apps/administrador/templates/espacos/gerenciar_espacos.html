@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'head' %}<link rel="stylesheet" href="{% static 'reserva/css/gerenciar-espaco.css'%}">{% endblock %}
+{% block 'title' %}NinnaHub - Gerenciamento de Espaços{% endblock %}
+{% block 'body' %}
+
+{% include 'partials/_navbar-adm.html' %}
+
+    <article class="btn-box">
+        <button id="adicionar-espaco">Adicionar Espaço</button>
+        <button id="editar-espaco">Editar Espaço</button>
+    </article>
+
+    <main class="principal">
+        {%for espaco in espacos%}
+        <section class="espaco">
+            <h3 class="espaco-titulo">{{espaco.nome}}</h3>
+            <a href="#" class="espaco-link">Editar Espaço</a>
+            <a href="#" class="espaco-link">Remover Espaço</a>
+        </section>
+        {%endfor%}
+    </main>
+    
+    <div id="modal-cadastro" class="modal-container">
+        <div class="modal-espaco">
+            <button id="modal-fechar">x</button>
+            <h3 class="modal-subtitulo">Adicionar Espaço</h3>
+            <form id="form" enctype="multipart/form-data">
+                <div class="input-box">
+                    <label for="input-nome">Nome do Espaço</label>
+                    <input type="text" id="input-nome" placeholder="Nome do Espaço" class="input-padrao" required>
+
+                    <label for="input-imagem">Imagem do Espaço</label>
+                    <label for="input-imagem" id="label-imagem"  class="input-padrao"><i class="fa-regular fa-image"></i> Selecionar Imagem</label>
+                    <input type="file" accept="image/*" id="input-imagem" class="input-padrao" multiple required>
+                    <span>*Obrigatório</span>
+
+                    <label for="input-descricao_imagem">Descrição da Imagem</label>
+                    <input type="text" id="input-descricao_imagem" placeholder="Descrição da Imagem" class="input-padrao" required>
+
+                    <button type="submit" id="input-cadastrar">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<!-- Começo do footer -->
+{% include 'partials/_footer.html' %}
+<!-- Final do footer -->
+{% endblock %}

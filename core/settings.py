@@ -35,8 +35,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'cnpj_field',
     'cpf_field',
-    'reserva',
-    'administrador',
+    'apps.reserva',
+    'apps.administrador',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

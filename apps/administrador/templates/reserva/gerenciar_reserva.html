@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'head' %}<link rel="stylesheet" href="{% static 'reserva/css/gerenciar-reserva.css'%}">{% endblock %}
+{% block 'title' %}NinnaHub - Gerenciar Reservas{% endblock %}
+{% block 'body' %}
+
+{% include 'partials/_navbar-adm.html' %}
+<main class="main-gerenciar-reserva">
+    <h1 class="h1-gerenciar">Gerenciar Reservas</h1>
+    
+    <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>Empresa</th>
+            <th>Espaço Reservado</th>
+            <th>Responsavel pela a reserva</th>
+            <th>Data de Reserva</th>
+            <th>Hora de Inicio</th>
+            <th>Hora de Término</th>   
+          </tr>
+        </thead>
+        <tbody>
+        {%for registro in registros %}
+            <tr class="borda-table">
+                <td>{{registro.espacos}}</td>
+                <td>{{registro.agente}}</td>
+                <td>{{registro.data_reserva}}</td>
+                <td>{{registro.hora_inicio}}</td>
+                <td>{{registro.hora_fim}}</td>
+                <td><a href="{% url 'cancelar_reserva' registro.id %}">Cancelar Reserva</a></td>
+            </tr>
+            {%endfor%}
+        </tbody>
+      </table>
+</main>
+   <!-- Começo do footer -->
+   {% include 'partials/_footer.html' %}
+   <!-- Final do footer -->
+{% endblock %}

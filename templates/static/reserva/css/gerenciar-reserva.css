@@ -1,4 +1,88 @@
-.h1-gerenciar {
-    padding-top: 20px;
-    margin-left: 10px;
+.main-gerenciar-usuario {
+    margin-top: 150px;
+    margin-bottom: 170px;
+    margin-left: 400px;
 }
+
+.main-gerenciar-reserva {
+    margin-top: 120px;
+    margin-bottom: 170px;
+    margin-left: 400px;
+}
+
+.div-botao-adicionar {
+    position: absolute;
+    background: rgb(14,0,98);
+    width: 100px;
+    border-radius: 10px;
+    margin-left: -144px;
+    margin-bottom: -50px;
+    top: 145px;
+}
+
+.div-botao-adicionar a {
+    color: white;
+}
+
+.div-botao-adicionar a:hover {
+    color: white;
+}
+
+.primeira-parte {
+    width: 100%;
+    text-align: center;
+}
+
+.butao-lupa {
+    width: 5%;
+    height: 40px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #d8d8d8;
+}
+
+.butao-lupa:hover {
+    background: #d8d8d8;
+}
+
+.butao-lupa img {
+    width: 40%;
+
+}
+
+.primeira-parte input {
+    width: 70%;
+    height: 40px;
+    margin-left: -300px;
+    border-radius: 5px;
+}
+
+.table {
+    margin-top: 80px;
+    margin-left: -185px;
+    margin-bottom: 200px;
+}
+
+.table-dark th{
+    background: rgb(14,0,98);
+    border: 1px solid white;
+}
+
+.borda-table td{
+    border: 1px solid #bab8b5;
+}
+
+.img-lupa {
+    width: 2%;
+}
+
+.fa-pen {
+    padding-right: 10px;
+}
+
+.fa-trash {
+    padding-right: 10px;
+}
+
+
+
