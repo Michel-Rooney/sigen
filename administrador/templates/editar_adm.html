@@ -5,21 +5,28 @@
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
-<main>
-    <form action="{% url 'editar_adm' usuario.id %}" method="POST">
-        {% csrf_token %}
-        <label for="">Nome de Usuario</label>
-        <input type="text" name="nome_usuario" value="{{usuario.username}}">
-        <label for="">Email</label>
-        <input type="email" name="email" value="{{usuario.email}}">
-        <label for="">Setor</label>
-        <select name = "nivel">
+<main class="justify-content-center">
+<form action="{% url 'editar_adm' usuario.id %}" method="POST" >
+    {% csrf_token %}
+    <!-- <fieldset disabled> -->
+      <div class="form-group col-md-6 mb-3">
+        <label for="">Nome de Usuário :</label>
+        <input type="text" value="{{usuario.username}}" class="form-control" placeholder="Disabled input">
+      </div>
+      <div class="form-group col-md-6 mb-3">
+        <label for="">Email :</label>
+        <input type="email" value="{{usuario.email}}" class="form-control" placeholder="Disabled input">
+      </div>
+      <div class="form-group col-md-6 mb-3">
+        <label for="">Setor :</label>
+        <select name = "nivel" class="form-control">
             <option value="TOP">Time Operacional</option>
             <option value="RCP">Recepção</option>
         </select>
-
-        <button type="submit">Atulaizar Usuario</button>
-    </form>
+      </div>
+      <button type="submit" class="btn btn-primary col-md-4 mb-3">Atualizar Dados</button>
+    <!-- </fieldset> -->
+  </form>
 </main>
 <!-- Começo do footer -->
 {% include 'partials/_footer.html' %}
