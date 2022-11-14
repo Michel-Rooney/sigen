@@ -5,7 +5,7 @@
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
-<main>
+<main class="main-adicionarAdm">
     <form action="{% url 'adicionar_adm' %}" method="POST" >
         {% csrf_token %}
         <div class="form-group col-md-6 mb-3">
@@ -27,7 +27,7 @@
             <option value="RCP">Recepção</option>
         </select>
         </div>
-          <button type="submit" class="btn btn-primary col-md-4 mb-3">Criar Administrador</button>
+          <button type="submit" class="btn btn-primary col-md-4 mb-3 ajustar-btn-adicionarAdm">Criar Administrador</button>
     </form>
 </main>
 <!-- Começo do footer -->

@@ -5,7 +5,7 @@
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
-<main class="justify-content-center">
+<main class="justify-content-center main-editarAdm">
 <form action="{% url 'editar_adm' usuario.id %}" method="POST" >
     {% csrf_token %}
     <!-- <fieldset disabled> -->
@@ -24,7 +24,7 @@
             <option value="RCP">Recepção</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary col-md-4 mb-3">Atualizar Dados</button>
+      <button type="submit" class="btn btn-primary col-md-4 mb-3 margin-button-editarAdm">Atualizar Dados</button>
     <!-- </fieldset> -->
   </form>
 </main>
