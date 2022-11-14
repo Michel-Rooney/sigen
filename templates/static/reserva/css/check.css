@@ -24,6 +24,11 @@
     color: rgb(255, 255, 255);
 }
 
+.parte-branca p {
+    margin-top: 17px;
+    color: white;
+}
+
 a {
     text-decoration: none;
 }
