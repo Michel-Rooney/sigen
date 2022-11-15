@@ -79,10 +79,26 @@ class ReservasFinalizadas(models.Model):
     data = models.DateField()
     hora_inicio = models.TimeField()
     hora_fim = models.TimeField()
-    espaco = models.CharField(max_length = 255)
+    espaco = models.ForeignKey(Espacos, on_delete=models.CASCADE)
     check_in = models.TimeField()
     check_out = models.TimeField()
     quantidade_de_pessoas = models.IntegerField(default=1)
+
+    def __str__(self):
+        return self.empresa
+
+
+class ReservasCanceladas(models.Model):
+
+    empresa = models.CharField(max_length = 255)
+    agente = models.CharField(max_length = 255)
+    data = models.DateField()
+    hora_inicio = models.TimeField()
+    hora_fim = models.TimeField()
+    espaco = models.ForeignKey(Espacos, on_delete=models.CASCADE)
+    motivo_cancelamento = models.TextField()
+    data_cancelamento = models.DateField(auto_now_add=True)
+    hora_cancelamento =  models.TimeField(auto_now_add=True)
 
     def __str__(self):
         return self.empresa
