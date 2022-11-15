@@ -173,7 +173,31 @@ def realizar_check_out(request, id):
             quantidade = request.POST['quantidade']
             checando.qtd_participantes = quantidade
             checando.horario_checkot = datetime.now().strftime('%H:%M:%S')
+            checando.check_out = True
         checando.save()
+        if checando.check_in == True and checando.check_out == True:
+            empresa = checando.registro.empresa
+            agente = checando.registro.agente
+            data = checando.registro.data_reserva
+            hora_inicio = checando.registro.hora_inicio
+            hora_fim = checando.registro.hora_fim
+            espaco = checando.registro.espacos
+            check_in = checando.horario_checkin
+            check_out = checando.horario_checkot
+            quantidade_de_pessoas = checando.qtd_participantes
+
+            reserva = ReservasFinalizadas.objects.create(
+                empresa = empresa,
+                agente = agente,
+                data = data,
+                hora_inicio = hora_inicio,
+                hora_fim = hora_fim,
+                espaco = espaco,
+                check_in = check_in,
+                check_out = check_out,
+                quantidade_de_pessoas = quantidade_de_pessoas,
+                )
+            reserva.save()
     return redirect('check_out')
 
 #=================END GERENCIAMENTO DE RESERVA=================
