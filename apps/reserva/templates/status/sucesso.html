@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'head' %}<link rel="stylesheet" href="{% static 'reserva/css/erro.css' %}">{% endblock %}
+{% block 'title' %}NinnaHub - Erro{% endblock %}
+{% block 'body' %}
+
+    {% include 'partials/_navbar.html' %}
+    <main class="principal">
+        <div class="imagem-status">
+            <img src="{% static 'reserva/images/logo-nina.png'%}" alt="Ninna Hub">
+        </div>
+        
+        <h1 class="texto text-success">Registro feito com sucesso! Verifique seu email</h1>
+        <div class="botao-status"><a href="{% url 'home'%}"><input class="botao-status" type="submit" value="Tela Inicial"></a></div>
+
+    </main>
+
+    {% include 'partials/_footer.html' %}
+
+{% endblock %}

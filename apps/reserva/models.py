@@ -1,6 +1,7 @@
 from django.db import models
 from cpf_field.models import CPFField
 from cnpj_field.models import CNPJField
+from apps.administrador.models import Espacos
 
 class Registro(models.Model):
     #DADOS DA RESERVA
@@ -26,7 +27,7 @@ class Registro(models.Model):
     nome_evento = models.CharField(max_length=300)
     descricao = models.TextField(max_length=1000)
     lista_participantes = models.FileField(upload_to='lista_participantes/%Y/%m/%d/', blank=True)
-    espacos = models.CharField(max_length=30, choices=EVENTO_CHOICES, default='Espaço01')
+    espacos = models.ForeignKey(Espacos, on_delete=models.CASCADE)
     data_reserva = models.DateField()
     hora_inicio = models.TimeField()
     hora_fim = models.TimeField()

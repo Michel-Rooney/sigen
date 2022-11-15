@@ -35,10 +35,11 @@ def descricao(request, espaco_id):
 
 
 # ==================== Reserva ====================
-def registro(request):
+def registro(request, espaco_id):
     """PAGINA DE RESERVA DE ESPAÇO"""
     if request.method == 'POST':
         # Dados do Agente
+        espaco = get_object_or_404(Espacos, pk=espaco_id)
         agente = request.POST['nome-agente']
         mantenedor = request.POST['tipo-empresa']
         cpf = request.POST['numero-cpf']
@@ -61,7 +62,7 @@ def registro(request):
 
 
         if not registro_is_valid(request, agente, email, empresa, nome_evento, descricao, data_reserva, hora_inicio):
-            return redirect('registro')
+            return redirect('erro')
 
         registro = Registro.objects.create(
             agente=agente,
@@ -74,6 +75,7 @@ def registro(request):
             nome_evento=nome_evento,
             descricao=descricao,
             lista_participantes=lista_participantes,
+            espacos = espaco,
             data_reserva=data_reserva,
             hora_inicio=hora_inicio,
             hora_fim=hora_fim)
@@ -84,7 +86,7 @@ def registro(request):
         conteudo = {'agente':agente, 'empresa':empresa, 'nome_evento':nome_evento, 'data_reserva':data_reserva, 'hora_inicio':hora_inicio, 'hora_fim':hora_fim, 'link_ativacao':link_ativacao}
 
         email_html('emails/confirmacao_registro.html', 'Confirmação de Registro', ['suportesigen@gmail.com'], conteudo)
-        return redirect('registro')
+        return redirect('sucesso')
     else:
         return render(request, 'registro.html')
 
@@ -101,3 +103,8 @@ def ativar_conta(request, token):
     token.save()
     messages.success(request, 'Conta ativa com sucesso')
     return redirect('registro')
+
+def erro(request):
+    return render(request,'status/erro.html')
+def sucesso(request):
+    return render(request,'status/sucesso.html')
