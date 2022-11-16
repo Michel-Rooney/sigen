@@ -12,13 +12,13 @@
             </div>
             <section class="mae">
                 <div class="quadrado-opcoes">
+                    <a href="{% url 'check_in' %}">Realizar Check-in/Check-out</a>
+                </div>
+                <div class="quadrado-opcoes">
                     <a href="{% url 'gerenciar_espacos' %}">Gerenciar Espaços</a>
                 </div>
                 <div class="quadrado-opcoes">
-                    <a href="{% url 'check_in' %}">Check-in/Check-out</a>
-                </div>
-                <div class="quadrado-opcoes">
-                    <a href="{% url 'gerenciar_relatorios' %}">Relatorios</a>
+                    <a href="{% url 'gerenciar_relatorios' %}">Gerenciar Relatórios</a>
                 </div>
                 <div class="quadrado-opcoes">
                     <a href="{% url 'gerenciar_reserva' %}">Gerenciamento de Reservas</a>
@@ -39,13 +39,13 @@
     </div>
     <section class="mae">
         <div class="quadrado-opcoes">
-            <a href="{% url 'check_in' %}">Check-in/Check-out</a>
+            <a href="{% url 'check_in' %}">Realizar Check-in/Check-out</a>
         </div>
         <div class="quadrado-opcoes">
             <a href="{% url 'gerenciar_reserva' %}">Gerenciamento de Reservas</a>
         </div>
         <div class="quadrado-opcoes">
-            <a href="">Relatorios</a>
+            <a href="{% url 'gerenciar_relatorios' %}">Gerenciar Relatórios</a>
         </div>
         <!-- <div class="quadrado-opcoes">
             <a href="">Deslogar</a>
