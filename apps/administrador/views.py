@@ -49,8 +49,8 @@ def administrador(request):
 @login_required(login_url='/adm/login')
 def gerenciar_usuario(request):
     """Página de Listagem de Usuários Administradores do Sistema"""
-    user = {'user': User.objects.all()}
-    return render(request, 'administrador/gerenciar_usuario.html', user)
+    users = {'users': User.objects.all()}
+    return render(request, 'administrador/gerenciar_usuario.html', users)
 
 @login_required(login_url='/adm/login')
 def adicionar_adm(request):

@@ -1,3 +1,32 @@
+.close:focus{
+	outline: none;
+}
+.modal-content{
+  margin-top: 200px;
+}
+#imagem-modal{
+  width: 12%;
+  height: 12%;
+}
+.modal-header{
+	border: none;
+}
+.modal-footer{
+	border: none;
+}
+.btn-danger{
+	background: #DD2750;
+	border: 1px solid #C43352;
+}
+.btn-light{
+	border: 1px solid #E7E7E9;
+}
+.btn:focus{
+	box-shadow: none;
+}
+
+/*--------------------------------*/
+
 .main-gerenciar-usuario {
     margin-top: 150px;
     margin-bottom: 170px;

@@ -25,7 +25,8 @@
         <div class="modal-espaco">
             <button id="modal-fechar">x</button>
             <h3 class="modal-subtitulo">Adicionar Espaço</h3>
-            <form id="form" enctype="multipart/form-data">
+            <form id="form" enctype="multipart/form-data" action="{% url 'adicionar_adm' %}" method="POST">
+                {% csrf_token %}
                 <div class="input-box">
                     <label for="input-nome">Nome do Espaço</label>
                     <input type="text" id="input-nome" placeholder="Nome do Espaço" class="input-padrao" required>
