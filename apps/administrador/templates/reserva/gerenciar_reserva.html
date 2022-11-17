@@ -7,7 +7,7 @@
 {% include 'partials/_navbar-adm.html' %}
 <main class="main-gerenciar-reserva">
     <h1 class="h1-gerenciar">Gerenciar Reservas</h1>
-    
+    {%if registros%}
     <table class="table">
         <thead class="table-dark">
           <tr>
@@ -29,9 +29,12 @@
                 <td>{{registro.hora_fim}}</td>
                 <td><a href="{% url 'cancelar_reserva' registro.id %}">Cancelar Reserva</a></td>
             </tr>
-            {%endfor%}
+        {%endfor%}
         </tbody>
       </table>
+      {%else%}
+      <div class="semdados"><img src="{% static 'reserva/images/ninna.png'%}"><h3>Nenhuma Reserva no momento</h3></div> 
+  {%endif%}
 </main>
    <!-- Começo do footer -->
    {% include 'partials/_footer.html' %}
