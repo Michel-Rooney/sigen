@@ -311,7 +311,7 @@ h1, h2, h3, h4, h5, h6 {
 #portfolio .portfolio-thumb .overlay {
   opacity: 0;
   visibility: visible;
-  background: #57B952;
+  background: #23283B;
   position: absolute;
   top: 0;
   left: 0;
@@ -326,23 +326,24 @@ h1, h2, h3, h4, h5, h6 {
 #portfolio .portfolio-thumb .overlay .inner {
   position: absolute;
   padding: 20px;
+  padding-bottom: 100px;
   width: 100%;
   bottom: 0;
   left: 0;
   text-align: center;
 }
 #portfolio .portfolio-thumb .overlay .inner h4 {
-  font-size: 18px;
+  font-size: 22px;
   margin-bottom: 10px;
 }
 #portfolio .portfolio-thumb .overlay .inner h4 a {
+  font-size: 22px;
   color: #ECEDEE;
-  opacity: 100%;
   font-weight: bold;
 }
 #reserv{
-  color: #00257A;
-  font-weight: bold;
+  color: white;
+
 }
 #portfolio .portfolio-thumb .overlay .inner span {
   font-weight: 300;

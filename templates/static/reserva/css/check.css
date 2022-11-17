@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+main {
+    margin-bottom: 300px;
+}
+
 #sumir {
     display: none;
 }
