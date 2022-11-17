@@ -112,6 +112,11 @@
 .fa-trash {
     padding-right: 10px;
 }
+.messages{
+    text-align: center;
+    width: 500px;
+    background-color: #C43352;
+}
 
 
 

@@ -93,6 +93,7 @@ def deletar_adm(request,usuario_id):
     """Função Que Deleta o Usuario Selecionado"""
     usuario = get_object_or_404(User,pk=usuario_id)
     usuario.delete()
+    messages.success(request, "Usuário deletado com sucesso")
     return redirect('gerenciar_usuario')
 
 @login_required(login_url='adm/login')
