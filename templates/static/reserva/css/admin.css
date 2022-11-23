@@ -12,7 +12,6 @@
 }
 
 .quadrado-opcoes{
-    width: 30%;
     background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
     padding: 50px;
     margin: 10px;
@@ -21,12 +20,25 @@
     text-align: center;
 }
 
+.quadrado-opcoes:hover {
+    background: rgb(53,62,135)41%;
+
+}
+
 .a-italico {
     font-style: italic;
 }
 
-.quadrado-opcoes a {
-    text-decoration: none;
+.link-admin {
+    width: 32%;
+    padding: 20px;
     color: white;
-    font-weight: bold;
+}
+
+.quadrado-opcoes p:hover {
+    color: white;
+}
+
+.link-admin a:hover {
+    color: white;
 }

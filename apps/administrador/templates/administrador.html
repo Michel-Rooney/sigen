@@ -11,24 +11,36 @@
                 <h1> Olá, {{nivel.usuario.username}}</h1>
             </div>
             <section class="mae">
-                <div class="quadrado-opcoes">
-                    <a href="{% url 'check_in' %}">Realizar Check-in/Check-out</a>
-                </div>
-                <div class="quadrado-opcoes">
-                    <a href="{% url 'gerenciar_espacos' %}">Gerenciar Espaços</a>
-                </div>
-                <div class="quadrado-opcoes">
-                    <a href="{% url 'gerenciar_relatorios' %}">Gerenciar Relatórios</a>
-                </div>
-                <div class="quadrado-opcoes">
-                    <a href="{% url 'gerenciar_reserva' %}">Gerenciamento de Reservas</a>
-                </div>
-                <div class="quadrado-opcoes">
-                    <a href="{% url 'gerenciar_usuario' %}">Gerenciamento de Usuários</a>
-                </div>
-                <div class="quadrado-opcoes">
-                    <a href="{% url 'abrir_chamado' %}">Abrir Chamado</a>
-                </div>
+                <a href="{% url 'check_in' %}" class="link-admin">
+                    <div class="quadrado-opcoes">
+                        <p>Realizar Check-in/Check-out</p>
+                    </div>
+                </a>
+                <a href="{% url 'gerenciar_espacos' %}" class="link-admin">
+                    <div class="quadrado-opcoes">
+                        <p>Gerenciar Espaços</p>
+                    </div>
+                </a>
+                <a href="{% url 'gerenciar_relatorios' %}" class="link-admin">
+                    <div class="quadrado-opcoes">
+                        <p>Gerenciar Relatórios</p>
+                    </div>
+                </a>
+                <a href="{% url 'gerenciar_reserva' %}" class="link-admin">
+                    <div class="quadrado-opcoes">
+                        <p>Gerenciamento de Reservas</p>
+                    </div>
+                </a>
+                <a href="{% url 'gerenciar_usuario' %}" class="link-admin">
+                    <div class="quadrado-opcoes">
+                        <p>Gerenciamento de Usuários</p>
+                    </div>
+                </a>
+                <a href="{% url 'abrir_chamado' %}" class="link-admin">
+                    <div class="quadrado-opcoes">
+                        <p>Abrir Chamado</p>
+                    </div>
+                </a>
                 <!-- <div class="quadrado-opcoes">
                     <a href="">Deslogar</a>
                 </div> -->

@@ -27,6 +27,7 @@
 
 .d-flex button {
     font-size: 15px;
+    margin-left: 90px;
 }
 /*--------------------------------*/
 
@@ -100,7 +101,8 @@
     border: 1px solid white;
 }
 
-.borda-table td{
+.borda-table td {
+    width: 500px;
     border: 1px solid #bab8b5;
 }
 
@@ -110,11 +112,9 @@
 
 .fa-pen {
     padding-right: 10px;
+    padding-left: 60px;
 }
 
-.fa-trash {
-    padding-right: 10px;
-}
 .messages{
     text-align: center;
     width: 500px;
