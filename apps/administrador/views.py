@@ -147,9 +147,9 @@ def gerenciar_reserva(request):
     return render(request, 'reserva/gerenciar_reserva.html', registros)
 
 @login_required(login_url='/adm/login')
-def cancelar_reserva(request, id):
+def cancelar_reserva(request, reserva_id):
     """Cancelar Reserva"""
-    reserva = Registro.objects.get(id=id)
+    reserva = Registro.objects.get(reserva_id=id)
     conteudo = {'espacos':reserva.espacos, 'agente':reserva.agente, 'data_reserva':reserva.data_reserva, 'hora_inicio':reserva.hora_inicio, 'hora_fim':reserva.hora_fim}
     email_html('emails/reserva_cancelada.html', 'Cancelamento da Reserva', ['suportesigen@gmail.com'], conteudo)
     reserva.delete()
@@ -222,6 +222,24 @@ def realizar_check_out(request, id):
                 )
             reserva.save()
     return redirect('check_out')
+
+@login_required(login_url='adm/login')
+def buscar_reserva(request):
+    usuario = request.user.id
+    nivel = get_object_or_404(NivelUsuario, usuario=usuario)
+    if nivel.status == 'TOP':
+        if 'buscar' in request.POST:
+            nome_buscado = request.POST['buscar']
+            print(nome_buscado)
+            if nome_buscado.strip() != "":
+                reserva = Registro.objects.filter(empresa=nome_buscado)
+                empresas = {
+                    'registros' : reserva,
+                } 
+                return render(request,'busca/busca_reserva.html',empresas)
+        return redirect('gerenciar_reserva')
+    else:
+        return redirect('administrador')
 
 #=================END GERENCIAMENTO DE RESERVA=================
 #================RELATORIOS DE USO DOS ESPAÇOS=================

@@ -62,7 +62,7 @@ def registro(request, espaco_id):
 
 
         if not registro_is_valid(request, agente, email, empresa, nome_evento, descricao, data_reserva, hora_inicio):
-            return redirect('erro')
+            return redirect('registro', espaco_id)
 
         registro = Registro.objects.create(
             agente=agente,
@@ -86,25 +86,22 @@ def registro(request, espaco_id):
         conteudo = {'agente':agente, 'empresa':empresa, 'nome_evento':nome_evento, 'data_reserva':data_reserva, 'hora_inicio':hora_inicio, 'hora_fim':hora_fim, 'link_ativacao':link_ativacao}
 
         email_html('emails/confirmacao_registro.html', 'Confirmação de Registro', ['suportesigen@gmail.com'], conteudo)
-        return redirect('sucesso')
+        return redirect('registro', espaco_id)
     else:
         return render(request, 'registro.html')
 
 
 def ativar_conta(request, token):
     token = get_object_or_404(Confirmacao, token=token)
+    registro = Registro.objects.get(id=token.registro.id)
     if token.ativo:
         messages.warning(request, 'Essa token já foi usado')
-        return redirect('registro')
+        return redirect('registro', registro.espacos.id)
     registro = Registro.objects.get(id=token.registro.id)
     registro.confirmacao_email = True
     registro.save()
     token.ativo = True
     token.save()
     messages.success(request, 'Conta ativa com sucesso')
-    return redirect('registro')
+    return redirect('registro', registro.espacos.id)
 
-def erro(request):
-    return render(request,'status/erro.html')
-def sucesso(request):
-    return render(request,'status/sucesso.html')

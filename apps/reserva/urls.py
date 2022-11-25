@@ -11,6 +11,6 @@ urlpatterns =[
     #Reservas
     path('registro/<int:espaco_id>', views.registro, name='registro'),
     path('ativar_conta/<str:token>/', views.ativar_conta, name="ativar_conta"),
-    path('erro', views.erro, name='erro'),
-    path('sucesso', views.sucesso, name='sucesso'),
+    # path('erro', views.erro, name='erro'),
+    # path('sucesso', views.sucesso, name='sucesso'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
