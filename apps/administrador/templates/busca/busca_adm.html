@@ -3,65 +3,70 @@
 {% block 'head' %}
 <link rel="stylesheet" href="{% static 'reserva/css/gerenciar-usuario.css'%}">
 {% endblock %}
+
 {% block 'title' %}Gerenciamento de Usuário{% endblock %}
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
-        <main class="main-gerenciar-usuario"> 
+        <main class="main-gerenciar-usuario">
             <div class="primeira-parte">
                 <form action="{% url 'buscar_adm' %}" method="POST">
-                  {% csrf_token %}
+                    {% csrf_token %}
                     <input type="text" name="buscar" placeholder="Pesquisar">
                     <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
                 </form>
                     <div class="div-botao-adicionar"><a href="{% url 'adicionar_adm'%}">Adicionar Usuario</a></div>
             </div>
-            <div class="messages">{% include 'partials/_alertas.html' %}</div>
+            
             <table class="table">
                 <thead class="table-dark">
                   <tr>
                     <th>Usuários</th>
                     <th><th>
                   </tr>
-                </thead> 
+                </thead>
                 <tbody>
-                    {%for user in user%}
+                    {%if user %}
+                    {%for user in user %}
                     <tr class="borda-table">
                         <td>{{user}}</td>
                         <td><a href="{% url 'editar_adm' user.id %}"><i class="fa-solid fa-pen"></i>Editar Usuário</a></td>
                         <td>
-                          <!-- <div class="container d-flex"> -->
-                            <button class="btn btn-danger btn-lg botao-modal" data-toggle="modal" data-target="#exampleModal{{user.id}}">Remover usuário</button>
-                          <!-- </div> -->
-                      </td>
+                            <div class="container d-flex justify-content-center">
+                              <button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal{{user.id}}">Remover usuário</button>
+                            </div>
+                        </td>
                         <!-- <td><a href="{%url 'deletar_adm' user.id %}"><i class="fa-solid fa-trash"></i>Deletar Usuário</a></td> -->
                     </tr>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Realmente deseja deletar esse usuário?</h5></div>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <p class="text-muted">Deseja excluir o usuário {{user}} permanentemente?</p>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
-                            <a href="{%url 'deletar_adm' user.id %}"><button type="button" class="btn btn-danger">Remover</button></a>
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Realmente deseja deletar esse usuário?</h5></div>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p class="text-muted">Deseja excluir o usuário {{user}} permanentemente?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
+                              <a href="{%url 'deletar_adm' user.id %}"><button type="button" class="btn btn-danger">Remover</button></a>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    {%endfor%} 
+                    {%endfor%}
+                    {%else%}
+                        <tr class="borda-table">
+                            <td>Nenhum Usuario Encontrado, Informe o Nome de Usuario Corretamente</td>
+                        </tr>
+                    {%endif%}
                 </tbody>
               </table>
 </main>
-
-<!-- <script src="{% static 'reserva/js/gerenciar-usuario.js'%}"></script> -->
 <!-- Começo do footer -->
 {% include 'partials/_footer.html' %}
 <!-- Final do footer -->
