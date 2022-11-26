@@ -11,8 +11,6 @@ urlpatterns =[
     path('gerenciar_usuario/', views.gerenciar_usuario, name= 'gerenciar_usuario'),
     #Listar Reservas
     path('gerenciar_reserva/', views.gerenciar_reserva, name='gerenciar_reserva'),
-    path('cancelar_reserva/<int:reserva_id>', views.cancelar_reserva, name='cancelar_reserva'),
-    path('buscar_reserva/', views.buscar_reserva, name= 'buscar_reserva'),
     #check-in/out
     path('check_in/', views.check_in, name='check_in'),
     path('realizar_check_in/<int:id>', views.realizar_check_in, name='realizar_check_in'),
@@ -35,4 +33,5 @@ urlpatterns =[
     path('editar_espaco/<int:espaco_id>', views.editar_espaco_id, name='editar_espaco_id'),
     #Abertura de Chamado
     path('abrir_chamado/',views.abrir_chamado,name='abrir_chamado'),
+    path('cancelar_reserva/<int:id>', views.cancelar_reserva, name='cancelar_reserva'),
 ]

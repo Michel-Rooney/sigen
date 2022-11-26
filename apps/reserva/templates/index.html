@@ -22,7 +22,7 @@
                         <img src="{{ espaco.imagem1.url }}" alt="Portfolio Item">
                         <div class="overlay">
                             <div class="inner">
-                                <h4><a>{{espaco.nome}}</a></h4>
+                                <h4><a data-rel="lightbox" href="{{ espaco.imagem1.url }}">{{espaco.nome}}</a></h4>
                                 <span><a href="{% url 'descricao' espaco.id %}" id="reserv">Faça sua reserva</a></span>
                             </div>
                         </div> <!-- /.overlay -->
@@ -33,6 +33,35 @@
             </div> <!-- /.row -->
         </div> <!-- /.container -->
     </div> <!-- /#portfolio -->
+
+    <!--<div id="sobre-espacos" class="section-cotent">
+                <!-- <div class="col-md-4 our-skills">
+                    <h4 class="widget-title">Sobre os Espaços:</h4>
+                    <ul class="progess-bars">
+                        <li>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:'{{perc}}%';">{{perc}}% Espaços</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">HTML CSS 75%</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">WordPress 85%</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">Marketing 95%</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div> /.col-md-3 -->
+            
+
     <div id="contato" class="section-cotent">
         <div class="container">
             <div class="title-section text-center">
@@ -42,7 +71,7 @@
             <form action="{% url 'home' %}" method="POST">{% csrf_token %}
                 <div class="row">
                     <div class="col-md-7 col-sm-6">
-                        <h4 class="widget-title">Entre Em Contato Conosco</h4>
+                        <h4 class="widget-title">Nos mande uma mensagem</h4>
                         <div class="contato-form">
                             <p class="full-row">
                                 <label for="name-id">Seu Nome:</label>
