@@ -3,7 +3,7 @@
 {% block 'head' %}<link rel="stylesheet" href="{% static 'reserva/css/admin.css'%}">{% endblock %}
 {% block 'title' %}NinnaHub - Página do Administrador {% endblock %}
 {% block 'body' %}
-<!-- Teste Commit -->
+
 {% include 'partials/_navbar-adm.html' %}
 {% if user.is_authenticated %}
     {% if nivel.status == 'TOP' %}
