@@ -14,7 +14,7 @@
     </form>
   </div>
 <div class="messages">{% include 'partials/_alertas.html' %}</div>
-    <h1 class="h1-gerenciar">Gerenciar Reservas</h1>
+    <h1 class="h1_gerenciar-reserva" style="margin-top:40px">Gerenciar Reservas</h1>
     {%if registros%}
     <table class="table">
         <thead class="table-dark">
@@ -45,7 +45,7 @@
             <!-- Modal -->
             <div class="modal fade" id="exampleModal{{registro.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="margin-top:150px">
                   <div class="modal-header">
                     <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Realmente deseja deletar esse usuário?</h5></div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
