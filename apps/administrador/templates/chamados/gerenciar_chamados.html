@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'reserva/css/gerenciar-usuario.css'%}">
+{% endblock %}
+{% block 'title' %}Gerenciamento de Chamados{% endblock %}
+{% block 'body' %}
+
+{% include 'partials/_navbar-adm.html' %}
+        <main class="main-gerenciar-usuario"> 
+            <div class="primeira-parte">
+                <form action="{% url 'buscar_adm' %}" method="POST">
+                  {% csrf_token %}
+                    <input type="text" name="buscar" placeholder="Pesquisar">
+                    <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
+                </form>
+            </div>
+            <div class="botoes-check">
+                <a href="{% url 'abrir_chamado'%}"><button class="mainBtn">Abrir Chamado</button></a>
+                <button class="mainBtn botao-modal" data-toggle="modal" data-target="#filtro">Filtrar Por:</button>
+                <!-- <a ><button class="mainBtn">Todos</button></a>
+                <a ><button class="mainBtn">Em Aberto</button></a>
+                <a href="{%url 'check_out'%}"><button class="mainBtn">Em Andamento</button></a>
+                <a href="{%url 'check_out'%}"><button class="mainBtn">Concluido</button></a> -->
+                <!-- <input type="text" placeholder="Pesquisar"></input><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a> -->
+              </div>
+            <div class="messages">{% include 'partials/_alertas.html' %}</div>
+            <table class="table">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Solicitante</th>
+                    <th>Data</th>
+                    <th>Ambiente</th>
+                    <th>Status</th>
+                    <th>Ações<th>
+                  </tr>
+                </thead> 
+                <tbody>
+                    {%for chamado in chamados%}
+                    <tr class="borda-table">
+                        <td>{{chamado.solicitante}}</td>
+                        <td>{{chamado.data}}</td>
+                        <td>{{chamado.ambiente}}</td>
+                        {%if chamado.status == 'abt'%}
+                        <td>Aberto</td>
+                        <!-- <td><a href="{% url 'editar_adm' user.id %}"><i class="fa-solid fa-pen"></i>Editar Usuário</a></td> -->
+                        <td>
+                            <!-- <div class="container d-flex"> -->
+                              <button class="btn btn-info btn-lg botao-modal" data-toggle="modal" data-target="#exampleModal{{chamado.id}}">Iniciar Chamado</button>
+                            <!-- </div> -->
+                        </td>
+                          <!-- <td><a href="{%url 'deletar_adm' user.id %}"><i class="fa-solid fa-trash"></i>Deletar Usuário</a></td> -->
+                      </tr>
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModal{{chamado.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Realmente deseja deletar esse usuário?</h5></div>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p class="text-muted">Iniciar os processos referentes ao chamado de {{chamado.solicitante}}?</p>
+                              
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
+                              <a href="{%url 'atualizar_chamado' chamado.id %}"><button type="button" class="btn btn-danger">Iniciar</button></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- End Modal -->
+                        {%elif chamado.status == 'and'%}
+                        <td>Em Andamento</td>
+                        <!-- <td><a href="{% url 'editar_adm' user.id %}"><i class="fa-solid fa-pen"></i>Editar Usuário</a></td> -->
+                        <td>
+                          <!-- <div class="container d-flex"> -->
+                            <button class="btn btn-warning btn-lg botao-modal" data-toggle="modal" data-target="#exampleModal{{chamado.id}}">Atualizar Status</button>
+                          <!-- </div> -->
+                      </td>
+                        <!-- <td><a href="{%url 'deletar_adm' user.id %}"><i class="fa-solid fa-trash"></i>Deletar Usuário</a></td> -->
+                    </tr>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{chamado.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Realmente deseja deletar esse usuário?</h5></div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <p class="text-muted">Atualize o chamado de {{chamado.solicitante}}:</p>
+                            <form method="POST" action="{%url 'concluir_chamado' chamado.id %}">{%csrf_token%}
+                            <textarea name="atualizacao" rows="8" cols="60" required></textarea>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
+                            <button type="submit" value='enviar' class="btn btn-danger">Atualizar</button>
+                        </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Modal end -->
+                    {%elif chamado.status == 'ccl'%}
+                    <td>Concluído</td>
+                    <td>
+                        <!-- <div class="container d-flex"> -->
+                          <button class="btn btn-success btn-lg botao-modal" data-toggle="modal" data-target="#exampleModal{{chamado.id}}">Ver Detalhes</button>
+                        <!-- </div> -->
+                    </td>
+                    {%endif%}
+                    {%endfor%} 
+                </tbody>
+              </table>
+ <!-- Modal -->
+ <div class="modal fade" id="filtro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Realmente deseja deletar esse usuário?</h5></div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted">Filtrar:</p>
+          <form method="POST" action="{% url 'gerenciar_chamados' %}">{%csrf_token%}
+            <select name="filtro" id="ambiente" maxlength="50">
+                <option value="todos">Todos</option>
+                <option value="aberto">Aberto</option>
+                <option value="andamento">Em Andamento</option>
+                <option value="concluido">Concluido</option>
+            </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
+          <button type="submit" value='enviar' class="btn btn-success">Filtrar</button>
+      </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal end -->
+</main>
+
+<!-- <script src="{% static 'reserva/js/gerenciar-usuario.js'%}"></script> -->
+<!-- Começo do footer -->
+{% include 'partials/_footer.html' %}
+<!-- Final do footer -->
+{% endblock %}

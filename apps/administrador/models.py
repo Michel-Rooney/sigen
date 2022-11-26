@@ -38,6 +38,7 @@ class Chamado(models.Model):
     ambiente = models.ForeignKey(Espacos, on_delete=models.CASCADE)
     objeto = models.CharField(max_length=255)
     descricao = models.TextField()
+    atualizacao = models.TextField(blank=True, default='')
     status = models.CharField(max_length=3, choices=STATUS, default='abt')
 
     def __str__(self):

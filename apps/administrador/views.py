@@ -378,6 +378,58 @@ def adicionar_espaco(request):
 #==================END GERENCIAMENTO DE ESPAÇOS=================
 
 #=======================ABERTURA DE CHAMADO=====================
+@login_required(login_url='/adm/login')
+def gerenciar_chamados(request):
+    """ADCICIONAR ESPAÇO ESPECIFICO"""
+    usuario = request.user.id
+    nivel = get_object_or_404(NivelUsuario, usuario=usuario)
+    if nivel.status == 'TOP':
+        if request.method == 'POST':
+            filtro = request.POST['filtro']
+            if filtro == 'aberto':
+                chamados = { 'chamados': Chamado.objects.filter(status='abt')}
+            elif filtro == 'andamento':
+                chamados = { 'chamados': Chamado.objects.filter(status='and')}
+            elif filtro == 'concluido':
+                chamados = { 'chamados': Chamado.objects.filter(status='ccl')}
+            else:
+                chamados = { 'chamados': Chamado.objects.all()}
+        else:
+            chamados = { 'chamados': Chamado.objects.all()}
+        return render(request, 'chamados/gerenciar_chamados.html',chamados)
+    else:
+        return redirect('administrador')
+
+@login_required(login_url='/adm/login')
+def atualizar_chamado(request, chamado_id):
+    usuario = request.user.id
+    nivel = get_object_or_404(NivelUsuario, usuario=usuario)
+    if nivel.status == 'TOP':
+        chamado = get_object_or_404(Chamado, pk=chamado_id)
+        if chamado.status == 'abt':
+            chamado.status = 'and'
+            chamado.save()
+            return redirect('gerenciar_chamados')
+    else:
+        return redirect('administrador')
+
+@login_required(login_url='/adm/login')
+def concluir_chamado(request, chamado_id):
+    usuario = request.user.id
+    nivel = get_object_or_404(NivelUsuario, usuario=usuario)
+    if nivel.status == 'TOP':
+        chamado = get_object_or_404(Chamado, pk=chamado_id)
+        if chamado.status == 'and':
+            if request.method == 'POST':
+                atualizacao = request.POST['atualizacao']
+                chamado.atualizacao = atualizacao
+                chamado.status = 'ccl'
+                chamado.save()
+                return redirect('gerenciar_chamados')
+
+    else:
+        return redirect('administrador')
+
 
 @login_required(login_url='/adm/login')
 def abrir_chamado(request):
