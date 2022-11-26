@@ -56,7 +56,7 @@
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Realmente deseja deletar esse usuário?</h5></div>
+                              <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Iniciar Resolução de Chamado</h5></div>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
-                              <a href="{%url 'atualizar_chamado' chamado.id %}"><button type="button" class="btn btn-danger">Iniciar</button></a>
+                              <a href="{%url 'atualizar_chamado' chamado.id %}"><button type="button" class="btn btn-success">Iniciar</button></a>
                             </div>
                           </div>
                         </div>
@@ -88,7 +88,7 @@
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Realmente deseja deletar esse usuário?</h5></div>
+                            <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Concluir Chamado</h5></div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
@@ -100,7 +100,7 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
-                            <button type="submit" value='enviar' class="btn btn-danger">Atualizar</button>
+                            <button type="submit" value='enviar' class="btn btn-success">Atualizar</button>
                         </form>
                           </div>
                         </div>
@@ -123,7 +123,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Realmente deseja deletar esse usuário?</h5></div>
+          <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Filtrar Por:</h5></div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
