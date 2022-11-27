@@ -159,6 +159,14 @@ def cancelar_reserva(request, reserva_id):
 @login_required(login_url='/adm/login')
 def check_in(request):
     """PAGINA DE CHECK-IN/OUT"""
+    if 'buscar' in request.POST:
+        nome_buscado = request.POST['buscar']
+        print(nome_buscado)
+        if nome_buscado.strip() != "":
+            empresa = Registro.objects.filter(empresa=nome_buscado)
+            conteudo = {'casos' : Confirmacao.objects.filter(registro__in=empresa,check_in=False)}
+            return render(request,'checkin/check_in.html',conteudo)
+
     conteudo = {"casos": Confirmacao.objects.filter(check_in=False).all(),
     }
     return render(request, 'checkin/check_in.html',conteudo)
