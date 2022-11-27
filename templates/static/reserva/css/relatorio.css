@@ -1,11 +1,21 @@
-.ajustar-table {
-    margin-left: 270px;
+.main-relatorio {
+    margin-top: 150px;
+}
+
+.ajustar-table th{
+    background:rgb(14,0,98) ;
 }
 
 .h1-relatorio {
-    margin-left: 290px;
+    margin-left: 380px;
+    font-weight: 700;
 }
 
 .h3-relatorio {
-    margin-left: 292px;
+    margin-left: 382px;
+    margin-bottom: 30px;
+}
+
+.btn-group button {
+    background-color: rgb(14,0,98);
 }
