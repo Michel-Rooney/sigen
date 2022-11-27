@@ -5,77 +5,84 @@
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
-
-    <article class="btn-box">
-        <button id="adicionar-espaco" data-target="#modal-cadastro" data-toggle="modal">Adicionar Espaço</button>
-    </article>
-
-    <main class="principal">
-        {%for espaco in espacos%}
-        <section class="espaco">
-            <h3 class="espaco-titulo">{{espaco.nome}}</h3>
-            <button id="editar-espaco" data-target="#modal-editar{{espaco.id}}" data-toggle="modal">Editar Espaço</button>
-            <a href="{% url 'remover_espaco_id' espaco.id %}" class="espaco-link">Remover Espaço</a>
-        </section>
-
-        <div id="modal-editar{{espaco.id}}" class="modal-container">
-            <div class="modal-espaco">
-                <button id="modal-fechar">x</button>
-                <h3 class="modal-subtitulo">Editar Espaço</h3>
-                <form action="{% url 'editar_espaco_id' espaco.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
-                    <div class="input-box">
-                        <label for="input-nome">Nome do Espaço</label>
-                        <input name="input-nome" type="text" id="input-nome" value='{{espaco.nome}}' placeholder="Nome do Espaço" class="input-padrao" required>
-                        
-                        <img src="{{espaco.imagem1.url}}" width="30%" style="padding-top: 30px;">
-                        <label for="input-imagem">Imagem do Espaço</label>
-                        <label for="input-imagem" id="label-imagem"  class="input-padrao"><i class="fa-regular fa-image"></i> Selecionar Imagem</label>
-                        <input name="input-imagem" type="file" accept="image/*" value='{{espaco.imagem1.url}}' id="input-imagem" class="input-padrao" multiple required>
-                        <span>*Obrigatório</span>
-    
-                        <label for="input-descricao_imagem">Descrição da Imagem</label>
-                        <input name="input-descricao" type="text" id="input-descricao_imagem" value='{{espaco.descricao}}' placeholder="Descrição da Imagem" class="input-padrao" required>
-                        
-                        <label for="input-capacidade">Capacidade</label>
-                        <input name="input-capacidade" type="number" id="input-capacidade" value='{{espaco.capacidade}}' placeholder="Capacidade" class="input-padrao" required>
-                    </div>
-                    <button type="submit" id="input-editar">Editar</button>
-                </form>
+<main class="main-gerenciar-usuario">
+<div class="container">
+<div class="row row-ajustar">
+    {%for espaco in espacos %}
+    <div class="col-md-3 d-flex justify-content-around ajustar-margim">
+        <div class="card" style="max-width: 28rem;">
+            <div class="card-body">
+                <div class="col-md-35">
+                    <img src="{{ espaco.imagem1.url }}" class="card-img img-ajus" alt="{{espaco.nome}}">
+                </div><br>
+                <h5 class="card-title">{{espaco.nome}}</h5><br>
+                <button id="editar-espaco" class="mainBtn" data-target="#modal-editar{{espaco.id}}" data-toggle="modal">Editar Espaço</button>
+                <button id="editar-espaco" class="mainBtn" data-target="#modal-excluir{{espaco.id}}" data-toggle="modal">Excluir Espaço</button>
             </div>
         </div>
-        {%endfor%}
-    </main>
-
-
-    <div id="modal-cadastro" class="modal-container">
-        <div class="modal-espaco">
-            <button id="modal-fechar">x</button>
-            <h3 class="modal-subtitulo">Editar Espaço</h3>
-            <form action="{% url 'adicionar_espaco' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
-                <div class="input-box">
-                    <label for="input-nome">Nome do Espaço</label>
-                    <input name="input-nome" type="text" id="input-nome" placeholder="Nome do Espaço" class="input-padrao" required>
-                    
-                    <label for="input-imagem">Imagem do Espaço</label>
-                    <label for="input-imagem" id="label-imagem"  class="input-padrao"><i class="fa-regular fa-image"></i> Selecionar Imagem</label>
-                    <input name="input-imagem" type="file" accept="image/*" id="input-imagem" class="input-padrao" multiple required>
-                    <span>*Obrigatório</span>
-
-                    <label for="input-descricao_imagem">Descrição da Imagem</label>
-                    <input name="input-descricao" type="text" id="input-descricao_imagem" placeholder="Descrição da Imagem" class="input-padrao" required>
-                    
-                    <label for="input-capacidade">Capacidade</label>
-                    <input name="input-capacidade" type="number" id="input-capacidade"  placeholder="Capacidade" class="input-padrao" required>
-                </div>
-                <br>
-                <button type="submit" id="input-cadastro">Cadastro</button>
-            </form>
-        </div>
     </div>
+    <!-- Modal edição -->
+    <div class="modal fade" id="modal-editar{{espaco.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Editar Espaço:</h5></div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p class="text-muted">Deseja Editar esse espaço?</p>
+              <form action="{% url 'editar_espaco_id' espaco.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <div class="input-box">
+                    <label for="input-nome">Nome do Espaço:</label>
+                    <input name="input-nome" type="text" id="input-nome" value='{{espaco.nome}}' placeholder="Nome do Espaço" class="input-padrao" required><br>
+                    <label for="input-imagem">Imagem do Espaço:</label>
 
+                    <input name="input-imagem" type="file" accept="image/*" value='{{espaco.imagem1.url}}' id="input-imagem" class="input-padrao" multiple required>
 
-
+                    <label for="input-descricao_imagem">Descrição do Espaço:</label><br>
+                    <!-- <input name="input-descricao" type="text" id="input-descricao_imagem" value='{{espaco.descricao}}' placeholder="Descrição da Imagem" class="input-padrao" required> -->
+                    <textarea name="input-descricao" cols=50 rows=5 type="text" id="input-descricao_imagem" placeholder="Descrição do espaco" class="input-padrao" required>{{espaco.descricao}}</textarea>
+                    <br>
+                    <label for="input-capacidade">Capacidade:</label>
+                    <input name="input-capacidade" type="number" id="input-capacidade" value='{{espaco.capacidade}}' placeholder="Capacidade" class="input-padrao" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
+              <button type="submit" class="btn btn-success">Editar</button></form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end Modal -->
+<!-- Modal -->
+<div class="modal fade" id="modal-excluir{{espaco.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Realmente deseja deletar esse usuário?</h5></div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted">Deseja excluir o espaço {{espaco.nome}} permanentemente?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
+          <a href="{% url 'remover_espaco_id' espaco.id %}"><button type="button" class="btn btn-danger">Excluir</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal exclusão -->
+    {%endfor%}
+</div>
+</div>
+</main>
 <!-- Começo do footer -->
-{% include 'partials/_footer.html' %}
+    {% include 'partials/_footer.html' %}
 <!-- Final do footer -->
 {% endblock %}

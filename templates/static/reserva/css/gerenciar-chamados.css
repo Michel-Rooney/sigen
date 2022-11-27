@@ -55,6 +55,10 @@
 .modal-content {
     margin-top: 150px;
 }
+#imagem-modal{
+    width: 60px;
+    height: 60px;
+}
 
 .btn-same-tamanho {
     width: 200px;

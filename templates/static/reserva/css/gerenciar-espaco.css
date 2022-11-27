@@ -1,170 +1,73 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-:root {
-    --branco-ninna: #FFF;
-    --verde-ninna: #57B952;
-    --azul-ninna: #00257A;
-    --cinza-ninna: #808080;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.main-gerenciar-usuario {
+    margin-top: 150px;
+    margin-bottom: 170px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
-body, input, textarea, button {
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Espaços */
-.principal {
-    margin-top: 200px;
-    display: flex;
-    justify-content: flex-start;
-    padding: 0 3rem;
-    flex-wrap: wrap;
-    position: relative;
-}
-.btn-box {
-    position: absolute;
-    top: 105px;
-    left: 65px;
-    padding: 2rem 0;
-    text-align: center;
-}
-
-.btn-box button {
-    color: var(--azul-ninna);
-    cursor: pointer;
-    background: var(--verde-ninna);
-    border: none;
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-}
-
-.espaco {
-    background: url('./bg-empresarial.png') center / cover no-repeat;
-    border-radius: 10px;
-    display: grid;
-    place-content: end center;
-    padding-bottom: 2rem;
-    margin: 1rem 1rem;
-    background-color: blue;
-    width: 30%;
-    height: 400px;
-}
-.espaco-titulo {
-    text-align: center;
-    color: var(--branco-ninna);
-}
-.espaco-link {
-    color: var(--verde-ninna);
-    text-align: center;
-}
-.espaco-link:hover {
-    color: var(--branco-ninna);
-    text-decoration: none;
-}
-
-/* Modal */
-.modal-container {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    background: rgba(0,0,0, .8);
-    top: 0px;
-    left: 0px;
-    z-index: 2000;
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-.modal-container.mostrar {
-    display: flex;
-}
-.modal-espaco {
-    display: grid;
-    place-content: center;
-    background: white;
-    width: 60%;
-    height: auto;
-    padding: 40px;
-    border-radius: 1rem;
-    border: 2px solid var(--cinza-ninna);
-    position: relative;
-}
-#modal-fechar {
-    color: var(--branco-ninna);
-    background: var(--azul-ninna);
-    border: 1px solid var(--verde-ninna);
-    border-radius: 50%;
-    margin: 10px;
+.butao-lupa {
+    margin-top: 100px;
+    width: 5%;
     height: 40px;
-    width: 40px;
-    position: absolute;
-    right: 10px;
-
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #d8d8d8;
 }
-.input-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+
+.butao-lupa:hover {
+    background: #d8d8d8;
+}
+
+.butao-lupa img {
+    width: 40%;
+}
+
+.primeira-parte {
     width: 100%;
-}
-
-.input-box span {
-    margin-top: 0.3rem;
-    margin-left: auto;
-    margin-right: 18px;
-    font-size: 0.8rem;
-}
-
-.modal-subtitulo {
-    font-size: 1.8rem;
     text-align: center;
 }
-.modal label:not(#label-imagem) {
-    color: var(--azul-ninna);
-    font-size: 1.2rem;
-    margin-top: 20px;
-    margin-bottom: 5px;
-}
-.input-padrao {
-    border: 1px solid var(--verde-ninna);
+
+.primeira-parte input {
+    width: 70%;
+    height: 40px;
+    margin-left: 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
-    font-size: 16px;
-    padding: 0.3rem;
-    margin: 0 1rem;
-    height: 2rem;
-    outline: none;
-    width: calc(40vw - 1rem);
-    transition: 600ms;
-}
-#input-cadastrar {
-    border: none;
-    color: var(--branco-ninna);
-    background: var(--azul-ninna);
-    margin-top: 15px;
-    padding: 0.4rem 0;
-    border-radius: 8px;
-    width: 30%;
-}
-#input-cadastrar:hover {
-    color: var(--branco-ninna);
-    background-color: var(--azul-ninna);
+}   
+
+.botoes-abrir_chamado {
+    margin-left: 450px;
+    margin-bottom: 20px;
 }
 
-#label-imagem {
-    color: gray;
+.botoes-abrir_chamado button {
+    border-radius: 10px;
 }
 
-#input-imagem {
-    display: none;
+.botoes-abrir_chamado button:hover {
+    background: rgb(14,0,98);
 }
 
-/* Dados do Local */
-.form {
-    display: flex;
-    flex-direction: column;
+#ambiente {
+    width: 400px;
+}
+
+.modal-content {
+    margin-top: 150px;
+}
+#imagem-modal{
+    width: 60px;
+    height: 60px;
+}
+.btn-same-tamanho {
+    width: 200px;
+}
+
+.table-dark th {
+    background: rgb(14,0,98);
+    text-align: center;
+}
+
+.borda-table td {
+    text-align: center;
 }
