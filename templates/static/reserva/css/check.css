@@ -11,18 +11,23 @@ main {
     display: none;
 }
 
+.segura-parte-branca {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 .parte-branca {
     width: 30%;
     background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
-    align-items: center;
-    margin: 0 auto;
-    margin-top: 90px;
-    margin-bottom: 120px;
+    margin-top: 40px;
+    margin-bottom: 20px;
     border-radius: 20px;
     padding: 40px;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: left;
 }
 .parte-branca h1{
     color: rgb(255, 255, 255);

@@ -12,9 +12,11 @@
       <!-- <input type="text" placeholder="Pesquisar"></input><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a> -->
     </div>
   {% if user.is_authenticated %}
+  <div class="segura-parte-branca">
     {%if casos %}
       {% for caso in casos %}
-          <div class="parte-branca">
+      
+          <div class="parte-branca"> 
             <h1>{{caso}}</h1>
             <p>Data reserva: {{caso.registro.data_reserva}}</p>
             <p>De: {{caso.registro.hora_inicio}} às {{caso.registro.hora_fim}}</p>
@@ -28,9 +30,10 @@
               {%endif%}
           </div>
       {% endfor %}
-      {%else%}
+      {%else%}   
         <div class="semdados"><img src="{% static 'reserva/images/ninna.png'%}"><h3>Nenhuma Reserva Para Check In No Momento</h3></div> 
       {%endif%}
+  </div>
   {%endif%}
     <!-- Começo do footer -->
     {% include 'partials/_footer.html' %}
