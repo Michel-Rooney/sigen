@@ -1,0 +1,69 @@
+.main-gerenciar-usuario {
+    margin-top: 150px;
+    margin-bottom: 170px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.butao-lupa {
+    width: 5%;
+    height: 40px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #d8d8d8;
+}
+
+.butao-lupa:hover {
+    background: #d8d8d8;
+}
+
+.butao-lupa img {
+    width: 40%;
+}
+
+.primeira-parte {
+    width: 100%;
+    text-align: center;
+}
+
+.primeira-parte input {
+    width: 70%;
+    height: 40px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}   
+
+.botoes-abrir_chamado {
+    margin-left: 450px;
+    margin-bottom: 20px;
+}
+
+.botoes-abrir_chamado button {
+    border-radius: 10px;
+}
+
+.botoes-abrir_chamado button:hover {
+    background: rgb(14,0,98);
+}
+
+#ambiente {
+    width: 400px;
+}
+
+.modal-content {
+    margin-top: 150px;
+}
+
+.btn-same-tamanho {
+    width: 200px;
+}
+
+.table-dark th {
+    background: rgb(14,0,98);
+    text-align: center;
+}
+
+.borda-table td {
+    text-align: center;
+}

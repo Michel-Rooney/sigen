@@ -7,7 +7,8 @@
 .main-gerenciar-reserva {
     margin-top: 120px;
     margin-bottom: 170px;
-    margin-left: 400px;
+    margin-left: 60px;
+    margin-right: 60px;
 }
 
 .div-botao-adicionar {
@@ -47,29 +48,31 @@
 
 .butao-lupa img {
     width: 40%;
+}
 
+.h1_gerenciar-reserva {
+    text-align: center;
 }
 
 .primeira-parte input {
     width: 70%;
     height: 40px;
-    margin-left: -300px;
     border-radius: 5px;
+    margin-top: 40px;
 }
 
 .table {
-    margin-top: 80px;
-    margin-left: -185px;
+    margin-top: 40px;
     margin-bottom: 200px;
 }
 
 .table-dark th{
+    text-align: center;
     background: rgb(14,0,98);
-    border: 1px solid white;
 }
 
 .borda-table td{
-    border: 1px solid #bab8b5;
+    text-align: center;
 }
 
 .img-lupa {
@@ -89,6 +92,10 @@
 .semdados img{
     width: 100px;
     margin-left: 18%;
+}
+
+.td-btn_remover_usuario button {
+    font-size: 13px;
 }
 
 

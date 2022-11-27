@@ -17,7 +17,7 @@
     <h1 class="h1_gerenciar-reserva" style="margin-top:40px">Gerenciar Reservas</h1>
     {%if registros%}
     <table class="table">
-        <thead class="table-dark">
+        <thead class="table-dark"> 
           <tr>
             <th>Empresa</th>
             <th>Responsável</th>
@@ -37,8 +37,8 @@
                 <td>{{registro.data_reserva}}</td>
                 <td>{{registro.hora_inicio}}</td>
                 <td>{{registro.hora_fim}}</td>
-                <td>
-                    <button class="btn btn-danger btn-lg botao-modal" data-toggle="modal" data-target="#exampleModal{{registro.id}}">Remover usuário</button>
+                <td class="td-btn_remover_usuario">
+                    <button class="btn btn-danger btn-lg btn-remover" data-toggle="modal" data-target="#exampleModal{{registro.id}}">Remover usuário</button>
               </td>
                 <!-- <td><a href="{% url 'cancelar_reserva' registro.id %}">Cancelar Reserva</a></td> -->
             </tr>

@@ -1,5 +1,5 @@
 .close:focus{
-	outline: none;
+	outline: none; 
 }
 .modal-content{
   margin-top: 200px;
@@ -27,14 +27,15 @@
 
 .d-flex button {
     font-size: 15px;
-    margin-left: 90px;
+    margin-left: 120px;
 }
 /*--------------------------------*/
 
 .main-gerenciar-usuario {
-    margin-top: 150px;
+    margin-top: 160px;
     margin-bottom: 170px;
-    margin-left: 400px;
+    margin-left: 60px;
+    margin-right: 60px;
 }
 
 .main-gerenciar-reserva {
@@ -43,7 +44,7 @@
     margin-left: 400px;
 }
 
-.div-botao-adicionar {
+/*.div-botao-adicionar {
     position: absolute;
     background: rgb(14,0,98);
     width: 100px;
@@ -52,7 +53,16 @@
     margin-bottom: -50px;
     top: 145px;
 }
+*/
 
+.div-botao-adicionar {
+    background: rgb(14,0,98);
+    width: 90px;
+    height: 40px;
+    font-size: 13px;
+    border-radius: 10px;
+    color: white;
+}
 .div-botao-adicionar a {
     color: white;
 }
@@ -64,10 +74,12 @@
 .primeira-parte {
     width: 100%;
     text-align: center;
+    display: flex;
+    margin-left: 180px;
 }
 
 .butao-lupa {
-    width: 5%;
+    width: 6%;
     height: 40px;
     background: white;
     border-radius: 5px;
@@ -84,26 +96,23 @@
 }
 
 .primeira-parte input {
-    width: 70%;
+    width: 90%;
     height: 40px;
-    margin-left: -300px;
     border-radius: 5px;
 }
 
 .table {
     margin-top: 80px;
-    margin-left: -185px;
     margin-bottom: 200px;
 }
 
 .table-dark th{
     background: rgb(14,0,98);
-    border: 1px solid white;
 }
 
 .borda-table td {
+    font-size: 17px;
     width: 500px;
-    border: 1px solid #bab8b5;
 }
 
 .img-lupa {
@@ -112,7 +121,7 @@
 
 .fa-pen {
     padding-right: 10px;
-    padding-left: 60px;
+    padding-left: 100px;
 }
 
 .messages{

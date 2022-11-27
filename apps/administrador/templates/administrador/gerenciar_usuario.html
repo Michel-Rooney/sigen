@@ -9,12 +9,13 @@
 {% include 'partials/_navbar-adm.html' %}
         <main class="main-gerenciar-usuario"> 
             <div class="primeira-parte">
+              <a href="{% url 'adicionar_adm'%}"><div class="div-botao-adicionar">Adicionar Usuario</div></a>
                 <form action="{% url 'buscar_adm' %}" method="POST">
                   {% csrf_token %}
                     <input type="text" name="buscar" placeholder="Pesquisar">
                     <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
                 </form>
-                    <div class="div-botao-adicionar"><a href="{% url 'adicionar_adm'%}">Adicionar Usuario</a></div>
+                    
             </div>
             <div class="messages">{% include 'partials/_alertas.html' %}</div>
             <table class="table">

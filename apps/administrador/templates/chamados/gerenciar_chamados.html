@@ -15,7 +15,7 @@
                     <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
                 </form>
             </div>
-            <div class="botoes-check">
+            <div class="botoes-abrir_chamado">
                 <a href="{% url 'abrir_chamado'%}"><button class="mainBtn">Abrir Chamado</button></a>
                 <button class="mainBtn botao-modal" data-toggle="modal" data-target="#filtro">Filtrar Por:</button>
                 <!-- <a ><button class="mainBtn">Todos</button></a>
@@ -46,7 +46,7 @@
                         <!-- <td><a href="{% url 'editar_adm' user.id %}"><i class="fa-solid fa-pen"></i>Editar Usuário</a></td> -->
                         <td>
                             <!-- <div class="container d-flex"> -->
-                              <button class="btn btn-info btn-lg botao-modal" data-toggle="modal" data-target="#exampleModal{{chamado.id}}">Iniciar Chamado</button>
+                              <button class="btn btn-info btn-lg botao-modal btn-same-tamanho" data-toggle="modal" data-target="#exampleModal{{chamado.id}}">Iniciar Chamado</button>
                             <!-- </div> -->
                         </td>
                           <!-- <td><a href="{%url 'deletar_adm' user.id %}"><i class="fa-solid fa-trash"></i>Deletar Usuário</a></td> -->
@@ -78,7 +78,7 @@
                         <!-- <td><a href="{% url 'editar_adm' user.id %}"><i class="fa-solid fa-pen"></i>Editar Usuário</a></td> -->
                         <td>
                           <!-- <div class="container d-flex"> -->
-                            <button class="btn btn-warning btn-lg botao-modal" data-toggle="modal" data-target="#exampleModal{{chamado.id}}">Atualizar Status</button>
+                            <button class="btn btn-warning btn-lg botao-modal btn-same-tamanho" data-toggle="modal" data-target="#exampleModal{{chamado.id}}">Atualizar Status</button>
                           <!-- </div> -->
                       </td>
                         <!-- <td><a href="{%url 'deletar_adm' user.id %}"><i class="fa-solid fa-trash"></i>Deletar Usuário</a></td> -->
@@ -111,7 +111,7 @@
                     <td>Concluído</td>
                     <td>
                         <!-- <div class="container d-flex"> -->
-                          <button class="btn btn-success btn-lg botao-modal" data-toggle="modal" data-target="#exampleModal{{chamado.id}}">Ver Detalhes</button>
+                          <button class="btn btn-success btn-lg botao-modal btn-same-tamanho" data-toggle="modal" data-target="#exampleModal{{chamado.id}}">Ver Detalhes</button>
                         <!-- </div> -->
                     </td>
                     {%endif%}
