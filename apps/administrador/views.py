@@ -192,6 +192,13 @@ def realizar_check_in(request,id):
 
 def check_out(request):
     """PAGINA DE CHECK-IN/OUT"""
+    if 'buscar' in request.POST:
+        nome_buscado = request.POST['buscar']
+        print(nome_buscado)
+        if nome_buscado.strip() != "":
+            empresa = Registro.objects.filter(empresa=nome_buscado)
+            conteudo = {'casos' : Confirmacao.objects.filter(registro__in=empresa,check_in=True,check_out=False)}
+            return render(request,'checkin/check_out.html',conteudo)
     conteudo = {"casos": Confirmacao.objects.filter(check_in= True,check_out= False).all(),
     }
     return render(request, 'checkin/check_out.html',conteudo)

@@ -15,11 +15,7 @@
 <div class="botoes">
   <a href="{% url 'check_in'%}"><button class="mainBtn">Check-in</button></a>
   <a href="{% url 'check_out'%}"><button class="mainBtn">Check-out</button></a>
-  <!-- <button class="mainBtn botao-modal" data-toggle="modal" data-target="#filtro">Check-out</button> 
-    <div class="botoes-check">
-      <a href="{%url 'check_in'%}"><button class="ajeitar-botoes">Check-in</button></a>
-      <a href="{%url 'check_out'%}"><button class="ajeitar-botoes">Check-out</button></a>
-    </div> -->
+</div>
   {% if user.is_authenticated %}
   <div class="segura-parte-branca">
     {%if casos %}
