@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from datetime import datetime,date,timedelta
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 import os
 from django.contrib.auth.decorators import login_required
 from core.settings import BASE_DIR
@@ -270,28 +270,26 @@ def relatorio(request):
 
 
 #===================GERENCIAMENTO DE ESPAÇOS===================
-
 @login_required(login_url='/adm/login')
 def gerenciar_espacos(request):
     """PAGINA DE GERENCIAMENTO DE ESPAÇOS"""
     usuario = request.user.id
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
-        espacos = {'espacos': Espacos.objects.all()}
-        return render(request, 'espacos/gerenciar_espacos.html',espacos)
+        return render(request, 'espacos/gerenciar_espacos.html', {'espacos': Espacos.objects.all()})
     else:
         return redirect('administrador')
 
-@login_required(login_url='/adm/login')
-def remover_espaco(request):
-    """PAGINA DE REMOÇÂO DE ESPAÇO"""
-    usuario = request.user.id
-    nivel = get_object_or_404(NivelUsuario, usuario=usuario)
-    if nivel.status == 'TOP':
-        conteudo = {'espacos': Espacos.objects.order_by('nome').all()}
-        return render(request, 'espacos/remover_espaco.html', conteudo)
-    else:
-        return redirect('administrador')
+# @login_required(login_url='/adm/login')
+# def remover_espaco(request):
+#     """PAGINA DE REMOÇÂO DE ESPAÇO"""
+#     usuario = request.user.id
+#     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
+#     if nivel.status == 'TOP':
+#         conteudo = {'espacos': Espacos.objects.order_by('nome').all()}
+#         return render(request, 'espacos/remover_espaco.html', conteudo)
+#     else:
+#         return redirect('administrador')
 
 @login_required(login_url='/adm/login')
 def remover_espaco_id(request, espaco_id):
@@ -302,20 +300,20 @@ def remover_espaco_id(request, espaco_id):
         espaco = get_object_or_404(Espacos, pk=espaco_id)
         os.remove(os.path.join(BASE_DIR, espaco.imagem1.path))
         espaco.delete()
-        return redirect('/remover_espaco')
+        return redirect('/adm/gerenciar_espacos/')
     else:
-        return redirect('administrador')
+        return redirect('/adm/gerenciar_espacos/')
 
-@login_required(login_url='/adm/login')
-def editar_espaco(request):
-    """PAGINA DE EDIÇÂO DOS ESPAÇOS"""
-    usuario = request.user.id
-    nivel = get_object_or_404(NivelUsuario, usuario=usuario)
-    if nivel.status == 'TOP':
-        espaco = Espacos.objects.all()
-        return render(request, 'espacos/editar_espaco.html', {'espacos' : espaco})
-    else:
-        return redirect('administrador')
+# @login_required(login_url='/adm/login')
+# def editar_espaco(request):
+#     """PAGINA DE EDIÇÂO DOS ESPAÇOS"""
+#     usuario = request.user.id
+#     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
+#     if nivel.status == 'TOP':
+#         espaco = Espacos.objects.all()
+#         return render(request, 'espacos/editar_espaco.html', {'espacos' : espaco})
+#     else:
+#         return redirect('administrador')
 
 @login_required(login_url='/adm/login')
 def editar_espaco_id(request, espaco_id):
@@ -326,26 +324,17 @@ def editar_espaco_id(request, espaco_id):
         if request.method == 'POST':
             espaco = Espacos.objects.get(id=espaco_id)
             
-            nome = request.POST['nome']
-            descricao = request.POST['descricao']
-            imagem1 = request.FILES['imagem1']
-            # imagem2 = request.FILES['imagem2']
-            # imagem3 = request.FILES['imagem3']
-            # imagem4 = request.FILES['imagem4']
-
-            try:
-                os.remove(os.path.join(BASE_DIR, espaco.imagem1.path))
-            except:
-                pass
+            nome = request.POST['input-nome']
+            descricao = request.POST['input-descricao']
+            imagem1 = request.FILES['input-imagem1']
+            capacidade = request.POST['input-capacidade']
 
             espaco.nome = nome
             espaco.descricao = descricao
             espaco.imagem1 = imagem1
+            espaco.capacidade = capacidade
             espaco.save()
-            return redirect('/editar_espaco')
-
-        espaco = get_object_or_404(Espacos, pk=espaco_id)
-        return render(request, 'espacos/editar_espaco_id.html', {'espaco' : espaco})
+            return redirect('/adm/gerenciar_espacos/')
     else:
         return redirect('administrador')
 
@@ -356,24 +345,12 @@ def adicionar_espaco(request):
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
         if request.method == 'POST':
-
-            nome = request.POST['nome']
-            descricao = request.POST['descricao']
-            imagem1 = request.FILES['imagem1']
-            # imagem2 = request.FILES['imagem2']
-            # imagem3 = request.FILES['imagem3']
-            # imagem4 = request.FILES['imagem4']
-
-            try:
-                os.remove(os.path.join(BASE_DIR, espaco.imagem1.path))
-            except:
-                pass
-            
-            espaco = Espacos.objects.create(nome=nome, descricao=descricao, imagem1=imagem1)
-        
-        return render(request, 'espacos/adicionar_espaco.html')
-    else:
-        return redirect('administrador')
+            nome = request.POST['input-nome']
+            descricao = request.POST['input-descricao']
+            imagem1 = request.FILES['input-imagem']
+            capacidade = request.POST['input-capacidade']
+            espaco = Espacos.objects.create(nome=nome, descricao=descricao, imagem1=imagem1, capacidade=capacidade)
+            return redirect('/adm/gerenciar_espacos/')
 
 #==================END GERENCIAMENTO DE ESPAÇOS=================
 

@@ -7,43 +7,74 @@
 {% include 'partials/_navbar-adm.html' %}
 
     <article class="btn-box">
-        <button id="adicionar-espaco">Adicionar Espaço</button>
-        <button id="editar-espaco">Editar Espaço</button>
+        <button id="adicionar-espaco" data-target="#modal-cadastro" data-toggle="modal">Adicionar Espaço</button>
     </article>
 
     <main class="principal">
         {%for espaco in espacos%}
         <section class="espaco">
             <h3 class="espaco-titulo">{{espaco.nome}}</h3>
-            <a href="#" class="espaco-link">Editar Espaço</a>
-            <a href="#" class="espaco-link">Remover Espaço</a>
+            <button id="editar-espaco" data-target="#modal-editar{{espaco.id}}" data-toggle="modal">Editar Espaço</button>
+            <a href="{% url 'remover_espaco_id' espaco.id %}" class="espaco-link">Remover Espaço</a>
         </section>
+
+        <div id="modal-editar{{espaco.id}}" class="modal-container">
+            <div class="modal-espaco">
+                <button id="modal-fechar">x</button>
+                <h3 class="modal-subtitulo">Editar Espaço</h3>
+                <form action="{% url 'editar_espaco_id' espaco.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="input-box">
+                        <label for="input-nome">Nome do Espaço</label>
+                        <input name="input-nome" type="text" id="input-nome" value='{{espaco.nome}}' placeholder="Nome do Espaço" class="input-padrao" required>
+                        
+                        <img src="{{espaco.imagem1.url}}" width="30%" style="padding-top: 30px;">
+                        <label for="input-imagem">Imagem do Espaço</label>
+                        <label for="input-imagem" id="label-imagem"  class="input-padrao"><i class="fa-regular fa-image"></i> Selecionar Imagem</label>
+                        <input name="input-imagem" type="file" accept="image/*" value='{{espaco.imagem1.url}}' id="input-imagem" class="input-padrao" multiple required>
+                        <span>*Obrigatório</span>
+    
+                        <label for="input-descricao_imagem">Descrição da Imagem</label>
+                        <input name="input-descricao" type="text" id="input-descricao_imagem" value='{{espaco.descricao}}' placeholder="Descrição da Imagem" class="input-padrao" required>
+                        
+                        <label for="input-capacidade">Capacidade</label>
+                        <input name="input-capacidade" type="number" id="input-capacidade" value='{{espaco.capacidade}}' placeholder="Capacidade" class="input-padrao" required>
+                    </div>
+                    <button type="submit" id="input-editar">Editar</button>
+                </form>
+            </div>
+        </div>
         {%endfor%}
     </main>
-    
+
+
     <div id="modal-cadastro" class="modal-container">
         <div class="modal-espaco">
             <button id="modal-fechar">x</button>
-            <h3 class="modal-subtitulo">Adicionar Espaço</h3>
-            <form id="form" enctype="multipart/form-data" action="{% url 'adicionar_adm' %}" method="POST">
-                {% csrf_token %}
+            <h3 class="modal-subtitulo">Editar Espaço</h3>
+            <form action="{% url 'adicionar_espaco' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
                 <div class="input-box">
                     <label for="input-nome">Nome do Espaço</label>
-                    <input type="text" id="input-nome" placeholder="Nome do Espaço" class="input-padrao" required>
-
+                    <input name="input-nome" type="text" id="input-nome" placeholder="Nome do Espaço" class="input-padrao" required>
+                    
                     <label for="input-imagem">Imagem do Espaço</label>
                     <label for="input-imagem" id="label-imagem"  class="input-padrao"><i class="fa-regular fa-image"></i> Selecionar Imagem</label>
-                    <input type="file" accept="image/*" id="input-imagem" class="input-padrao" multiple required>
+                    <input name="input-imagem" type="file" accept="image/*" id="input-imagem" class="input-padrao" multiple required>
                     <span>*Obrigatório</span>
 
                     <label for="input-descricao_imagem">Descrição da Imagem</label>
-                    <input type="text" id="input-descricao_imagem" placeholder="Descrição da Imagem" class="input-padrao" required>
-
-                    <button type="submit" id="input-cadastrar">Adicionar</button>
+                    <input name="input-descricao" type="text" id="input-descricao_imagem" placeholder="Descrição da Imagem" class="input-padrao" required>
+                    
+                    <label for="input-capacidade">Capacidade</label>
+                    <input name="input-capacidade" type="number" id="input-capacidade"  placeholder="Capacidade" class="input-padrao" required>
                 </div>
+                <br>
+                <button type="submit" id="input-cadastro">Cadastro</button>
             </form>
         </div>
     </div>
+
+
+
 <!-- Começo do footer -->
 {% include 'partials/_footer.html' %}
 <!-- Final do footer -->

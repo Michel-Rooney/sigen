@@ -29,9 +29,9 @@ urlpatterns =[
     #Gerenciamento de Espaços
     path('gerenciar_espacos/', views.gerenciar_espacos, name='gerenciar_espacos'),
     path('adicionar_espaco/', views.adicionar_espaco, name='adicionar_espaco'),
-    path('remover_espaco/', views.remover_espaco, name='remover_espaco'),
+    # path('remover_espaco/', views.remover_espaco, name='remover_espaco'),
     path('remover_espaco/<int:espaco_id>', views.remover_espaco_id, name='remover_espaco_id'),
-    path('editar_espaco/', views.editar_espaco, name='editar_espaco'),
+    # path('editar_espaco/', views.editar_espaco, name='editar_espaco'),
     path('editar_espaco/<int:espaco_id>', views.editar_espaco_id, name='editar_espaco_id'),
     #Abertura de Chamado
     path('gerenciar_chamados/', views.gerenciar_chamados, name='gerenciar_chamados'),
