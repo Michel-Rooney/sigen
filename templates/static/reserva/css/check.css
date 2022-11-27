@@ -11,7 +11,49 @@ main {
     display: none;
 }
 
-.segura-parte-branca {
+.primeira-parte {
+    width: 100%;
+    text-align: center;
+    margin-top: 180px;
+}
+
+.primeira-parte input {
+    width: 70%;
+    height: 40px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.butao-lupa {
+    width: 5%;
+    height: 40px;
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #d8d8d8;
+}
+
+.butao-lupa:hover {
+    background: #d8d8d8;
+}
+
+.butao-lupa img {
+    width: 30%;
+}
+
+.botoes {
+    margin-left: 170px;
+}
+
+.botoes button{
+    border-radius: 10px;
+}
+
+.botoes button:hover {
+    background: rgb(14,0,98);
+}
+
+.segura-parte-branca { 
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
