@@ -9,11 +9,11 @@
 {% include 'partials/_navbar-adm.html' %}
         <main class="main-gerenciar-usuario"> 
             <div class="primeira-parte">
-                <!-- <form action="{% url 'gerenciar_chamados' %}" method="POST">
+                <form action="{% url 'buscar_chamado' %}" method="POST">
                   {% csrf_token %}
                     <input type="text" name="buscar" placeholder="Pesquisar">
                     <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
-                </form> -->
+                </form>
             </div>
             <div class="botoes-abrir_chamado">
                 <a href="{% url 'abrir_chamado'%}"><button class="mainBtn">Abrir Chamado</button></a>
@@ -112,7 +112,7 @@
                     <td>Concluído</td>
                     <td>
                         <!-- <div class="container d-flex"> -->
-                          <a href="{% url 'detalhes_chamado' chamado.id%}"><button class="btn btn-success btn-lg botao-modal btn-same-tamanho">Ver Detalhes</button></a>
+                          <button class="btn btn-success btn-lg botao-modal btn-same-tamanho" data-toggle="modal" data-target="#exampleModal{{chamado.id}}">Ver Detalhes</button>
                         <!-- </div> -->
                     </td>
                     {%endif%}
@@ -148,9 +148,9 @@
     </div>
   </div>
   <!-- Modal end -->
-{%else%}
+  {%else%}
   {% include 'partials/_sem-resultado.html' %}
-{%endif%}
+  {%endif%}
 </main>
 
 <!-- <script src="{% static 'reserva/js/gerenciar-usuario.js'%}"></script> -->

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'reserva/css/detalhes-chamado.css'%}">
+{% endblock %}
+{% block 'title' %}Gerenciamento de Chamados{% endblock %}
+{% block 'body' %}
+
+{% include 'partials/_navbar-adm.html' %}
+<main class="main-gerenciar-usuario"> 
+    <div class="container-fluid text-center">
+        <div class="row content">
+            <div class="col-sm-8 text-left">
+                <h2>Objeto:</h2>
+                <p>{{chamado.objeto}}</p>
+                <hr>
+                <h1>Descrição:</h1>
+                <p>{{chamado.descricao}}</p>
+                <hr>
+                <h2>Atualização:</h2>
+                <p>{{chamado.atualizacao}}</p>
+            </div>
+            <div class="col-sm-4 sidenav">
+                <div class="well">
+                    <h2>Ambiente:</h2>
+                    <p>{{chamado.ambiente}}</p>
+                </div>
+                <div class="well">
+                    <h2>Solicitante:</h2>
+                    <p>{{chamado.solicitante}}</p>
+                </div>
+                <div class="well">
+                    <h2>Data de Abertura:</h2>
+                    <p>{{chamado.data}}</p>
+                </div>
+                <div class="well">
+                    <h2>Finalizado em:</h2>
+                    <p>{{chamado.data_conclusao}}</p>
+                </div>
+                <div class="well">
+                    <a href="{% url 'gerenciar_chamados'%}"><button class="mainBtn">Voltar a Lista</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- <script src="{% static 'reserva/js/gerenciar-usuario.js'%}"></script> -->
+<!-- Começo do footer -->
+{% include 'partials/_footer.html' %}
+<!-- Final do footer -->
+{% endblock %}

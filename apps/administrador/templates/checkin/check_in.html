@@ -30,8 +30,8 @@
               {%endif%}
           </div>
       {% endfor %}
-      {%else%}   
-        <div class="semdados"><img src="{% static 'reserva/images/ninna.png'%}"><h3>Nenhuma Reserva Para Check In No Momento</h3></div> 
+      {%else%}
+      {% include 'partials/_sem-resultado.html' %}
       {%endif%}
   </div>
   {%endif%}

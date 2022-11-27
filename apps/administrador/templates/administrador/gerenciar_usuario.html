@@ -12,10 +12,9 @@
               <a href="{% url 'adicionar_adm'%}"><div class="div-botao-adicionar">Adicionar Usuario</div></a>
                 <form action="{% url 'buscar_adm' %}" method="POST">
                   {% csrf_token %}
-                    <input type="text" name="buscar" placeholder="Pesquisar">
+                    <input type="text" name="buscar" placeholder="Pesquisar pelo nome de usuário">
                     <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
-                </form>
-                    
+                </form>           
             </div>
             <div class="messages">{% include 'partials/_alertas.html' %}</div>
             <table class="table">

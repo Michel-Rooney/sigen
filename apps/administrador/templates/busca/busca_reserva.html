@@ -9,12 +9,11 @@
   <div class="primeira-parte">
     <form action="{% url 'buscar_reserva' %}" method="POST">
       {% csrf_token %}
-        <input type="text" name="buscar" placeholder="Pesquisar">
+        <input type="text" name="buscar" placeholder="Pesquisar pelo nome da empresa">
         <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
     </form>
   </div>
 <div class="messages">{% include 'partials/_alertas.html' %}</div>
-    <h1 class="h1-gerenciar">Gerenciar Reservas</h1>
     {%if registros%}
     <table class="table">
         <thead class="table-dark">
@@ -66,8 +65,8 @@
         </tbody>
       </table>
       {%else%}
-      <div class="semdados"><img src="{% static 'reserva/images/ninna.png'%}"><h3>Nenhuma Reserva no momento</h3></div> 
-  {%endif%}
+      {% include 'partials/_sem-resultado.html' %}
+    {%endif%}
 </main>
    <!-- Começo do footer -->
    {% include 'partials/_footer.html' %}

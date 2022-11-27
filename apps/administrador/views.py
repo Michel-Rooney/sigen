@@ -385,17 +385,26 @@ def gerenciar_chamados(request):
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
         if request.method == 'POST':
-            filtro = request.POST['filtro']
+            filtro = request.POST['filtro']          
             if filtro == 'aberto':
-                chamados = { 'chamados': Chamado.objects.filter(status='abt')}
+                chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='abt')}
+                tipo = 'abt'
             elif filtro == 'andamento':
-                chamados = { 'chamados': Chamado.objects.filter(status='and')}
+                chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='and')}
+                tipo = 'andamento'
             elif filtro == 'concluido':
-                chamados = { 'chamados': Chamado.objects.filter(status='ccl')}
+                chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='ccl')}
+                tipo = 'concluido'
+                
+            # elif 'busca' in request.POST:
+            #     nome_buscado = request.POST['buscar']
+            #     if nome_buscado.strip() != "":
+            #         chamados = { 'chamados': Chamado.objects.order_by('data').filter(solicitante=nome_buscado)
+            #         }
             else:
-                chamados = { 'chamados': Chamado.objects.all()}
+                chamados = { 'chamados': Chamado.objects.order_by('data').all()}
         else:
-            chamados = { 'chamados': Chamado.objects.all()}
+            chamados = { 'chamados': Chamado.objects.order_by('data').all()}
         return render(request, 'chamados/gerenciar_chamados.html',chamados)
     else:
         return redirect('administrador')
@@ -409,6 +418,7 @@ def atualizar_chamado(request, chamado_id):
         if chamado.status == 'abt':
             chamado.status = 'and'
             chamado.save()
+            messages.success(request, 'Status Atualizado')
             return redirect('gerenciar_chamados')
     else:
         return redirect('administrador')
@@ -423,12 +433,43 @@ def concluir_chamado(request, chamado_id):
             if request.method == 'POST':
                 atualizacao = request.POST['atualizacao']
                 chamado.atualizacao = atualizacao
+                chamado.data_conclusao = date.today()
                 chamado.status = 'ccl'
                 chamado.save()
+                messages.success(request, 'Chamado Finalizado')
                 return redirect('gerenciar_chamados')
 
     else:
         return redirect('administrador')
+
+@login_required(login_url='/adm/login')
+def detalhes_chamado(request, chamado_id):
+    usuario = request.user.id
+    nivel = get_object_or_404(NivelUsuario, usuario=usuario)
+    if nivel.status == 'TOP':
+        chamado ={'chamado': get_object_or_404(Chamado, pk=chamado_id)}
+        return render(request,'chamados/detalhes.html',chamado)
+    else:
+        return redirect('administrador')
+
+
+# @login_required(login_url='adm/login')
+# def buscar_chamado(request):
+#     usuario = request.user.id
+#     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
+#     if nivel.status == 'TOP':
+#         if 'buscar' in request.POST:
+#             nome_buscado = request.POST['buscar']
+#             print(nome_buscado)
+#             if nome_buscado.strip() != "":
+#                 result = Chamado.objects.filter(solicitante=nome_buscado)
+#                 chamados = {
+#                     'chamados' : result,
+#                 } 
+#                 return render(request,'busca/busca_chamado.html',chamados)
+#         return redirect('gerenciar_chamados')
+#     else:
+#         return redirect('administrador')
 
 
 @login_required(login_url='/adm/login')

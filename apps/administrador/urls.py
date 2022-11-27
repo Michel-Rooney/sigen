@@ -35,8 +35,9 @@ urlpatterns =[
     path('editar_espaco/<int:espaco_id>', views.editar_espaco_id, name='editar_espaco_id'),
     #Abertura de Chamado
     path('gerenciar_chamados/', views.gerenciar_chamados, name='gerenciar_chamados'),
-    # path('gerenciar_chamados/<str:filtro>', views.gerenciar_chamados, name='gerenciar_chamados'),
+    # path('buscar_chamado/', views.buscar_chamado, name='buscar_chamado'),
     path('atualizar_chamado/<int:chamado_id>', views.atualizar_chamado, name='atualizar_chamado'),
     path('concluir_chamado/<int:chamado_id>', views.concluir_chamado, name= 'concluir_chamado'),
+    path('chamado/detalhes/<int:chamado_id>', views.detalhes_chamado, name='detalhes_chamado'),
     path('abrir_chamado/',views.abrir_chamado,name='abrir_chamado'),
 ]

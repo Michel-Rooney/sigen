@@ -9,7 +9,7 @@
   <div class="primeira-parte">
     <form action="{% url 'buscar_reserva' %}" method="POST">
       {% csrf_token %}
-        <input type="text" name="buscar" placeholder="Pesquisar">
+        <input type="text" name="buscar" placeholder="Pesquisar pelo nome da empresa">
         <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
     </form>
   </div>
