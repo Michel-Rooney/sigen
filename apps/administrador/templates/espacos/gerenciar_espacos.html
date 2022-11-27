@@ -6,6 +6,7 @@
 
 {% include 'partials/_navbar-adm.html' %}
 <main class="main-gerenciar-usuario">
+  <button id="adicionar-espaco" class="mainBtn" data-target="#modal-adicionar" data-toggle="modal">Adicionar Espaço</button>
 <div class="container">
 <div class="row row-ajustar">
     {%for espaco in espacos %}
@@ -38,8 +39,8 @@
                     <label for="input-nome">Nome do Espaço:</label>
                     <input name="input-nome" type="text" id="input-nome" value='{{espaco.nome}}' placeholder="Nome do Espaço" class="input-padrao" required><br>
                     <label for="input-imagem">Imagem do Espaço:</label>
-
-                    <input name="input-imagem" type="file" accept="image/*" value='{{espaco.imagem1.url}}' id="input-imagem" class="input-padrao" multiple required>
+                    <img src="{{espaco.imagem1.url}}" width="30%">
+                    <input name="input-imagem" type="file" accept="image/*" id="input-imagem" class="input-padrao" multiple>
 
                     <label for="input-descricao_imagem">Descrição do Espaço:</label><br>
                     <!-- <input name="input-descricao" type="text" id="input-descricao_imagem" value='{{espaco.descricao}}' placeholder="Descrição da Imagem" class="input-padrao" required> -->
@@ -79,6 +80,41 @@
   </div>
   <!-- modal exclusão -->
     {%endfor%}
+
+    <div class="modal fade" id="modal-adicionar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Adicionar Espaço:</h5></div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="text-muted">Deseja Adicionar esse espaço?</p>
+            <form action="{% url 'adicionar_espaco' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+              <div class="input-box">
+                  <label for="input-nome">Nome do Espaço:</label>
+                  <input name="input-nome" type="text" id="input-nome" value='{{espaco.nome}}' placeholder="Nome do Espaço" class="input-padrao" required><br>
+                  <label for="input-imagem">Imagem do Espaço:</label>
+
+                  <input name="input-imagem" type="file" accept="image/*" value='{{espaco.imagem1.url}}' id="input-imagem" class="input-padrao" multiple required>
+
+                  <label for="input-descricao_imagem">Descrição do Espaço:</label><br>
+                  <!-- <input name="input-descricao" type="text" id="input-descricao_imagem" value='{{espaco.descricao}}' placeholder="Descrição da Imagem" class="input-padrao" required> -->
+                  <textarea name="input-descricao" cols=50 rows=5 type="text" id="input-descricao_imagem" placeholder="Descrição do espaco" class="input-padrao" required>{{espaco.descricao}}</textarea>
+                  <br>
+                  <label for="input-capacidade">Capacidade:</label>
+                  <input name="input-capacidade" type="number" id="input-capacidade" value='{{espaco.capacidade}}' placeholder="Capacidade" class="input-padrao" required>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
+            <button type="submit" class="btn btn-success">Adicionar</button></form>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 </div>
 </main>

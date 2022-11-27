@@ -341,12 +341,16 @@ def editar_espaco_id(request, espaco_id):
             
             nome = request.POST['input-nome']
             descricao = request.POST['input-descricao']
-            imagem1 = request.FILES['input-imagem1']
+            try:
+                imagem = request.FILES['input-imagem']
+                os.remove(os.path.join(BASE_DIR, espaco.imagem1.path))
+                espaco.imagem1 = imagem
+            except:
+                pass
             capacidade = request.POST['input-capacidade']
 
             espaco.nome = nome
             espaco.descricao = descricao
-            espaco.imagem1 = imagem1
             espaco.capacidade = capacidade
             espaco.save()
             return redirect('/adm/gerenciar_espacos/')
