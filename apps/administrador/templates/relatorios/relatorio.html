@@ -12,7 +12,7 @@
         <button type="button" class="btn btn-primary btn-lg">Mensal</button>
     </div>
     <div class="jumbotron">
-        <h1 class="display-4 h1-relatorio">Nome do Espaço</h1>
+        <h1 class="display-4 h1-relatorio">Espaco</h1>
         <h3 class="h3-relatorio">Horas de Uso</h3>
             <div class="col-sm-6">
               <table class="table ajustar-table">
@@ -27,14 +27,18 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {% if registros %}
+                        {% for registro in registros %}
                       <tr class="borda-table">
-                          <td style="padding-right:50px">Nome da Empresa</td>
-                          <td style="padding-right:50px">Nome do Agente</td>
-                          <td style="padding-right:50px">Data da reserva</td>
-                          <td style="padding-right:50px">Quant. hrs que utilizou</td>
-                          <td style="padding-right:50px">N° de pessoas que participaram</td>
+                          <td style="padding-right:50px">{{registro.empresa}}</td>
+                          <td style="padding-right:50px">{{registro.agente}}</td>
+                          <td style="padding-right:50px">{{registro.data_reserva}}</td>
+                          <td style="padding-right:50px">{{registro.hora_inicio}} Até {{registro.hora_fim}}</td>
+                          <td style="padding-right:50px">a</td>
                           <td><a href=""><i class="fa fa-file-text"></i>Gerar PDF</a></td>
                       </tr> 
+                      {%endfor%}
+                      {%endif%}
                   </tbody>
               </table>
           </div>
