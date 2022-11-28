@@ -314,7 +314,7 @@ def relatorio(request,id):
     usuario = request.user.id
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
-        registros = Registro.objects.filter(espacos=id)
+        registros = Confirmacao.objects.filter(pk=id)
         # registros = Confirmacao.objects.filter(registro=id)
         print(registros)
         #registro = get_object_or_404(Registro, id=id)
