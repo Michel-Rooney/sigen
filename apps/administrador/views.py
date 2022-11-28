@@ -275,14 +275,71 @@ def gerenciar_relatorios(request):
     else:
         return redirect('administrador')
 
+def relatorio(request, id):
+    """GERAR RELATÓRIO DE UM ESPAÇO ESPECIFICO"""
+
+    registros = Confirmacao.objects.filter(pk=id)
+
+    #registro = get_object_or_404(Registro, id=id)
+    #reservas_confirmadas = Confirmacao.objects.all()
+    
+    #
+    
+    
+    '''
+    hora_fim  = datetime(registro.hora_fim)
+    hora_fim  = int(datetime.strftime(hora_fim,  "%I %M"))
+    hora_inicio = datetime(registro.hora_inicio)
+    hora_inicio = int(datetime.strftime(hora_inicio, "%I %M"))
+    horas_de_uso = hora_fim - hora_inicio
+    '''
+
+    '''
+    
+    # hora_fim1 = datetime.strptime(str(registro.hora_fim),"%H:%M:%S")
+    # hora_fim2 = hora_fim1.time()
+    # hora_inicio1 = datetime.strptime(str(registro.hora_inicio),"%H:%M:%S")
+    # hora_inicio2 = hora_inicio1.time()
+    # #horas_de_uso = int(hora_fim2) - int(hora_inicio2)
+    # #horas_de_uso = hora_fim2 - hora_inicio2
+    '''
+    context = {
+    'registros': registros,
+  
+    }
+
+    return render(request, 'relatorios/relatorio.html', context)
+
 @login_required(login_url='/adm/login')
-def relatorio(request):
+def relatorio(request,id):
     """GERAR RELATÓRIO DE UM ESPAÇO ESPECIFICO"""
     usuario = request.user.id
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
+        registros = Registro.objects.filter(espacos=id)
+        # registros = Confirmacao.objects.filter(registro=id)
+        print(registros)
+        #registro = get_object_or_404(Registro, id=id)
+        #reservas_confirmadas = Confirmacao.objects.all()
 
-        return render(request, 'relatorios/relatorio.html')
+        # hora_fim  = datetime(registro.hora_fim)
+        # hora_fim  = int(datetime.strftime(hora_fim,  "%I %M"))
+        # hora_inicio = datetime(registro.hora_inicio)
+        # hora_inicio = int(datetime.strftime(hora_inicio, "%I %M"))
+        # horas_de_uso = hora_fim - hora_inicio
+        
+        # # hora_fim1 = datetime.strptime(str(registro.hora_fim),"%H:%M:%S")
+        # # hora_fim2 = hora_fim1.time()
+        # # hora_inicio1 = datetime.strptime(str(registro.hora_inicio),"%H:%M:%S")
+        # # hora_inicio2 = hora_inicio1.time()
+        # # #horas_de_uso = int(hora_fim2) - int(hora_inicio2)
+        # # #horas_de_uso = hora_fim2 - hora_inicio2
+        context = {
+        'registros': registros,
+            #'reservas_finalizadas': reservas_finalizadas,
+        }
+
+        return render(request, 'relatorios/relatorio.html', context)
     else:
         return redirect('administrador')
 #==============END RELATORIOS DE USO DOS ESPAÇOS===============

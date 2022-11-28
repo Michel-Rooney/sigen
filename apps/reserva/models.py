@@ -80,13 +80,13 @@ class ReservasFinalizadas(models.Model):
     hora_inicio = models.TimeField()
     hora_fim = models.TimeField()
     espaco = models.ForeignKey(Espacos, on_delete=models.CASCADE)
+    registro = models.ForeignKey(Registro, on_delete=models.CASCADE)
     check_in = models.TimeField()
     check_out = models.TimeField()
     quantidade_de_pessoas = models.IntegerField(default=1)
 
     def __str__(self):
         return self.empresa
-
 
 class ReservasCanceladas(models.Model):
 
