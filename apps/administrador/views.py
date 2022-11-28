@@ -371,12 +371,6 @@ def gerenciar_chamados(request):
             elif filtro == 'concluido':
                 chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='ccl')}
                 tipo = 'concluido'
-                
-            # elif 'busca' in request.POST:
-            #     nome_buscado = request.POST['buscar']
-            #     if nome_buscado.strip() != "":
-            #         chamados = { 'chamados': Chamado.objects.order_by('data').filter(solicitante=nome_buscado)
-            #         }
             else:
                 chamados = { 'chamados': Chamado.objects.order_by('data').all()}
         else:
@@ -462,6 +456,6 @@ def abrir_chamado(request):
         chamado.save()
         conteudo = {'nome_solicitante':solicitante,'ambiente':ambiente2, 'data':chamado.data, 'objeto':objeto, 'descricao':descricao}
         email_html('emails/email_chamado.html', 'envio de chamado', ['suportesigen@gmail.com'], conteudo)
-        return redirect("administrador")
+        return redirect('/adm/gerenciar_chamados/')
     return render(request,'chamados/chamados.html', espacos)
 #=====================END ABERTURA DE CHAMADO====================
