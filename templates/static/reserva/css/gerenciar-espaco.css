@@ -5,15 +5,6 @@
     margin-right: 40px;
 }
 
-.butao-lupa {
-    margin-top: 100px;
-    width: 5%;
-    height: 40px;
-    background: white;
-    border-radius: 5px;
-    border: 1px solid #d8d8d8;
-}
-
 .butao-lupa:hover {
     background: #d8d8d8;
 }
@@ -70,4 +61,26 @@
 
 .borda-table td {
     text-align: center;
+}
+
+.mainBtn {
+    border-radius: 10px;
+}
+
+.flex-btn-espaco {
+    display: flex;
+}
+
+.btn-editar{
+    padding-right: 10px;
+    width: 38%;
+    height: 60px;
+    margin-right: 20px;
+    margin-left: 16px;
+}
+
+.btn-excluir {
+    padding-right: 10px;
+    width: 38%;
+    height: 60px;
 }
