@@ -54,8 +54,6 @@ def gerenciar_usuario(request):
     usuario = request.user.id
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
-        num = count(usuario.id)
-        print(num)
         users = {'users': User.objects.all()}
         return render(request, 'administrador/gerenciar_usuario.html', users)
     else:
