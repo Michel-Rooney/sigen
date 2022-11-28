@@ -15,7 +15,6 @@ from apps.reserva.utils import *
 from .validar.validate import valida_email
 
 #========================LOGIN ADM=======================
-
 def login(request):
     """PAGINA DE LOGIN DO ADMINISTRADOR"""
     if request.method ==  'POST':
@@ -35,11 +34,10 @@ def logout(request):
     """REALIZAÇÂO DE LOGOUT DO USUARIO"""
     auth.logout(request)
     return redirect('/adm/login')
-
 #========================END LOGIN ADM=======================
 
+
 #========================ADMINISTRADOR=======================
-    
 @login_required(login_url='/adm/login')
 def administrador(request):
     """PAGINA DE ADMINISTRADOR"""
@@ -47,15 +45,12 @@ def administrador(request):
     conteudo = {'nivel': get_object_or_404(NivelUsuario, usuario=usuario)}
     return render(request, 'administrador.html', conteudo)
 
-
 @login_required(login_url='/adm/login')
 def gerenciar_usuario(request):
     """Página de Listagem de Usuários Administradores do Sistema"""
     usuario = request.user.id
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
-        num = count(usuario.id)
-        print(num)
         users = {'users': User.objects.all()}
         return render(request, 'administrador/gerenciar_usuario.html', users)
     else:
@@ -94,20 +89,21 @@ def adicionar_adm(request):
         return redirect('administrador')
 
 @login_required(login_url='/adm/login')
-def editar_adm(request,usuario_id):
+def editar_adm(request, usuario_id):
     """Página de Edição de Usuário"""
     usuario = request.user.id
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
-        usuario =get_object_or_404(User,pk=usuario_id)
+        usuario =get_object_or_404(User, pk=usuario_id)
         if request.method == 'POST':
-            nome = request.POST['nome_usuario']
+            nome = request.POST['nome']
             email = request.POST['email']
             tipo = request.POST['nivel']
+            print(f'\n\n\n{tipo}\n\n\n')
             usuario.username = nome
             usuario.email = email
             usuario.save()
-            user_nivel = get_object_or_404(NivelUsuario,usuario = usuario)
+            user_nivel = get_object_or_404(NivelUsuario, usuario=usuario)
             user_nivel.status = tipo
             user_nivel.save()
 
@@ -147,11 +143,10 @@ def buscar_adm(request):
         return redirect('gerenciar_usuario')
     else:
         return redirect('administrador')
-
 #========================END ADMINISTRADOR===================
 
-#===================GERENCIAMENTO DE RESERVA=================
 
+#===================GERENCIAMENTO DE RESERVA=================
 @login_required(login_url='/adm/login')
 def gerenciar_reserva(request):
     """Página de Listagem de Reservas Confirmadas"""
@@ -166,7 +161,6 @@ def cancelar_reserva(request, reserva_id):
     email_html('emails/reserva_cancelada.html', 'Cancelamento da Reserva', ['suportesigen@gmail.com'], conteudo)
     reserva.delete()
     return redirect('/adm/gerenciar_reserva/')
-
 
 @login_required(login_url='/adm/login')
 def check_in(request):
@@ -200,7 +194,6 @@ def realizar_check_in(request,id):
     else:
         messages.error(request, 'Check-in não realizado, verifique a data')
     return redirect('check_in')
-
 
 def check_out(request):
     """PAGINA DE CHECK-IN/OUT"""
@@ -267,8 +260,9 @@ def buscar_reserva(request):
         return redirect('gerenciar_reserva')
     else:
         return redirect('administrador')
-
 #=================END GERENCIAMENTO DE RESERVA=================
+
+
 #================RELATORIOS DE USO DOS ESPAÇOS=================
 @login_required(login_url='/adm/login')
 def gerenciar_relatorios(request):
@@ -291,8 +285,6 @@ def relatorio(request):
         return render(request, 'relatorios/relatorio.html')
     else:
         return redirect('administrador')
-
-
 #==============END RELATORIOS DE USO DOS ESPAÇOS===============
 
 
@@ -382,8 +374,8 @@ def adicionar_espaco(request):
             capacidade = request.POST['input-capacidade']
             espaco = Espacos.objects.create(nome=nome, descricao=descricao, imagem1=imagem1, capacidade=capacidade)
             return redirect('/adm/gerenciar_espacos/')
-
 #==================END GERENCIAMENTO DE ESPAÇOS=================
+
 
 #=======================ABERTURA DE CHAMADO=====================
 @login_required(login_url='/adm/login')
@@ -496,5 +488,4 @@ def abrir_chamado(request):
         email_html('emails/email_chamado.html', 'envio de chamado', ['suportesigen@gmail.com'], conteudo)
         return redirect("administrador")
     return render(request,'chamados/chamados.html', espacos)
-
 #=====================END ABERTURA DE CHAMADO====================
