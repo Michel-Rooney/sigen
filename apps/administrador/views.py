@@ -1,18 +1,14 @@
-from re import A
-import time
-from django.shortcuts import render
-from .models import Chamado, NivelUsuario, Espacos
-from apps.reserva.models import Confirmacao, Registro
-from django.contrib.auth.models import User
-from django.contrib import auth
-from datetime import datetime,date,timedelta
-from django.contrib import messages
-from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
-import os
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
+from apps.reserva.models import Confirmacao, Registro
+from .models import Chamado, NivelUsuario, Espacos
+from datetime import datetime, date, timedelta
+from django.contrib.auth.models import User
+from .validar.validate import valida_email
+from django.contrib import messages, auth
 from core.settings import BASE_DIR
 from apps.reserva.utils import *
-from .validar.validate import valida_email
+import os
 
 #========================LOGIN ADM=======================
 def login(request):
@@ -99,7 +95,6 @@ def editar_adm(request, usuario_id):
             nome = request.POST['nome']
             email = request.POST['email']
             tipo = request.POST['nivel']
-            print(f'\n\n\n{tipo}\n\n\n')
             usuario.username = nome
             usuario.email = email
             usuario.save()
@@ -116,12 +111,15 @@ def editar_adm(request, usuario_id):
 @login_required(login_url='adm/login')
 def deletar_adm(request,usuario_id):
     """Função Que Deleta o Usuario Selecionado"""
-    usuario = request.user.id
-    nivel = get_object_or_404(NivelUsuario, usuario=usuario)
+    usuario_on = request.user.id
+    nivel = get_object_or_404(NivelUsuario, usuario=usuario_on)
     if nivel.status == 'TOP':
         usuario = get_object_or_404(User,pk=usuario_id)
-        usuario.delete()
-        messages.success(request, "Usuário deletado com sucesso")
+        if not usuario_on == usuario.id: 
+            usuario.delete()
+            messages.success(request, "Usuário deletado com sucesso")
+            return redirect('gerenciar_usuario')
+        messages.error(request, 'Você não apagar o usuário que está logado')
         return redirect('gerenciar_usuario')
     else:
         return redirect('administrador')
@@ -356,17 +354,6 @@ def gerenciar_espacos(request):
     else:
         return redirect('administrador')
 
-# @login_required(login_url='/adm/login')
-# def remover_espaco(request):
-#     """PAGINA DE REMOÇÂO DE ESPAÇO"""
-#     usuario = request.user.id
-#     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
-#     if nivel.status == 'TOP':
-#         conteudo = {'espacos': Espacos.objects.order_by('nome').all()}
-#         return render(request, 'espacos/remover_espaco.html', conteudo)
-#     else:
-#         return redirect('administrador')
-
 @login_required(login_url='/adm/login')
 def remover_espaco_id(request, espaco_id):
     """REMOVER ESPAÇO ESPECIFICO"""
@@ -379,17 +366,6 @@ def remover_espaco_id(request, espaco_id):
         return redirect('/adm/gerenciar_espacos/')
     else:
         return redirect('/adm/gerenciar_espacos/')
-
-# @login_required(login_url='/adm/login')
-# def editar_espaco(request):
-#     """PAGINA DE EDIÇÂO DOS ESPAÇOS"""
-#     usuario = request.user.id
-#     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
-#     if nivel.status == 'TOP':
-#         espaco = Espacos.objects.all()
-#         return render(request, 'espacos/editar_espaco.html', {'espacos' : espaco})
-#     else:
-#         return redirect('administrador')
 
 @login_required(login_url='/adm/login')
 def editar_espaco_id(request, espaco_id):
@@ -452,12 +428,6 @@ def gerenciar_chamados(request):
             elif filtro == 'concluido':
                 chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='ccl')}
                 tipo = 'concluido'
-                
-            # elif 'busca' in request.POST:
-            #     nome_buscado = request.POST['buscar']
-            #     if nome_buscado.strip() != "":
-            #         chamados = { 'chamados': Chamado.objects.order_by('data').filter(solicitante=nome_buscado)
-            #         }
             else:
                 chamados = { 'chamados': Chamado.objects.order_by('data').all()}
         else:
@@ -543,6 +513,6 @@ def abrir_chamado(request):
         chamado.save()
         conteudo = {'nome_solicitante':solicitante,'ambiente':ambiente2, 'data':chamado.data, 'objeto':objeto, 'descricao':descricao}
         email_html('emails/email_chamado.html', 'envio de chamado', ['suportesigen@gmail.com'], conteudo)
-        return redirect("administrador")
+        return redirect('/adm/gerenciar_chamados/')
     return render(request,'chamados/chamados.html', espacos)
 #=====================END ABERTURA DE CHAMADO====================

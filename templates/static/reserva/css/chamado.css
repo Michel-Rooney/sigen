@@ -1,23 +1,21 @@
-title{
-    margin-left: 300px;
-}
-
 main {
     margin-top: 170px;
-    margin-left: 300px;
     margin-bottom: 50px;
 }
 
 main h1 {
-    padding-left: 60px;
+    text-align: center;
     padding-bottom: 30px;
+    font-weight: bold;
+    color: rgb(14,0,98);
 }
 
 .formulario {
-    width: 60%;
+    width: 45%;
     padding: 15px;
-    border: 1px solid #00000032;
+    border: 1px solid #bebebe;
     border-radius: 10px;
+    margin: 0 auto;
 }
 
 /* div nome */
@@ -26,7 +24,6 @@ main h1 {
 }
 .div-nome {
     padding: 10px;
-    
 }
 
 .div-nome input {
@@ -37,28 +34,13 @@ main h1 {
     font-size: 20px;
 }
 
-/* div data */
-.div-data {
-    padding: 10px;
-}
-
-.div-data input {
-    width: 314px;
-    margin-left: 139px;
-}
-
-.div-data label {
-    font-size: 20px;
-}
-
 /* div ambiente */
 .div-ambiente {
     padding: 10px;
 }
 
-.div-ambiente input {
-    width: 314px;
-    margin-left: 95px;
+.div-ambiente select {
+    margin-left: 105px;
 }
 
 .div-ambiente label {
@@ -72,7 +54,7 @@ main h1 {
 
 .div-objeto input {
     width: 314px;
-    margin-left: 120px;
+    margin-left: 130px;
 }
 
 .div-objeto label {
@@ -82,14 +64,14 @@ main h1 {
 /* div descrição */
 .div-descricao {
     padding: 10px;
+    display: flex;
 }
 .div-descricao textarea {
-    margin-left: 185px;
+    margin-left: 60px;
    
 }
 
 .div-descricao label {
-    margin-top: 10%;
     font-size: 20px;
 
 }
@@ -103,13 +85,15 @@ main h1 {
 .botao {
     width: 90%;
     text-align: right;
+    margin-left: 22px;
+    margin-top: 10px;
 }
 
 .botao input {
     padding: 10px;
     width: 20%;
     border-radius: 15px;
-    background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
+    background: rgb(14,0,98);
     color: white;
 }
 

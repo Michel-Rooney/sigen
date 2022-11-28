@@ -17,8 +17,10 @@
                     <img src="{{ espaco.imagem1.url }}" class="card-img img-ajus" alt="{{espaco.nome}}">
                 </div><br>
                 <h5 class="card-title">{{espaco.nome}}</h5><br>
-                <button id="editar-espaco" class="mainBtn" data-target="#modal-editar{{espaco.id}}" data-toggle="modal">Editar Espaço</button>
-                <button id="editar-espaco" class="mainBtn" data-target="#modal-excluir{{espaco.id}}" data-toggle="modal">Excluir Espaço</button>
+                <div class="flex-btn-espaco">
+                  <button id="editar-espaco" class="mainBtn btn-editar" data-target="#modal-editar{{espaco.id}}" data-toggle="modal">Editar Espaço</button>
+                  <button id="editar-espaco" class="mainBtn btn-excluir" data-target="#modal-excluir{{espaco.id}}" data-toggle="modal">Excluir Espaço</button>
+                </div>
             </div>
         </div>
     </div>
