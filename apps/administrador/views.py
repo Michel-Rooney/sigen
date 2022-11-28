@@ -12,6 +12,7 @@ import os
 from django.contrib.auth.decorators import login_required
 from core.settings import BASE_DIR
 from apps.reserva.utils import *
+from .validar.validate import valida_email
 
 #========================LOGIN ADM=======================
 
@@ -27,6 +28,7 @@ def login(request):
             if user is not None:
                 auth.login(request, user)
                 return redirect('administrador')
+        messages.error(request, 'E-mail ou Senha Inválidos')
     return render(request,'login.html')
 
 def logout(request):
@@ -51,8 +53,9 @@ def gerenciar_usuario(request):
     """Página de Listagem de Usuários Administradores do Sistema"""
     usuario = request.user.id
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
-    print(nivel.status)
     if nivel.status == 'TOP':
+        num = count(usuario.id)
+        print(num)
         users = {'users': User.objects.all()}
         return render(request, 'administrador/gerenciar_usuario.html', users)
     else:
@@ -70,13 +73,22 @@ def adicionar_adm(request):
             email = request.POST['email']
             senha = request.POST['senha']
             tipo = request.POST['nivel']
-            user =User.objects.create_user(username = nome, email = email,  password = senha)
-            user.save()
-            user_id = User.objects.get(email = email)
-            user_n = get_object_or_404(User, pk= user_id.id)
-            nivel = NivelUsuario.objects.create(usuario = user_n, status= tipo)
-            nivel.save()
-            return redirect('gerenciar_usuario')
+            if valida_email(email):
+                if not User.objects.filter(username=nome, email=email):
+                    user =User.objects.create_user(username = nome, email = email,  password = senha)
+                    user.save()
+                    user_id = User.objects.get(email = email)
+                    user_n = get_object_or_404(User, pk= user_id.id)
+                    nivel = NivelUsuario.objects.create(usuario = user_n, status= tipo)
+                    nivel.save()
+                    messages.success(request, 'Usuário criado com sucesso')
+                    return redirect('gerenciar_usuario')
+                else:
+                    messages.error(request, 'Usuário já existe')
+                    return redirect('adicionar_adm')
+            else:
+                messages.error(request, 'Usuário invalido')
+                return redirect('adicionar_adm')
         return render(request, 'administrador/adicionar_adm.html')
     else:
         return redirect('administrador')

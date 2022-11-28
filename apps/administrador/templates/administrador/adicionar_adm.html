@@ -6,6 +6,7 @@
 
 {% include 'partials/_navbar-adm.html' %}
 <main class="main-adicionarAdm">
+    <div class="messages">{% include 'partials/_alertas.html' %}</div>
     <form action="{% url 'adicionar_adm' %}" method="POST" >
         {% csrf_token %}
         <div class="form-group col-md-6 mb-3">
