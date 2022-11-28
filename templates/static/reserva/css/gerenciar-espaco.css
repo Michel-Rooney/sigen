@@ -73,14 +73,40 @@
 
 .btn-editar{
     padding-right: 10px;
-    width: 38%;
+    width: 35%;
     height: 60px;
     margin-right: 20px;
-    margin-left: 16px;
+    margin-left: 28px;
 }
 
 .btn-excluir {
     padding-right: 10px;
-    width: 38%;
+    width: 35%;
     height: 60px;
+}
+
+.p-deseja-edit {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.input-nome {
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-bottom: 15px;
+}
+
+.input-img {
+    margin-bottom: 20px;
+}
+
+.class-text_area {
+    border-radius: 5px;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.input-capaci {
+    border-radius: 5px;
+    border: 1px solid gray;
 }
