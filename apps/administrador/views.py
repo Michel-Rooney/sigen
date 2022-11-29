@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from apps.reserva.models import Confirmacao, Registro, ReservasFinalizadas
 from .models import Chamado, NivelUsuario, Espacos
 from datetime import datetime, date, timedelta
-import datetime
 from django.contrib.auth.models import User
 from .validar.validate import valida_email
 from django.contrib import messages, auth
@@ -290,11 +289,11 @@ def relatorio(request,espaco_id, opc='n'):
         if opc == 'n':
             registros = ReservasFinalizadas.objects.filter(espaco=espaco_id)
         elif opc == 'd':
-            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.datetime.now())
+            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.now())
         elif opc == 's':
-            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.datetime.now()-datetime.timedelta(days=7))
+            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.now()-timedelta(days=7))
         elif opc == 'm':
-            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.datetime.now()-datetime.timedelta(days=30))
+            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.now()-timedelta(days=30))
         
         context = {
         'registros': registros,
