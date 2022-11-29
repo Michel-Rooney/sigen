@@ -11,8 +11,12 @@
             <form method="post" action="{%url 'abrir_chamado' %}">
                 {%csrf_token%}
                 <div class="div-nome">
-                    <label for="nome"> Nome do Solicitante: </label>
+                    <label for="nome"> Nome do Solicitante: </label> 
                     <input type="text" name="solicitante" id="nome">
+                </div>
+                <div class="div-email">
+                    <label for="email_solicitante"> Email do Solicitante: </label>
+                    <input type="email" name="email_solicitante" id="email_solicitante">
                 </div>
 
                 <div class="div-ambiente">

@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect, render, get_list_or_404
 from django.contrib.auth.decorators import login_required
 from apps.reserva.models import Confirmacao, Registro, ReservasFinalizadas
 from .models import Chamado, NivelUsuario, Espacos
@@ -9,6 +9,10 @@ from django.contrib import messages, auth
 from core.settings import BASE_DIR
 from apps.reserva.utils import *
 import os
+from django.http import HttpResponse
+from xhtml2pdf import pisa
+from django.http import HttpResponse
+from django.template.loader import get_template
 
 #========================LOGIN ADM=======================
 def login(request):
@@ -224,6 +228,7 @@ def realizar_check_out(request, id):
             hora_inicio = checando.registro.hora_inicio
             hora_fim = checando.registro.hora_fim
             espaco = checando.registro.espacos
+            registro= checando.registro
             check_in = checando.horario_checkin
             check_out = checando.horario_checkot
             quantidade_de_pessoas = checando.qtd_participantes
@@ -235,6 +240,7 @@ def realizar_check_out(request, id):
                 hora_inicio = hora_inicio,
                 hora_fim = hora_fim,
                 espaco = espaco,
+                registro= registro,
                 check_in = check_in,
                 check_out = check_out,
                 quantidade_de_pessoas = quantidade_de_pessoas,
@@ -275,41 +281,56 @@ def gerenciar_relatorios(request):
         return redirect('administrador')
 
 @login_required(login_url='/adm/login')
-def relatorio(request,espaco_id):
+def relatorio(request,espaco_id, opc='n'):
     """GERAR RELATÓRIO DE UM ESPAÇO ESPECIFICO"""
     usuario = request.user.id
+    espaco = Espacos.objects.get(pk=espaco_id)
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
-        registros = ReservasFinalizadas.objects.filter(espaco=espaco_id)
-        # qtd = Confirmacao.objects.filter(registro__in=registros)
-        # conteudo = {'casos' : Confirmacao.objects.filter(registro__in=empresa,check_in=True,check_out=False)}
-       
+        if opc == 'n':
+            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id)
+        elif opc == 'd':
+            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.now())
+        elif opc == 's':
+            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.now()-timedelta(days=7))
+        elif opc == 'm':
+            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.now()-timedelta(days=30))
         
-        # registros = Confirmacao.objects.filter(registro=id)
-        # print(registros.qtd_participantes)
-        #registro = get_object_or_404(Registro, id=id)
-        #reservas_confirmadas = Confirmacao.objects.all()
-
-        # hora_fim  = datetime(registro.hora_fim)
-        # hora_fim  = int(datetime.strftime(hora_fim,  "%I %M"))
-        # hora_inicio = datetime(registro.hora_inicio)
-        # hora_inicio = int(datetime.strftime(hora_inicio, "%I %M"))
-        # horas_de_uso = hora_fim - hora_inicio
-        
-        # # hora_fim1 = datetime.strptime(str(registro.hora_fim),"%H:%M:%S")
-        # # hora_fim2 = hora_fim1.time()
-        # # hora_inicio1 = datetime.strptime(str(registro.hora_inicio),"%H:%M:%S")
-        # # hora_inicio2 = hora_inicio1.time()
-        # # #horas_de_uso = int(hora_fim2) - int(hora_inicio2)
-        # # #horas_de_uso = hora_fim2 - hora_inicio2
         context = {
         'registros': registros,
+        'espaco': espaco,
             #'reservas_finalizadas': reservas_finalizadas,
         }
 
         return render(request, 'relatorios/relatorio.html', context)
     else:
         return redirect('administrador')
+@login_required(login_url='/adm/login')
+def render_pdf_view(request, registro_id):
+
+    registro = get_object_or_404(ReservasFinalizadas, id=registro_id)
+    print(registro)  
+    template_path = 'pdf1.html'
+    context = {'registro': registro}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    #if dowaload:
+    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    # if display:
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>',context)
+    return response
+    
+    
 #==============END RELATORIOS DE USO DOS ESPAÇOS===============
 
 
@@ -332,7 +353,6 @@ def remover_espaco_id(request, espaco_id):
     if nivel.status == 'TOP':
         espaco = get_object_or_404(Espacos, pk=espaco_id)
         os.remove(os.path.join(BASE_DIR, espaco.imagem1.path))
-        os.remove(os.path.join(BASE_DIR, espaco.imagem2.path))
         espaco.delete()
         return redirect('/adm/gerenciar_espacos/')
     else:
@@ -350,12 +370,9 @@ def editar_espaco_id(request, espaco_id):
             nome = request.POST['input-nome']
             descricao = request.POST['input-descricao']
             try:
-                imagem1 = request.FILES['input-imagem1']
-                imagem2 = request.FILES['input-imagem2']
+                imagem = request.FILES['input-imagem']
                 os.remove(os.path.join(BASE_DIR, espaco.imagem1.path))
-                os.remove(os.path.join(BASE_DIR, espaco.imagem2.path))
-                espaco.imagem1 = imagem1
-                espaco.imagem2 = imagem2
+                espaco.imagem1 = imagem
             except:
                 pass
             capacidade = request.POST['input-capacidade']
@@ -377,10 +394,9 @@ def adicionar_espaco(request):
         if request.method == 'POST':
             nome = request.POST['input-nome']
             descricao = request.POST['input-descricao']
-            imagem1 = request.FILES['input-imagem1']
-            imagem2 = request.FILES['input-imagem2']
+            imagem1 = request.FILES['input-imagem']
             capacidade = request.POST['input-capacidade']
-            espaco = Espacos.objects.create(nome=nome, descricao=descricao, imagem1=imagem1, imagem2=imagem2, capacidade=capacidade)
+            espaco = Espacos.objects.create(nome=nome, descricao=descricao, imagem1=imagem1, capacidade=capacidade)
             return redirect('/adm/gerenciar_espacos/')
 #==================END GERENCIAMENTO DE ESPAÇOS=================
 
@@ -395,14 +411,11 @@ def gerenciar_chamados(request):
         if request.method == 'POST':
             filtro = request.POST['filtro']          
             if filtro == 'aberto':
-                chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='abt')}
-                tipo = 'abt'
+                chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='abt')}              
             elif filtro == 'andamento':
                 chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='and')}
-                tipo = 'andamento'
             elif filtro == 'concluido':
                 chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='ccl')}
-                tipo = 'concluido'
             else:
                 chamados = { 'chamados': Chamado.objects.order_by('data').all()}
         else:
@@ -438,6 +451,28 @@ def concluir_chamado(request, chamado_id):
                 chamado.data_conclusao = date.today()
                 chamado.status = 'ccl'
                 chamado.save()
+
+                solicitante = chamado.solicitante
+                email= chamado.email_solicitante
+                data =  chamado.data
+                ambiente = chamado.ambiente       
+                objeto = chamado.objeto
+                descricao = chamado.descricao
+                atualizacao = chamado.atualizacao
+                data_conclusao = chamado.data_conclusao
+
+
+                conteudo = {
+                'nome_solicitante':solicitante,
+                'email_solicitante':email, 
+                'data':data, 
+                'ambiente':ambiente, 
+                'objeto':objeto, 
+                'descricao':descricao,
+                'atualizacao': atualizacao,
+                'data_conclusao': data_conclusao,
+                }
+                email_html('emails/conclusao_chamado.html', 'envio de chamado',['suportesigen@gmail.com',email], conteudo)
                 messages.success(request, 'Chamado Finalizado')
                 return redirect('gerenciar_chamados')
 
@@ -480,14 +515,19 @@ def abrir_chamado(request):
     espacos = {"espacos":espacos,}
     if request.method == "POST": 
         solicitante = request.POST["solicitante"]
+        email = request.POST["email_solicitante"]
         ambiente = request.POST["ambiente"]
         ambiente2 = get_object_or_404(Espacos, pk=ambiente)
         objeto = request.POST["objeto"]
         descricao = request.POST["descricao"]
-        chamado = Chamado.objects.create(solicitante=solicitante, ambiente=ambiente2, objeto=objeto, descricao=descricao)
-        chamado.save()
-        conteudo = {'nome_solicitante':solicitante,'ambiente':ambiente2, 'data':chamado.data, 'objeto':objeto, 'descricao':descricao}
-        email_html('emails/email_chamado.html', 'envio de chamado', ['suportesigen@gmail.com'], conteudo)
-        return redirect('/adm/gerenciar_chamados/')
+        if valida_email(email):
+            chamado = Chamado.objects.create(solicitante=solicitante, email_solicitante=email, ambiente=ambiente2, objeto=objeto, descricao=descricao)
+            chamado.save()
+            conteudo = {'nome_solicitante':solicitante,'email_solicitante':email, 'ambiente':ambiente2, 'data':chamado.data, 'objeto':objeto, 'descricao':descricao}
+            email_html('emails/email_chamado.html', 'envio de chamado', ['suportesigen@gmail.com'], conteudo)
+            return redirect('/adm/gerenciar_chamados/')
+        else:
+            messages.error(request,'Email Inválido, Tente Novamente')
+            return redirect('gerenciar_chamados')
     return render(request,'chamados/chamados.html', espacos)
 #=====================END ABERTURA DE CHAMADO====================

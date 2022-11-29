@@ -1,0 +1,30 @@
+{%load static%}
+{%block 'head'%}
+<!--meu css-->
+<link rel="stylesheet" href="{% static 'reserva/css/relatorio-reserva.css' %}">
+
+
+{%endblock%}
+{%block 'body'%}
+    <header>
+        <img class="imge" src="https://media-exp1.licdn.com/dms/image/C4E16AQHTLuaKXY_Mjg/profile-displaybackgroundimage-shrink_200_800/0/1614117738110?e=2147483647&v=beta&t=FYyG9m0HpGlHYhj_LnTTnns-_tQUEELzosUeECa0CFM" alt="">
+    </header>
+    <main>
+      <div class="texto">
+        <h1 class="haga1" style="text-align:center; font-size: 20px;">Relatório de Reserva</h1>
+        <hr>
+        <div class="div-flex" style="font-size: 16px;">
+            <p><b>Espaço Reservado:</b> {{registro.espaco}}</p>
+            <p><b>Data da Reserva:</b> {{registro.data}} </p>
+            <p><b>Check-in:</b> {{registro.check_in}}h</p>
+            <p><b>Check-out:</b> {{registro.check_out}}h</p>
+            <p><b>Nome da Empresa: </b>{{registro.empresa}} </p>
+            <p><b>Agente Responsável: </b>{{registro.agente}} </p>
+        <p><b>Número de Pessoas que Ultizaram o Ambiente:</b> {{registro.quantidade_de_pessoas}} pessoas</p>
+        <hr>
+        </div>
+    </main>
+    <footer>
+        
+    </footer>
+{%endblock%}

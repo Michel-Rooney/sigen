@@ -40,9 +40,8 @@
                 <div class="input-box">
                     <label for="input-nome">Nome do Espaço:</label>
                     <input name="input-nome" type="text" id="input-nome" value='{{espaco.nome}}' placeholder="Nome do Espaço" class="input-padrao input-nome" required><br>
-                    <input name="input-imagem1" type="file" accept="image/*" id="input-imagem" class="input-padrao input-img" multiple>
-                    <input name="input-imagem2" type="file" accept="image/*" id="input-imagem" class="input-padrao input-img" multiple>
-                    
+                    <input name="input-imagem" type="file" accept="image/*" id="input-imagem" class="input-padrao input-img" multiple>
+
                     <label for="input-descricao_imagem">Descrição do Espaço:</label><br>
                     <!-- <input name="input-descricao" type="text" id="input-descricao_imagem" value='{{espaco.descricao}}' placeholder="Descrição da Imagem" class="input-padrao" required> -->
                     <textarea name="input-descricao" cols=50 rows=5 type="text" id="input-descricao_imagem" placeholder="Descrição do espaco" class="input-padrao class-text_area" required>{{espaco.descricao}}</textarea>
@@ -98,9 +97,7 @@
                   <label for="input-nome">Nome do Espaço:</label>
                   <input name="input-nome" type="text" id="input-nome" value='{{espaco.nome}}' placeholder="Nome do Espaço" class="input-padrao input-nome" required><br>
 
-                  <input name="input-imagem1" type="file" accept="image/*" value='{{espaco.imagem1.url}}' id="input-imagem" class="input-padrao input-img" multiple required>
-
-                  <input name="input-imagem2" type="file" accept="image/*" value='{{espaco.imagem2.url}}' id="input-imagem" class="input-padrao input-img" multiple required>
+                  <input name="input-imagem" type="file" accept="image/*" value='{{espaco.imagem1.url}}' id="input-imagem" class="input-padrao input-img" multiple required>
 
                   <label for="input-descricao_imagem">Descrição do Espaço:</label><br>
                   <!-- <input name="input-descricao" type="text" id="input-descricao_imagem" value='{{espaco.descricao}}' placeholder="Descrição da Imagem" class="input-padrao" required> -->

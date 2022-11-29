@@ -42,7 +42,7 @@
 }
 #descricao-evento {
   border-radius: 5px;
-  border: 1px solid var(--azul-ninna);
+  border: 1px solid gray;
   font-size: 1rem;
   resize: none;
   padding: 0.3rem 0.3rem;
@@ -51,17 +51,15 @@
   max-width: 1077px;
 }
 #botao-confirmar {
-  border: none;
   border-radius: 5px;
-  background-color: var(--azul-ninna);
-  color: var(--branco-ninna);
+  background-color: #0e0062;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
   margin: 1rem 0;
   padding: 0.5rem 1rem;
   transition: background-color 300ms;
   width: 30%;
-}
-#botao-confirmar:hover {
-  background-color: #57B952;
 }
 
 @media screen and (max-width: 833px) {

@@ -20,17 +20,27 @@ main h1 {
 
 /* div nome */
 .div-nome input{
-    margin-left: 10px;
+    margin-left: 10px;  
+    width: 314px;
 }
 .div-nome {
     padding: 10px;
 }
 
-.div-nome input {
+.div-nome label {
+    font-size: 20px;
+}
+
+.div-email input{
+    margin-left: 17px;
     width: 314px;
 }
 
-.div-nome label {
+.div-email {
+    padding: 10px;
+}
+
+.div-email label {
     font-size: 20px;
 }
 
@@ -40,6 +50,7 @@ main h1 {
 }
 
 .div-ambiente select {
+    width: 314px;
     margin-left: 105px;
 }
 

@@ -12,9 +12,13 @@
       <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
   </form>
 </div>
+
 <div class="botoes">
   <a href="{% url 'check_in'%}"><button class="mainBtn">Check-in</button></a>
   <a href="{% url 'check_out'%}"><button class="mainBtn">Check-out</button></a>
+</div>
+<div class="messages">
+  {% include 'partials/_alertas.html' %}
 </div>
   {% if user.is_authenticated %}
   <div class="segura-parte-branca">

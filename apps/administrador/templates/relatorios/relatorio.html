@@ -1,48 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block 'head' %}<link rel="stylesheet" href="{% static 'reserva/css/relatorio.css'%}">{% endblock %}
-{% block 'title' %}NinnaHub - Login Administrador{% endblock %}
+{% block 'title' %}NinnaHub - Gerenciamento de Relatório{% endblock %}
 {% block 'body' %}
 
 {% include 'partials/_navbar-adm.html' %}
 <main class="main-relatorio">
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary btn-lg">Diário</button>
-        <button type="button" class="btn btn-primary btn-lg">Semanal</button>
-        <button type="button" class="btn btn-primary btn-lg">Mensal</button>
+        <a href="{% url 'relatorio' espaco.id 'd' %}"><button type="button" class="btn btn-primary btn-lg">Diário</button></a>
+        <a href="{% url 'relatorio' espaco.id 's' %}"><button type="button" class="btn btn-primary btn-lg">Semanal</button></a>
+        <a href="{% url 'relatorio' espaco.id 'm' %}"><button type="button" class="btn btn-primary btn-lg">Mensal</button></a>
     </div>
+    {% if registros %}
     <div class="jumbotron">
-        <h1 class="display-4 h1-relatorio">Espaco</h1>
-        <h3 class="h3-relatorio">Horas de Uso</h3>
-            <div class="col-sm-6">
               <table class="table ajustar-table">
                 <thead class="table-dark">
                     <tr class="tr-ajustar">
-                      <th style="padding-right:100px">Empresa</th>
-                      <th style="padding-right:150px">Agente de Reserva</th>
-                      <th style="padding-right:150px">Data</th>  
-                      <th style="padding-right:150px">Total de Horas</th>
-                      <th style="padding-right:150px">Quantidade de Pessoas</th>
-                      <th style="padding-right:150px">PDF</th>
+                      <th>Empresa</th>
+                      <th>Agente de Reserva</th>
+                      <th>Data</th>  
+                      <th>Total de Horas</th>
+                      <th>Quantidade de Pessoas</th>
+                      <th>PDF</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% if registros %}
                         {% for registro in registros %}
                       <tr class="borda-table">
-                          <td style="padding-right:50px">{{registro.empresa}}</td>
-                          <td style="padding-right:50px">{{registro.agente}}</td>
-                          <td style="padding-right:50px">{{registro.data}}</td>
-                          <td style="padding-right:50px">{{registro.hora_inicio}} Até {{registro.hora_fim}}</td>
-                          <td style="padding-right:50px">{{registro.quantidade_de_pessoas}}</td>
-                          <td><a href=""><i class="fa fa-file-text"></i>Gerar PDF</a></td>
+                          <td>{{registro.empresa}}</td>
+                          <td>{{registro.agente}}</td>
+                          <td>{{registro.data}}</td>
+                          <td>{{registro.hora_inicio}} Até {{registro.hora_fim}}</td>
+                          <td>{{registro.quantidade_de_pessoas}} Pessoas</td>
+                          <td><a href="{% url 'teste' registro.id %}">Gerar PDF<i class="fa fa-file-text"></i></a></td>
                       </tr> 
                       {%endfor%}
-                      {%endif%}
                   </tbody>
+                  {%else%}
+                  {% include 'partials/_sem-resultado.html' %} 
+                {%endif%}
               </table>
-          </div>
       </div>
+
 </main>
 
 <!-- Começo do footer -->

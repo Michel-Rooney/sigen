@@ -1,11 +1,26 @@
-<head>
-</head>
-<body>
-    <h1>Abertura de chamado</h1>
-    <p>Nome do Solicitante:{{nome_solicitante}}</p>
-    <p>Ambiente:{{ambiente}}</p>
-    <p>Data:{{data}}</p>
-    <p>Objeto:{{objeto}}</p>
-    <p>Descrição:{{descricao}}</p>
-</body>
-</html>
+{%extends 'base.html'%}
+{%load static%}
+{%block 'head'%}
+    <!--meu css-->
+    <link rel="stylesheet" href="{% static 'reserva/css/email.css'%}">
+{%endblock%}
+{%block 'body'%}
+    <header>
+        <img class="imge" src="https://media-exp1.licdn.com/dms/image/C4E16AQHTLuaKXY_Mjg/profile-displaybackgroundimage-shrink_200_800/0/1614117738110?e=2147483647&v=beta&t=FYyG9m0HpGlHYhj_LnTTnns-_tQUEELzosUeECa0CFM" alt="">
+    </header>
+    <main>
+      <div class="texto">
+        <h1>Abertura de chamado</h1>
+        <h4>Nome do Solicitante: {{nome_solicitante}}</h4>
+        <p><b>Ambiente:</b> {{ambiente}}</p>
+        <p><b>Data:</b> {{data}}</p>
+        <p><b>Objeto:</b> {{objeto}}</p>
+        <h4>Descrição:</h4>
+        <p>{{descricao}}</p>
+ 
+        </div>
+        </main>
+        <footer>
+            acesse:https://ninnahub.com.br/
+         </footer>
+{%endblock%}

@@ -63,7 +63,7 @@ main {
 .parte-branca {
     width: 30%;
     background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
-    margin-top: 40px;
+    margin-top: 7px;
     margin-bottom: 20px;
     border-radius: 20px;
     padding: 40px;
@@ -73,6 +73,8 @@ main {
 }
 .parte-branca h1{
     color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    margin-left: 20px;
 }
 
 .parte-branca p {
@@ -80,17 +82,38 @@ main {
     color: white;
 }
 
+.parte-branca button {
+    color: white;
+}
+
+.parte-branca button:hover {
+    color: white;
+    background: rgb(14,0,98);
+}
+
 a {
     text-decoration: none;
 }
 
-.botao {
-    display: flex;
-    padding: 10px 20px;
-    border-radius: 15px;
-    background:  #ECEDEE;
+.link-btn-check_out {
     color: black;
-    padding-top: 20px;
+}
+
+.botao {
+    width: 40%;
+    border-radius: 10px;
+    height: 60px;
+    background:  rgb(14,0,98);
+    color: black;
+    border: 2px solid black;
+}
+
+.botao p {
+    color: white;
+    font-weight: bold;
+    padding-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
 }
 
 .botao:hover {
@@ -116,10 +139,10 @@ a {
     color: white;
 }
 
-#quantidade {
+/* #quantidade {
     width: 7%;
     border-radius: 20px;
-}
+} */
 
 .botoes-check {
     margin-top: 150px;
@@ -144,4 +167,24 @@ a {
 }
 .semdados img{
     width: 100px;
+}
+
+.messages {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+#imagem-modal{
+    width: 60px;
+    height: 60px;
+}
+
+.modal-content {
+    margin-top: 180px;
+}
+
+#quantidade {
+    width: 60%;
+    border-radius: 10px;
+    border: 1px solid gray;
 }
