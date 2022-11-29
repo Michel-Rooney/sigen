@@ -119,38 +119,41 @@
                     {%endfor%} 
                 </tbody>
               </table>
- <!-- Modal -->
- <div class="modal fade" id="filtro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Filtrar Por:</h5></div>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p class="text-muted">Filtrar:</p>
-          <form method="POST" action="{% url 'gerenciar_chamados' %}">{%csrf_token%}
-            <select name="filtro" id="ambiente" maxlength="50">
-                <option value="todos">Todos</option>
-                <option value="aberto">Aberto</option>
-                <option value="andamento">Em Andamento</option>
-                <option value="concluido">Concluido</option>
-            </select>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
-          <button type="submit" value='enviar' class="btn btn-success">Filtrar</button>
-      </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Modal end -->
+ 
 {%else%}
   {% include 'partials/_sem-resultado.html' %}
 {%endif%}
+<!-- Modal -->
+<div class="modal fade" id="filtro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="container d-flex pl-0"><img id="imagem-modal" src="{% static 'reserva/images/logo-nina.png'%}">
+          <h5 class="modal-title ml-2" id="exampleModalLabel">Filtrar Por:</h5>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted">Filtrar:</p>
+        <form method="POST" action="{% url 'gerenciar_chamados' %}">{%csrf_token%}
+          <select name="filtro" id="ambiente" maxlength="50">
+            <option value="todos">Todos</option>
+            <option value="aberto">Aberto</option>
+            <option value="andamento">Em Andamento</option>
+            <option value="concluido">Concluido</option>
+          </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
+        <button type="submit" value='enviar' class="btn btn-success">Filtrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal end -->
 </main>
 
 <!-- <script src="{% static 'reserva/js/gerenciar-usuario.js'%}"></script> -->

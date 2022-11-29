@@ -419,14 +419,11 @@ def gerenciar_chamados(request):
         if request.method == 'POST':
             filtro = request.POST['filtro']          
             if filtro == 'aberto':
-                chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='abt')}
-                tipo = 'abt'
+                chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='abt')}              
             elif filtro == 'andamento':
                 chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='and')}
-                tipo = 'andamento'
             elif filtro == 'concluido':
                 chamados = { 'chamados': Chamado.objects.order_by('data').filter(status='ccl')}
-                tipo = 'concluido'
             else:
                 chamados = { 'chamados': Chamado.objects.order_by('data').all()}
         else:
