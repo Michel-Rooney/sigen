@@ -13,26 +13,25 @@
     </div>
     {% if registros %}
     <div class="jumbotron">
-            <div class="col-sm-6">
               <table class="table ajustar-table">
                 <thead class="table-dark">
                     <tr class="tr-ajustar">
-                      <th style="padding-right:100px">Empresa</th>
-                      <th style="padding-right:150px">Agente de Reserva</th>
-                      <th style="padding-right:150px">Data</th>  
-                      <th style="padding-right:150px">Total de Horas</th>
-                      <th style="padding-right:150px">Quantidade de Pessoas</th>
-                      <th style="padding-right:150px">PDF</th>
+                      <th>Empresa</th>
+                      <th>Agente de Reserva</th>
+                      <th>Data</th>  
+                      <th>Total de Horas</th>
+                      <th>Quantidade de Pessoas</th>
+                      <th>PDF</th>
                     </tr>
                   </thead>
                   <tbody>
                         {% for registro in registros %}
                       <tr class="borda-table">
-                          <td style="padding-right:50px">{{registro.empresa}}</td>
-                          <td style="padding-right:50px">{{registro.agente}}</td>
-                          <td style="padding-right:50px">{{registro.data}}</td>
-                          <td style="padding-right:50px">{{registro.hora_inicio}} Até {{registro.hora_fim}}</td>
-                          <td style="padding-right:50px">{{registro.quantidade_de_pessoas}}</td>
+                          <td>{{registro.empresa}}</td>
+                          <td>{{registro.agente}}</td>
+                          <td>{{registro.data}}</td>
+                          <td>{{registro.hora_inicio}} Até {{registro.hora_fim}}</td>
+                          <td>{{registro.quantidade_de_pessoas}} Pessoas</td>
                           <td><a href="{% url 'teste' registro.id %}">Gerar PDF<i class="fa fa-file-text"></i></a></td>
                       </tr> 
                       {%endfor%}
@@ -41,7 +40,6 @@
                   {% include 'partials/_sem-resultado.html' %} 
                 {%endif%}
               </table>
-          </div>
       </div>
 
 </main>

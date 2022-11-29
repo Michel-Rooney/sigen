@@ -1,9 +1,14 @@
 .main-relatorio {
     margin-top: 150px;
 }
-
+ 
 .ajustar-table th{
-    background:rgb(14,0,98) ;
+    background:rgb(14,0,98);
+    text-align: center;
+}
+
+tbody {
+    text-align: center;
 }
 
 .h1-relatorio {
