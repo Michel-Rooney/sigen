@@ -34,16 +34,12 @@ body, input, textarea, button {
 }
 
 .btn-box button {
-    color: white;
+    color: var(--azul-ninna);
     cursor: pointer;
-    background: var(--azul-ninna);
+    background: var(--verde-ninna);
     border: none;
     border-radius: 8px;
     padding: 0.5rem 1rem;
-}
-
-.btn-box button:hover {
-    color: black;
 }
 
 .espaco {
@@ -53,7 +49,7 @@ body, input, textarea, button {
     place-content: end center;
     padding-bottom: 2rem;
     margin: 1rem 1rem;
-    background-color: var(--azul-ninna);
+    background-color: blue;
     width: 30%;
     height: 400px;
 }
