@@ -1,10 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import *
 from apps.administrador.models import Espacos
-from django.contrib import messages
 from .models import Registro, Confirmacao
+from django.contrib import messages
+from .models import *
 from .utils import *
-
 
 
 # ==================== Home ====================
@@ -20,13 +19,9 @@ def home(request):
         email = request.POST['email-id']
         subject = request.POST['subject-id']
         mensagem = request.POST['message']
-        
-        conteudo = {
-            'nome' : nome, 'email' : email, 'subject' : subject, 'mensagem' : mensagem
-        }
+        conteudo = {'nome' : nome, 'email' : email, 'subject' : subject, 'mensagem' : mensagem}
         email_html('emails/contate_me.html', subject, ['suportesigen@gmail.com'], conteudo)
         return redirect('/')
-
 
 def descricao(request, espaco_id):
     """PAGINA DE DESCRIÇÂO DOS ESPAÇO"""
@@ -85,11 +80,10 @@ def registro(request, espaco_id):
         link_ativacao = make_token(agente, email, registro)
         conteudo = {'agente':agente, 'empresa':empresa, 'nome_evento':nome_evento, 'data_reserva':data_reserva, 'hora_inicio':hora_inicio, 'hora_fim':hora_fim, 'link_ativacao':link_ativacao}
 
-        email_html('emails/confirmacao_registro.html', 'Confirmação de Registro', ['suportesigen@gmail.com'], conteudo)
+        email_html('emails/confirmacao_registro.html', 'Confirmação de Registro', ['suportesigen@gmail.com', email], conteudo)
         return redirect('registro', espaco_id)
     else:
         return render(request, 'registro.html')
-
 
 def ativar_conta(request, token):
     token = get_object_or_404(Confirmacao, token=token)
@@ -104,4 +98,3 @@ def ativar_conta(request, token):
     token.save()
     messages.success(request, 'Conta ativa com sucesso')
     return redirect('registro', registro.espacos.id)
-
