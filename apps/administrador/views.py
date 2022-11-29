@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from apps.reserva.models import Confirmacao, Registro
+from apps.reserva.models import Confirmacao, Registro, ReservasFinalizadas
 from .models import Chamado, NivelUsuario, Espacos
 from datetime import datetime, date, timedelta
 from django.contrib.auth.models import User
@@ -279,7 +279,7 @@ def relatorio(request,espaco_id):
     usuario = request.user.id
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
-        registros = Registro.objects.filter(espacos=espaco_id)
+        registros = ReservasFinalizadas.objects.filter(espaco=espaco_id)
         # qtd = Confirmacao.objects.filter(registro__in=registros)
         # conteudo = {'casos' : Confirmacao.objects.filter(registro__in=empresa,check_in=True,check_out=False)}
        
