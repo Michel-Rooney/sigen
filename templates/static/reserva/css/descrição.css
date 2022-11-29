@@ -59,15 +59,13 @@ h2, h3{
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.button{
-  background: linear-gradient(135deg, rgb(53,62,135) 39%,rgb(14,0,98) 101%);
-  border: none;
-  border-radius: 6px;
-  padding: 10px 10px
+
+.link-btn button {
+  color: white;
 }
-.button :hover{
-  text-decoration: underline;
-}
-.text{
-  background-color: black;
+
+.ajuste {
+  background: rgb(14,0,98);
+  border-radius: 10px;
+  padding: 10px;
 }

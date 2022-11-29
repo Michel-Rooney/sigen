@@ -24,7 +24,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal edição -->
+    <!-- Modal edição --> 
     <div class="modal fade" id="modal-editar{{espaco.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -35,21 +35,19 @@
               </button>
             </div>
             <div class="modal-body">
-              <p class="text-muted">Deseja Editar esse espaço?</p>
+              <p class="text-muted p-deseja-edit">Deseja Editar esse espaço?</p>
               <form action="{% url 'editar_espaco_id' espaco.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
                 <div class="input-box">
                     <label for="input-nome">Nome do Espaço:</label>
-                    <input name="input-nome" type="text" id="input-nome" value='{{espaco.nome}}' placeholder="Nome do Espaço" class="input-padrao" required><br>
-                    <label for="input-imagem">Imagem do Espaço:</label>
-                    <img src="{{espaco.imagem1.url}}" width="30%">
-                    <input name="input-imagem" type="file" accept="image/*" id="input-imagem" class="input-padrao" multiple>
+                    <input name="input-nome" type="text" id="input-nome" value='{{espaco.nome}}' placeholder="Nome do Espaço" class="input-padrao input-nome" required><br>
+                    <input name="input-imagem" type="file" accept="image/*" id="input-imagem" class="input-padrao input-img" multiple>
 
                     <label for="input-descricao_imagem">Descrição do Espaço:</label><br>
                     <!-- <input name="input-descricao" type="text" id="input-descricao_imagem" value='{{espaco.descricao}}' placeholder="Descrição da Imagem" class="input-padrao" required> -->
-                    <textarea name="input-descricao" cols=50 rows=5 type="text" id="input-descricao_imagem" placeholder="Descrição do espaco" class="input-padrao" required>{{espaco.descricao}}</textarea>
+                    <textarea name="input-descricao" cols=50 rows=5 type="text" id="input-descricao_imagem" placeholder="Descrição do espaco" class="input-padrao class-text_area" required>{{espaco.descricao}}</textarea>
                     <br>
                     <label for="input-capacidade">Capacidade:</label>
-                    <input name="input-capacidade" type="number" id="input-capacidade" value='{{espaco.capacidade}}' placeholder="Capacidade" class="input-padrao" required>
+                    <input name="input-capacidade" type="number" id="input-capacidade" value='{{espaco.capacidade}}' placeholder="Capacidade" class="input-padrao input-capaci" required>
                 </div>
             </div>
             <div class="modal-footer">
@@ -93,21 +91,20 @@
             </button>
           </div>
           <div class="modal-body">
-            <p class="text-muted">Deseja Adicionar esse espaço?</p>
+            <p class="text-muted p-deseja-edit">Deseja Adicionar esse espaço?</p>
             <form action="{% url 'adicionar_espaco' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
               <div class="input-box">
                   <label for="input-nome">Nome do Espaço:</label>
-                  <input name="input-nome" type="text" id="input-nome" value='{{espaco.nome}}' placeholder="Nome do Espaço" class="input-padrao" required><br>
-                  <label for="input-imagem">Imagem do Espaço:</label>
+                  <input name="input-nome" type="text" id="input-nome" value='{{espaco.nome}}' placeholder="Nome do Espaço" class="input-padrao input-nome" required><br>
 
-                  <input name="input-imagem" type="file" accept="image/*" value='{{espaco.imagem1.url}}' id="input-imagem" class="input-padrao" multiple required>
+                  <input name="input-imagem" type="file" accept="image/*" value='{{espaco.imagem1.url}}' id="input-imagem" class="input-padrao input-img" multiple required>
 
                   <label for="input-descricao_imagem">Descrição do Espaço:</label><br>
                   <!-- <input name="input-descricao" type="text" id="input-descricao_imagem" value='{{espaco.descricao}}' placeholder="Descrição da Imagem" class="input-padrao" required> -->
-                  <textarea name="input-descricao" cols=50 rows=5 type="text" id="input-descricao_imagem" placeholder="Descrição do espaco" class="input-padrao" required>{{espaco.descricao}}</textarea>
+                  <textarea name="input-descricao" cols=50 rows=5 type="text" id="input-descricao_imagem" placeholder="Descrição do espaco" class="input-padrao class-text_area" required>{{espaco.descricao}}</textarea>
                   <br>
                   <label for="input-capacidade">Capacidade:</label>
-                  <input name="input-capacidade" type="number" id="input-capacidade" value='{{espaco.capacidade}}' placeholder="Capacidade" class="input-padrao" required>
+                  <input name="input-capacidade" type="number" id="input-capacidade" value='{{espaco.capacidade}}' placeholder="Capacidade" class="input-padrao input-capaci" required>
               </div>
           </div>
           <div class="modal-footer">

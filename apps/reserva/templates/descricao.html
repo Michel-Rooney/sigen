@@ -14,8 +14,10 @@
             <h2>{{espaco.nome}}</h2>
             <h5>Capacidade: {{espaco.capacidade}} Pessoas</h5>
             <p>{{espaco.descricao}}</p>
-            <div>
-              <a href="{% url 'registro' espaco.id %}"><button type="button" class="button"><small><i class="text"></i></i>Realizar Reserva</small></button></a>
+            <div class="botao">
+              <a href="{% url 'registro' espaco.id %}" class="link-btn">
+                <button type="button" class="button ajuste">Realizar Reserva</button>
+              </a>
             </div>
           </div>
         </div>

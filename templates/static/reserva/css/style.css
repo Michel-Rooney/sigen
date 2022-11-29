@@ -9,9 +9,9 @@
   margin: 4rem 0;
 }
 .titulo {
-  color: var(--verde-ninna);
+  color: rgb(14,0,98);
   text-align: center;
-  font-weight: 400;
+  font-weight: bold;
   font-size: 1.5rem;
   margin: 1rem 0;
 }
@@ -21,7 +21,7 @@
   margin-bottom: 1rem;
 }
 .input-padrao {
-  border: 1px solid var(--azul-ninna);
+  border: 1px solid gray;
   border-radius: 5px;
   font-size: 1rem;
   padding: 0.3rem;
