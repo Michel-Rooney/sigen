@@ -26,6 +26,7 @@ urlpatterns =[
     # Relátorios
     path('gerenciar_relatorios', views.gerenciar_relatorios, name='gerenciar_relatorios'),
     path('relatorio/<int:espaco_id>/', views.relatorio, name='relatorio'),
+    path('relatorio/<int:espaco_id>/<str:opc>', views.relatorio, name='relatorio'),
     path('pdf_relatorio/<int:registro_id>',  views.render_pdf_view, name='teste'),
 
     #Registrar novo Adm

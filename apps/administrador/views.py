@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from apps.reserva.models import Confirmacao, Registro, ReservasFinalizadas
 from .models import Chamado, NivelUsuario, Espacos
 from datetime import datetime, date, timedelta
+import datetime
 from django.contrib.auth.models import User
 from .validar.validate import valida_email
 from django.contrib import messages, auth
@@ -280,35 +281,24 @@ def gerenciar_relatorios(request):
         return redirect('administrador')
 
 @login_required(login_url='/adm/login')
-def relatorio(request,espaco_id):
+def relatorio(request,espaco_id, opc='n'):
     """GERAR RELATÓRIO DE UM ESPAÇO ESPECIFICO"""
     usuario = request.user.id
+    espaco = Espacos.objects.get(pk=espaco_id)
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
-        registros = ReservasFinalizadas.objects.filter(espaco=espaco_id)
-        # qtd = Confirmacao.objects.filter(registro__in=registros)
-        # conteudo = {'casos' : Confirmacao.objects.filter(registro__in=empresa,check_in=True,check_out=False)}
-       
+        if opc == 'n':
+            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id)
+        elif opc == 'd':
+            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.datetime.now())
+        elif opc == 's':
+            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.datetime.now()-datetime.timedelta(days=7))
+        elif opc == 'm':
+            registros = ReservasFinalizadas.objects.filter(espaco=espaco_id).filter(data__gt= datetime.datetime.now()-datetime.timedelta(days=30))
         
-        # registros = Confirmacao.objects.filter(registro=id)
-        # print(registros.qtd_participantes)
-        #registro = get_object_or_404(Registro, id=id)
-        #reservas_confirmadas = Confirmacao.objects.all()
-
-        # hora_fim  = datetime(registro.hora_fim)
-        # hora_fim  = int(datetime.strftime(hora_fim,  "%I %M"))
-        # hora_inicio = datetime(registro.hora_inicio)
-        # hora_inicio = int(datetime.strftime(hora_inicio, "%I %M"))
-        # horas_de_uso = hora_fim - hora_inicio
-        
-        # # hora_fim1 = datetime.strptime(str(registro.hora_fim),"%H:%M:%S")
-        # # hora_fim2 = hora_fim1.time()
-        # # hora_inicio1 = datetime.strptime(str(registro.hora_inicio),"%H:%M:%S")
-        # # hora_inicio2 = hora_inicio1.time()
-        # # #horas_de_uso = int(hora_fim2) - int(hora_inicio2)
-        # # #horas_de_uso = hora_fim2 - hora_inicio2
         context = {
         'registros': registros,
+        'espaco': espaco,
             #'reservas_finalizadas': reservas_finalizadas,
         }
 
