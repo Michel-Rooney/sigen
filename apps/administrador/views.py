@@ -154,7 +154,7 @@ def gerenciar_reserva(request):
 @login_required(login_url='/adm/login')
 def cancelar_reserva(request, reserva_id):
     """Cancelar Reserva"""
-    reserva = Registro.objects.get(reserva_id=id)
+    reserva = Registro.objects.get(id=reserva_id)
     conteudo = {'espacos':reserva.espacos, 'agente':reserva.agente, 'data_reserva':reserva.data_reserva, 'hora_inicio':reserva.hora_inicio, 'hora_fim':reserva.hora_fim}
     email_html('emails/reserva_cancelada.html', 'Cancelamento da Reserva', ['suportesigen@gmail.com'], conteudo)
     reserva.delete()
