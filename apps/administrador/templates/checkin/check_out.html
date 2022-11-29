@@ -7,7 +7,7 @@
 {% include 'partials/_navbar-adm.html' %}
 
 <div class="primeira-parte">
-  <form action="{% url 'check_in' %}" method="POST">
+  <form action="{% url 'check_out' %}" method="POST">
     {% csrf_token %}
       <input type="text" name="buscar" placeholder="Pesquisar por empresa">
       <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
