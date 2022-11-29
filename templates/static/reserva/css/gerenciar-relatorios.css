@@ -14,3 +14,13 @@
 .blue {
     background:rgb(14,0,98);
 }
+
+.ajustar-a {
+    border-radius: 10px;
+}
+
+.card-body a:hover {
+    text-decoration:none;
+    background: rgb(14,0,98);
+    color: white;  
+}
