@@ -34,6 +34,7 @@ class Chamado(models.Model):
         ('ccl', 'CONCLUIDO'),
         )
     solicitante = models.CharField(max_length=255)
+    email_solicitante = models.EmailField(max_length=255)
     data = models.DateField(auto_now_add=True)
     ambiente = models.ForeignKey(Espacos, on_delete=models.CASCADE)
     objeto = models.CharField(max_length=255)

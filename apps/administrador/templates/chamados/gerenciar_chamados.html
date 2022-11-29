@@ -97,7 +97,7 @@
                           <div class="modal-body">
                             <p class="text-muted">Atualize o chamado de {{chamado.solicitante}}:</p>
                             <form method="POST" action="{%url 'concluir_chamado' chamado.id %}">{%csrf_token%}
-                            <textarea name="atualizacao" rows="8" cols="60" required></textarea>
+                            <textarea name="atualizacao" placeholder="Adicione um breve descrição do que foi feito" rows="8" cols="60" required></textarea>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>

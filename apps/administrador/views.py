@@ -432,6 +432,28 @@ def concluir_chamado(request, chamado_id):
                 chamado.data_conclusao = date.today()
                 chamado.status = 'ccl'
                 chamado.save()
+
+                solicitante = chamado.solicitante
+                email= chamado.email_solicitante
+                data =  chamado.data
+                ambiente = chamado.ambiente       
+                objeto = chamado.objeto
+                descricao = chamado.descricao
+                atualizacao = chamado.atualizacao
+                data_conclusao = chamado.data_conclusao
+
+
+                conteudo = {
+                'nome_solicitante':solicitante,
+                'email_solicitante':email, 
+                'data':data, 
+                'ambiente':ambiente, 
+                'objeto':objeto, 
+                'descricao':descricao,
+                'atualizacao': atualizacao,
+                'data_conclusao': data_conclusao,
+                }
+                email_html('emails/conclusao_chamado.html', 'envio de chamado',['suportesigen@gmail.com',email], conteudo)
                 messages.success(request, 'Chamado Finalizado')
                 return redirect('gerenciar_chamados')
 
@@ -474,14 +496,19 @@ def abrir_chamado(request):
     espacos = {"espacos":espacos,}
     if request.method == "POST": 
         solicitante = request.POST["solicitante"]
+        email = request.POST["email_solicitante"]
         ambiente = request.POST["ambiente"]
         ambiente2 = get_object_or_404(Espacos, pk=ambiente)
         objeto = request.POST["objeto"]
         descricao = request.POST["descricao"]
-        chamado = Chamado.objects.create(solicitante=solicitante, ambiente=ambiente2, objeto=objeto, descricao=descricao)
-        chamado.save()
-        conteudo = {'nome_solicitante':solicitante,'ambiente':ambiente2, 'data':chamado.data, 'objeto':objeto, 'descricao':descricao}
-        email_html('emails/email_chamado.html', 'envio de chamado', ['suportesigen@gmail.com'], conteudo)
-        return redirect('/adm/gerenciar_chamados/')
+        if valida_email(email):
+            chamado = Chamado.objects.create(solicitante=solicitante, email_solicitante=email, ambiente=ambiente2, objeto=objeto, descricao=descricao)
+            chamado.save()
+            conteudo = {'nome_solicitante':solicitante,'email_solicitante':email, 'ambiente':ambiente2, 'data':chamado.data, 'objeto':objeto, 'descricao':descricao}
+            email_html('emails/email_chamado.html', 'envio de chamado', ['suportesigen@gmail.com'], conteudo)
+            return redirect('/adm/gerenciar_chamados/')
+        else:
+            messages.error(request,'Email Inválido, Tente Novamente')
+            return redirect('gerenciar_chamados')
     return render(request,'chamados/chamados.html', espacos)
 #=====================END ABERTURA DE CHAMADO====================
