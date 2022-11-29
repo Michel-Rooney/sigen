@@ -274,12 +274,16 @@ def gerenciar_relatorios(request):
         return redirect('administrador')
 
 @login_required(login_url='/adm/login')
-def relatorio(request,id):
+def relatorio(request,espaco_id):
     """GERAR RELATÓRIO DE UM ESPAÇO ESPECIFICO"""
     usuario = request.user.id
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
-        registros = Confirmacao.objects.filter(pk=id)
+        registros = Registro.objects.filter(espacos=espaco_id)
+        # qtd = Confirmacao.objects.filter(registro__in=registros)
+        # conteudo = {'casos' : Confirmacao.objects.filter(registro__in=empresa,check_in=True,check_out=False)}
+       
+        
         # registros = Confirmacao.objects.filter(registro=id)
         # print(registros.qtd_participantes)
         #registro = get_object_or_404(Registro, id=id)
