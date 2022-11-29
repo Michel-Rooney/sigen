@@ -35,7 +35,7 @@
                           <td style="padding-right:50px">{{registro.data}}</td>
                           <td style="padding-right:50px">{{registro.hora_inicio}} Até {{registro.hora_fim}}</td>
                           <td style="padding-right:50px">{{registro.quantidade_de_pessoas}}</td>
-                          <td><a href=""><i class="fa fa-file-text"></i>Gerar PDF</a></td>
+                          <td><a href="{% url 'teste' registro.id %}">Gerar PDF<i class="fa fa-file-text"></i></a></td>
                       </tr> 
                       {%endfor%}
                       {%endif%}

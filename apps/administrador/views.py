@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect, render, get_list_or_404
 from django.contrib.auth.decorators import login_required
 from apps.reserva.models import Confirmacao, Registro, ReservasFinalizadas
 from .models import Chamado, NivelUsuario, Espacos
@@ -9,6 +9,10 @@ from django.contrib import messages, auth
 from core.settings import BASE_DIR
 from apps.reserva.utils import *
 import os
+from django.http import HttpResponse
+from xhtml2pdf import pisa
+from django.http import HttpResponse
+from django.template.loader import get_template
 
 #========================LOGIN ADM=======================
 def login(request):
@@ -309,6 +313,32 @@ def relatorio(request,espaco_id):
         return render(request, 'relatorios/relatorio.html', context)
     else:
         return redirect('administrador')
+@login_required(login_url='/adm/login')
+def render_pdf_view(request, registro_id):
+
+    registro = get_object_or_404(ReservasFinalizadas, id=registro_id)
+    print(registro)  
+    template_path = 'pdf1.html'
+    context = {'registro': registro}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    #if dowaload:
+    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    # if display:
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>',context)
+    return response
+    
+    
 #==============END RELATORIOS DE USO DOS ESPAÇOS===============
 
 
