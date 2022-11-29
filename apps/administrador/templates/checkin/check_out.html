@@ -19,29 +19,47 @@
   <a href="{% url 'check_out'%}"><button class="mainBtn">Check-out</button></a>
 </div>
   {% if user.is_authenticated %}
+  <div class="segura-parte-branca">
     {%if casos %}
       {% for caso in casos %}
           <div class="parte-branca">
             <h1>{{caso}}</h1>
+            <p>Data reserva: {{caso.registro.data_reserva}}</p>
+            <p>De: {{caso.registro.hora_inicio}} às {{caso.registro.hora_fim}}</p>
               {% if caso.check_in == True and caso.check_out == False %}
-              <a href="#" onclick="Check('aparecer')">
-                <div class="botao">
-                    <p> Check-out</p>
-                </div>
-              </a>
-            <form action="{%url 'realizar_check_out' caso.id %}" method="POST" name="form" id="sumir" >
-              <label for="quantidade" class="label-texto"> *Quantas pessoas utilizaram o ambiente?</label>
-              {% csrf_token %}
-              {{ form.as_p }}
-                <input type="text" name="quantidade" id="quantidade"/>
-                <input type="submit" value="Enviar" class="botao-form">
-            </form>
+              <button class="btn mainBtn btn-lg botao-modal ajuste" data-toggle="modal" data-target="#exampleModal{{caso.id}}">Realizar Check Out</button>
               {%endif%}
           </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal{{caso.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="container d-flex pl-0"><img id="imagem-modal"src="{% static 'reserva/images/logo-nina.png'%}"><h5 class="modal-title ml-2" id="exampleModalLabel">Concluir Chamado</h5></div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p class="text-muted">Quantas pessoas utilizaram o ambiente?</p>
+                <form method="POST" action="{%url 'realizar_check_out' caso.id %}">{%csrf_token%}
+                <input type="number" name="quantidade" id="quantidade" required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Voltar</button>
+                <button type="submit" value='enviar' class="btn btn-success">Check-out</button>
+            </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal end -->
       {% endfor %}
       {%else%}
         <div class="semdados"><img src="{% static 'reserva/images/ninna.png'%}"><h3>Nenhuma Reserva Para Check Out No Momento</h3></div> 
       {%endif%}
+    </div>
   {%endif%}
     <!-- Começo do footer -->
     {% include 'partials/_footer.html' %}

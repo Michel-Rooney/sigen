@@ -102,7 +102,7 @@
 }
 
 .table {
-    margin-top: 80px;
+    margin-top: 10px;
     margin-bottom: 200px;
 }
 
@@ -126,8 +126,10 @@
 
 .messages{
     text-align: center;
-    width: 500px;
-    background-color: #C43352;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
 }
 
 
