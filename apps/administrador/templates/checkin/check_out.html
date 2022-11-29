@@ -27,7 +27,7 @@
             <p>Data reserva: {{caso.registro.data_reserva}}</p>
             <p>De: {{caso.registro.hora_inicio}} às {{caso.registro.hora_fim}}</p>
               {% if caso.check_in == True and caso.check_out == False %}
-              <button class="btn mainBtn btn-lg botao-modal ajuste" data-toggle="modal" data-target="#exampleModal{{caso.id}}">Realizar Check Out</button>
+              <button class="mainBtn btn-lg botao-modal ajuste" data-toggle="modal" data-target="#exampleModal{{caso.id}}">Realizar Check Out</button>
               {%endif%}
           </div>
 

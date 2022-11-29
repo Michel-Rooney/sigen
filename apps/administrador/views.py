@@ -227,6 +227,7 @@ def realizar_check_out(request, id):
             hora_inicio = checando.registro.hora_inicio
             hora_fim = checando.registro.hora_fim
             espaco = checando.registro.espacos
+            registro= checando.registro
             check_in = checando.horario_checkin
             check_out = checando.horario_checkot
             quantidade_de_pessoas = checando.qtd_participantes
@@ -238,6 +239,7 @@ def realizar_check_out(request, id):
                 hora_inicio = hora_inicio,
                 hora_fim = hora_fim,
                 espaco = espaco,
+                registro= registro,
                 check_in = check_in,
                 check_out = check_out,
                 quantidade_de_pessoas = quantidade_de_pessoas,
