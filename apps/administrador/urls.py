@@ -25,7 +25,7 @@ urlpatterns =[
     
     # Relátorios
     path('gerenciar_relatorios', views.gerenciar_relatorios, name='gerenciar_relatorios'),
-    path('relatorio/<id>/', views.relatorio, name='relatorio'),
+    path('relatorio/<int:espaco_id>/', views.relatorio, name='relatorio'),
     #Registrar novo Adm
     path('adicionar_adm/', views.adicionar_adm, name = 'adicionar_adm'),
     path('editar_adm/<int:usuario_id>', views.editar_adm, name = 'editar_adm'),

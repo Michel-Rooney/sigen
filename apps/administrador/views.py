@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from apps.reserva.models import Confirmacao, Registro
+from apps.reserva.models import Confirmacao, Registro, ReservasFinalizadas
 from .models import Chamado, NivelUsuario, Espacos
 from datetime import datetime, date, timedelta
 from django.contrib.auth.models import User
@@ -274,12 +274,16 @@ def gerenciar_relatorios(request):
         return redirect('administrador')
 
 @login_required(login_url='/adm/login')
-def relatorio(request,id):
+def relatorio(request,espaco_id):
     """GERAR RELATÓRIO DE UM ESPAÇO ESPECIFICO"""
     usuario = request.user.id
     nivel = get_object_or_404(NivelUsuario, usuario=usuario)
     if nivel.status == 'TOP':
-        registros = Confirmacao.objects.filter(pk=id)
+        registros = ReservasFinalizadas.objects.filter(espaco=espaco_id)
+        # qtd = Confirmacao.objects.filter(registro__in=registros)
+        # conteudo = {'casos' : Confirmacao.objects.filter(registro__in=empresa,check_in=True,check_out=False)}
+       
+        
         # registros = Confirmacao.objects.filter(registro=id)
         # print(registros.qtd_participantes)
         #registro = get_object_or_404(Registro, id=id)
