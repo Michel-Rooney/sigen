@@ -353,6 +353,7 @@ def remover_espaco_id(request, espaco_id):
     if nivel.status == 'TOP':
         espaco = get_object_or_404(Espacos, pk=espaco_id)
         os.remove(os.path.join(BASE_DIR, espaco.imagem1.path))
+        os.remove(os.path.join(BASE_DIR, espaco.imagem2.path))
         espaco.delete()
         return redirect('/adm/gerenciar_espacos/')
     else:
@@ -370,11 +371,15 @@ def editar_espaco_id(request, espaco_id):
             nome = request.POST['input-nome']
             descricao = request.POST['input-descricao']
             try:
-                imagem = request.FILES['input-imagem']
+                imagem1 = request.FILES['input-imagem1']
                 os.remove(os.path.join(BASE_DIR, espaco.imagem1.path))
-                espaco.imagem1 = imagem
-            except:
-                pass
+                espaco.imagem1 = imagem1
+            except: pass
+            try:
+                imagem2 = request.FILES['input-imagem2']
+                os.remove(os.path.join(BASE_DIR, espaco.imagem2.path))
+                espaco.imagem2 = imagem2
+            except: pass
             capacidade = request.POST['input-capacidade']
 
             espaco.nome = nome
@@ -394,9 +399,10 @@ def adicionar_espaco(request):
         if request.method == 'POST':
             nome = request.POST['input-nome']
             descricao = request.POST['input-descricao']
-            imagem1 = request.FILES['input-imagem']
+            imagem1 = request.FILES['input-imagem1']
+            imagem2 = request.FILES['input-imagem2']
             capacidade = request.POST['input-capacidade']
-            espaco = Espacos.objects.create(nome=nome, descricao=descricao, imagem1=imagem1, capacidade=capacidade)
+            espaco = Espacos.objects.create(nome=nome, descricao=descricao, imagem1=imagem1, imagem2=imagem2, capacidade=capacidade)
             return redirect('/adm/gerenciar_espacos/')
 #==================END GERENCIAMENTO DE ESPAÇOS=================
 
