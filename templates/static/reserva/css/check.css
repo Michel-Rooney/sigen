@@ -123,7 +123,6 @@ a {
 
 .botao-form {
     background: rgb(53,62,135);
-    margin-left: 5px;
     padding: 5px;
     border-radius: 7px;
     color: white;
@@ -187,4 +186,11 @@ a {
     width: 60%;
     border-radius: 10px;
     border: 1px solid gray;
+}
+
+.btn-checkin {
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    background: rgb(14,0,98);
 }

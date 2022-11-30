@@ -12,7 +12,7 @@
       <button class="butao-lupa" type="submit"><a href="#"><img src="{% static 'reserva/images/lupa.png' %}" alt="lupa" class="img-lupa"></a></button>
   </form>
 </div>
-
+ 
 <div class="botoes">
   <a href="{% url 'check_in'%}"><button class="mainBtn">Check-in</button></a>
   <a href="{% url 'check_out'%}"><button class="mainBtn">Check-out</button></a>
@@ -34,7 +34,7 @@
                 <form action="{%url 'realizar_check_in' caso.id %}" method="POST" name="form" >
                   {% csrf_token %}
                   {{ form.as_p }}
-                  <button type="submit" class="botao-form">Check-in</button>
+                  <button type="submit" class="botao-form mainBtn btn-checkin" style="font-size:20px"> Realizar Check-in</button>
                 </form>
               {%else%}
               {%endif%}
