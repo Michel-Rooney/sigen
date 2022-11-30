@@ -137,7 +137,7 @@ def buscar_adm(request):
             nome_buscado = request.POST['buscar']
             print(nome_buscado)
             if nome_buscado.strip() != "":
-                usuario = User.objects.filter(username=nome_buscado)
+                usuario = User.objects.filter(username__icontains=nome_buscado)
                 user = {
                     'user' : usuario,
                 } 
@@ -172,7 +172,7 @@ def check_in(request):
         nome_buscado = request.POST['buscar']
         print(nome_buscado)
         if nome_buscado.strip() != "":
-            empresa = Registro.objects.filter(empresa=nome_buscado)
+            empresa = Registro.objects.filter(empresa__icontains=nome_buscado)
             conteudo = {'casos' : Confirmacao.objects.filter(registro__in=empresa,check_in=False,ativo=True)}
             return render(request,'checkin/check_in.html',conteudo)
 
@@ -204,7 +204,7 @@ def check_out(request):
         nome_buscado = request.POST['buscar']
         print(nome_buscado)
         if nome_buscado.strip() != "":
-            empresa = Registro.objects.filter(empresa=nome_buscado)
+            empresa = Registro.objects.filter(empresa__icontains=nome_buscado)
             conteudo = {'casos' : Confirmacao.objects.filter(registro__in=empresa,check_in=True,check_out=False)}
             return render(request,'checkin/check_out.html',conteudo)
     conteudo = {"casos": Confirmacao.objects.filter(check_in= True,check_out= False).all(),
@@ -257,7 +257,7 @@ def buscar_reserva(request):
             nome_buscado = request.POST['buscar']
             print(nome_buscado)
             if nome_buscado.strip() != "":
-                reserva = Registro.objects.filter(empresa=nome_buscado)
+                reserva = Registro.objects.filter(empresa__icontains=nome_buscado)
                 empresas = {
                     'registros' : reserva,
                 } 

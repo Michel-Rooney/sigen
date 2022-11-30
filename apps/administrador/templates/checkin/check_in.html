@@ -26,9 +26,10 @@
       {% for caso in casos %}
       
           <div class="parte-branca"> 
-            <h1>{{caso}}</h1>
-            <p>Data reserva: {{caso.registro.data_reserva}}</p>
-            <p>De: {{caso.registro.hora_inicio}} às {{caso.registro.hora_fim}}</p>
+            <p><b>Empresa:</b> {{caso.registro.empresa}}</p>
+            <p><b>Agente:</b> {{caso}}</p>
+            <p><b>Data reserva:</b> {{caso.registro.data_reserva}}</p>
+            <p><b>De:</b> {{caso.registro.hora_inicio}} às {{caso.registro.hora_fim}}</p>
               {% if caso.check_in == False%}
                 <form action="{%url 'realizar_check_in' caso.id %}" method="POST" name="form" >
                   {% csrf_token %}

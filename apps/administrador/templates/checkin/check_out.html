@@ -23,9 +23,10 @@
     {%if casos %}
       {% for caso in casos %}
           <div class="parte-branca">
-            <h1>{{caso}}</h1>
-            <p>Data reserva: {{caso.registro.data_reserva}}</p>
-            <p>De: {{caso.registro.hora_inicio}} às {{caso.registro.hora_fim}}</p>
+            <p><b>Empresa:</b> {{caso.registro.empresa}}</p>
+            <p><b>Agente:</b> {{caso}}</p>
+            <p><b>Data reserva:</b> {{caso.registro.data_reserva}}</p>
+            <p><b>De:</b> {{caso.registro.hora_inicio}} às {{caso.registro.hora_fim}}</p>
               {% if caso.check_in == True and caso.check_out == False %}
               <button class="mainBtn btn-lg botao-modal ajuste" data-toggle="modal" data-target="#exampleModal{{caso.id}}">Realizar Check Out</button>
               {%endif%}

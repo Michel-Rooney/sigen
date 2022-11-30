@@ -75,7 +75,7 @@ def registro(request, espaco_id):
             hora_inicio=hora_inicio,
             hora_fim=hora_fim)
         registro.save()
-        messages.success(request, 'Registro de evento realizado com sucesso')
+        messages.success(request, 'Registro de evento realizado com sucesso, verifique seu email e confirme sua reserva')
 
         link_ativacao = make_token(agente, email, registro)
         conteudo = {'agente':agente, 'empresa':empresa, 'nome_evento':nome_evento, 'data_reserva':data_reserva, 'hora_inicio':hora_inicio, 'hora_fim':hora_fim, 'link_ativacao':link_ativacao}
