@@ -173,10 +173,10 @@ def check_in(request):
         print(nome_buscado)
         if nome_buscado.strip() != "":
             empresa = Registro.objects.filter(empresa=nome_buscado)
-            conteudo = {'casos' : Confirmacao.objects.filter(registro__in=empresa,check_in=False)}
+            conteudo = {'casos' : Confirmacao.objects.filter(registro__in=empresa,check_in=False,ativo=True)}
             return render(request,'checkin/check_in.html',conteudo)
 
-    conteudo = {"casos": Confirmacao.objects.filter(check_in=False).all(),
+    conteudo = {"casos": Confirmacao.objects.filter(check_in=False,ativo=True),
     }
     return render(request, 'checkin/check_in.html',conteudo)
 
